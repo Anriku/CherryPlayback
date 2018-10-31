@@ -1,7 +1,8 @@
-package com.anriku.cherryplayback
+package com.anriku.cherryplayback.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.anriku.cherryplayback.R
 
 class MainActivity : AppCompatActivity() {
 

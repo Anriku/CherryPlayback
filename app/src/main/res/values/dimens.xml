@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="activity_control_iv_width">40dp</dimen>
+    <dimen name="activity_control_iv_height">30dp</dimen>
+
+</resources>
