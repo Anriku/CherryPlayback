@@ -1,0 +1,267 @@
+def versions = [:]
+
+//gradle
+versions.gradle = '3.2.1'
+//kotlin
+versions.kotlin = '1.2.71'
+versions.anko = '0.10.7'
+//official ui and support library
+versions.constraint_layout = '1.1.3'
+versions.support = '1.0.0'
+//eventbus
+versions.eventbus = '3.1.1'
+//network
+versions.glide = '4.8.0'
+versions.glide_okhttp_integration = '4.8.0'
+versions.okhttp = '3.10.0'
+versions.okhttp_logging_interceptor = '3.8.0'
+versions.retrofit = '2.4.0'
+versions.rxjava = '2.2.0'
+versions.rxandroid = '2.0.2'
+versions.rxkotlin = '2.2.0'
+versions.gson = '2.8.2'
+//architecture
+versions.lifecycle = '2.0.0'
+versions.room = '2.0.0'
+versions.paging = '2.0.0'
+versions.databinding = '3.2.1'
+//permission
+versions.rxpermissions = '0.10.2'
+//multidex
+versions.multidex = '2.0.0'
+
+def deps = [:]
+ext.deps = deps
+
+// sdk
+def build_versions = [:]
+build_versions.min_sdk = 19
+build_versions.target_sdk = 28
+build_versions.build_tools = "28.0.3"
+ext.build_versions = build_versions
+
+// gradle
+def gradle = [:]
+gradle.gradle = "com.android.tools.build:gradle:$versions.gradle"
+deps.gradle = gradle
+
+// kotlin
+def kotlin = [:]
+kotlin.gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.runtime = "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+kotlin.anko = "org.jetbrains.anko:anko:$versions.anko"
+deps.kotlin = kotlin
+
+// support
+def support = [:]
+support.constraint = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
+support.app_compat = "androidx.appcompat:appcompat:$versions.support"
+support.recyclerview = "androidx.recyclerview:recyclerview:$versions.support"
+support.cardview = "androidx.cardview:cardview:$versions.support"
+support.materail = "com.google.android.material:material:$versions.support"
+support.v4 = "androidx.legacy:legacy-support-v4:$versions.support"
+support.multidex = "androidx.multidex:multidex:$versions.multidex"
+deps.support = support
+
+// eventbus
+def eventbus = [:]
+eventbus.runtime = "org.greenrobot:eventbus:$versions.eventbus"
+deps.eventbus = eventbus
+
+// glide
+def glide = [:]
+glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
+glide.okhttp_integration = "com.github.bumptech.glide:okhttp3-integration:$versions.glide_okhttp_integration"
+deps.glide = glide
+
+// network
+def okhttp = [:]
+okhttp.okhttp3 = "com.squareup.okhttp3:okhttp:$versions.okhttp"
+okhttp.logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp_logging_interceptor"
+deps.okhttp = okhttp
+
+def retrofit = [:]
+retrofit.rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+deps.retrofit = retrofit
+
+def rxjava = [:]
+rxjava.runtime = "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+rxjava.rxandroid = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+rxjava.rxkotlin = "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin"
+deps.rxjava = rxjava
+
+def gson = [:]
+gson.runtime = "com.google.code.gson:gson:$versions.gson"
+deps.gson = gson
+
+// lifecycle
+def lifecycle = [:]
+lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+//lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+lifecycle.reactivestrean = "androidx.lifecycle:lifecycle-reactivestreams-ktx:$versions.lifecycle"
+deps.lifecycle = lifecycle
+
+// room
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+room.rxjava = "androidx.room:room-rxjava2:$versions.room"
+deps.room = room
+
+// paging
+def paging = [:]
+paging.runtime = "androidx.paging:paging-runtime:$versions.paging"
+paging.rxjava = "androidx.paging:paging-rxjava2:$versions.paging"
+deps.paging = paging
+
+// databinding
+def databinding = [:]
+databinding.compiler = "androidx.databinding:databinding-compiler:$versions.databinding"
+deps.databinding = databinding
+
+// rxpermissions
+def rxpermissions = [:]
+rxpermissions.runtime = "com.github.tbruyelle:rxpermissions:$versions.rxpermissions"
+deps.rxpermissions = rxpermissions
+
+
+ext.gradle_plugins = '3.2.1'
+
+
+
+
+//ext.deps = [:]
+//
+//def versions = [:]
+////kotlin
+//versions.gradle = '3.2.1'
+//
+//versions.kotlin = '1.2.71'
+//versions.anko = '0.10.7'
+////official ui and support library
+//versions.constraint_layout = '1.1.2'
+//versions.support = '27.1.1'
+//versions.multidex = '1.0.3'
+////event and router
+//versions.arouter = '1.4.0'
+//versions.arouter_compiler = '1.2.1'
+//versions.eventbus = '3.1.1'
+////network
+//versions.glide = '4.8.0'
+//versions.glide_okhttp_integration = '4.8.0'
+//versions.okhttp = '3.10.0'
+//versions.okhttp_logging_interceptor = '3.8.0'
+//versions.retrofit = '2.4.0'
+//versions.rxjava = '2.2.0'
+//versions.rxandroid = '2.0.2'
+//versions.rxkotlin = '2.2.0'
+//versions.gson = '2.8.2'
+////architecture
+//versions.lifecycle = '1.1.1'
+//versions.room = '1.1.1'
+//versions.paging = '1.0.0'
+////dagger
+//versions.dagger = '2.16'
+////permission
+//versions.rxpermissions = '0.10.2'
+////umeng
+//versions.umeng_common = '1.5.3'
+//versions.umeng_analytics = '7.5.3'
+////bugly
+//versions.bugly_crashreport = '2.6.6.1'
+//versions.bugly_nativecrashreport = '3.3.1'
+//
+//def deps = [:]
+//
+//def build_versions = [:]
+//build_versions.min_sdk = 19
+//build_versions.target_sdk = 26
+//build_versions.build_tools = "27.0.3"
+//ext.build_versions = build_versions
+//
+//// gradle
+//def gradle = [:]
+//gradle.gradle = "com.android.tools.build:gradle:$versions.gradle"
+//deps.gradle = gradle
+//
+//def kotlin = [:]
+//kotlin.gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+//kotlin.runtime = "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+//kotlin.anko = "org.jetbrains.anko:anko:$versions.anko"
+//deps.kotlin = kotlin
+//
+//def support = [:]
+//support.constraint = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
+//support.app_compat = "com.android.support:appcompat-v7:$versions.support"
+//support.recyclerview = "com.android.support:recyclerview-v7:$versions.support"
+//support.cardview = "com.android.support:cardview-v7:$versions.support"
+//support.design = "com.android.support:design:$versions.support"
+//support.v4 = "com.android.support:support-v4:$versions.support"
+//support.multidex = "com.android.support:multidex:$versions.multidex"
+//deps.support = support
+//
+//def arouter = [:]
+//arouter.runtime = "com.alibaba:arouter-api:$versions.arouter"
+//arouter.compiler = "com.alibaba:arouter-compiler:$versions.arouter_compiler"
+//deps.arouter = arouter
+//
+//def eventbus = [:]
+//eventbus.runtime = "org.greenrobot:eventbus:$versions.eventbus"
+//deps.eventbus = eventbus
+//
+//def glide = [:]
+//glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
+//glide.okhttp_integration = "com.github.bumptech.glide:okhttp3-integration:$versions.glide_okhttp_integration"
+//deps.glide = glide
+//
+//def okhttp = [:]
+//okhttp.okhttp3 = "com.squareup.okhttp3:okhttp:$versions.okhttp"
+//okhttp.logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp_logging_interceptor"
+//deps.okhttp = okhttp
+//
+//def retrofit = [:]
+//retrofit.rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+//retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+//retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+//deps.retrofit = retrofit
+//
+//def rxjava = [:]
+//rxjava.runtime = "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+//rxjava.rxandroid = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+//rxjava.rxkotlin = "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin"
+//deps.rxjava = rxjava
+//
+//def gson = [:]
+//gson.runtime = "com.google.code.gson:gson:$versions.gson"
+//deps.gson = gson
+//
+//def lifecycle = [:]
+//lifecycle.extensions = "android.arch.lifecycle:extensions:$versions.lifecycle"
+//lifecycle.java8 = "android.arch.lifecycle:common-java8:$versions.lifecycle"
+//lifecycle.reactivestrean = "android.arch.lifecycle:reactivestreams:$versions.lifecycle"
+//lifecycle.compiler = "android.arch.lifecycle:compiler:$versions.lifecycle"
+//deps.lifecycle = lifecycle
+//
+//def room = [:]
+//room.runtime = "android.arch.persistence.room:runtime:$versions.room"
+//room.compiler = "android.arch.persistence.room:compiler:$versions.room"
+//room.rxjava = "android.arch.persistence.room:rxjava2:$versions.room"
+//deps.room = room
+//
+//def paging = [:]
+//paging.runtime = "android.arch.paging:runtime:$versions.paging"
+//paging.rxjava = "android.arch.paging:rxjava2:1.0.0-rc1"
+//deps.paging = paging
+//
+//def databinding = [:]
+//databinding.compiler = "com.android.databinding:compiler:3.1.4"
+//deps.databinding = databinding
+//
+//def rxpermissions = [:]
+//rxpermissions.runtime = "com.github.tbruyelle:rxpermissions:$versions.rxpermissions"
+//deps.rxpermissions = rxpermissions
+//
+//ext.deps = deps
