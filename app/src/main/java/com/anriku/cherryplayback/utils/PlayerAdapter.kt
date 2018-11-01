@@ -16,6 +16,8 @@ interface PlayerAdapter {
 
     fun isPlaying(): Boolean
 
+    fun addPlaybackInfoListener(listener: PlaybackInfoListener)
+
     fun initializeProgressCallback()
 
     fun seekTo(position: Int)

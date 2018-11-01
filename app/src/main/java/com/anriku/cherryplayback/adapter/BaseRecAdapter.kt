@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
  *
  * Created by anriku on 2018/9/10.
  */
-abstract class BaseRecAdapter(protected val context: Context) :
+abstract class BaseRecAdapter(private val mContext: Context) :
         RecyclerView.Adapter<BaseRecAdapter.BaseViewHolder>() {
 
-    protected val inflater: LayoutInflater = LayoutInflater.from(context)
+    protected val inflater: LayoutInflater = LayoutInflater.from(mContext)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return BaseViewHolder(inflater.inflate(viewType, parent, false))

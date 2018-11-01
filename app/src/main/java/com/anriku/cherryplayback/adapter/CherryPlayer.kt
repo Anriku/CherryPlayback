@@ -2,6 +2,7 @@ package com.anriku.cherryplayback.adapter
 
 import android.content.Context
 import android.media.MediaPlayer
+import com.anriku.cherryplayback.utils.LogUtil
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.utils.PlayerAdapter
 import java.util.concurrent.Executors
@@ -15,11 +16,12 @@ import java.util.concurrent.TimeUnit
 class CherryPlayer(private val mContext: Context) : PlayerAdapter {
 
     companion object {
+        private const val TAG = "CherryPlayer"
         const val UPDATE_INTERVAL = 1000L
     }
 
     private var mMediaPlayer: MediaPlayer? = null
-    private var mPlaybackInfoListener: PlaybackInfoListener? = null
+    private var mPlaybackInfoListeners: MutableList<PlaybackInfoListener>? = null
     private var mExecutor: ScheduledExecutorService? = null
     private var mUpdateTask: Runnable? = null
 
@@ -29,6 +31,7 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
     override fun loadMedia(resourcePath: String, isOnlineData: Boolean) {
         initMediaPlayer()
 
+        LogUtil.d(TAG, resourcePath)
         mResourcePath = resourcePath
         mIsOnlineData = isOnlineData
 
@@ -46,20 +49,27 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
         if (!isPlaying()) {
             mMediaPlayer?.start()
             setUpdateTask()
-            mPlaybackInfoListener?.onStateChange(PlaybackInfoListener.PLAYING)
+            mPlaybackInfoListeners?.let {
+                for (playbackInfoListener in it) {
+                    playbackInfoListener.onStateChange(PlaybackInfoListener.PLAYING)
+                }
+            }
         }
     }
 
     override fun pause() {
         if (isPlaying()) {
             mMediaPlayer?.pause()
-            mPlaybackInfoListener?.onStateChange(PlaybackInfoListener.PAUSED)
+            mPlaybackInfoListeners?.let {
+                for (playbackInfoListener in it) {
+                    playbackInfoListener.onStateChange(PlaybackInfoListener.PAUSED)
+                }
+            }
         }
     }
 
     override fun reset() {
         mMediaPlayer?.reset()
-        loadMedia(mResourcePath, mIsOnlineData)
         cleanUpdateTask()
     }
 
@@ -74,7 +84,11 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
     }
 
     override fun initializeProgressCallback() {
-        mPlaybackInfoListener?.onDurationChanged(mMediaPlayer?.duration ?: 0)
+        mPlaybackInfoListeners?.let {
+            for (playbackInfoListener in it) {
+                playbackInfoListener.onDurationChanged(mMediaPlayer?.duration ?: 0)
+            }
+        }
         mMediaPlayer?.seekTo(0)
     }
 
@@ -82,12 +96,23 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
         mMediaPlayer?.seekTo(position)
     }
 
+    override fun addPlaybackInfoListener(listener: PlaybackInfoListener) {
+        if (mPlaybackInfoListeners == null) {
+            mPlaybackInfoListeners = mutableListOf()
+        }
+        mPlaybackInfoListeners?.add(listener)
+    }
+
     private fun initMediaPlayer() {
         if (mMediaPlayer == null) {
             mMediaPlayer = MediaPlayer()
         }
         mMediaPlayer?.setOnCompletionListener {
-            mPlaybackInfoListener?.onComplete()
+            mPlaybackInfoListeners?.let { listeners ->
+                for (playbackInfoListener in listeners) {
+                    playbackInfoListener.onComplete()
+                }
+            }
         }
     }
 
@@ -95,7 +120,11 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
         if (mUpdateTask == null) {
             mUpdateTask = Runnable {
                 val position = mMediaPlayer?.currentPosition ?: 0
-                mPlaybackInfoListener?.onPositionChanged(position)
+                mPlaybackInfoListeners?.let { listeners ->
+                    for (playbackInfoListener in listeners) {
+                        playbackInfoListener.onPositionChanged(position)
+                    }
+                }
             }
         }
 
@@ -103,7 +132,7 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
             mExecutor = Executors.newSingleThreadScheduledExecutor()
         }
         mExecutor?.scheduleAtFixedRate(mUpdateTask, 0,
-            UPDATE_INTERVAL, TimeUnit.MILLISECONDS)
+                UPDATE_INTERVAL, TimeUnit.MILLISECONDS)
     }
 
     private fun cleanUpdateTask() {

@@ -1,22 +1,53 @@
 package com.anriku.cherryplayback.utils
 
-import android.content.Context
+import android.Manifest
 import android.database.Cursor
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.model.Song
+import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
+import com.tbruyelle.rxpermissions2.RxPermissions
 
 /**
  * Created by anriku on 2018/10/31.
  */
 
-class MusicAccessUtil(private val mContext: Context) {
+class MusicAccessUtil(private val mActivity: FragmentActivity) {
 
     private val mUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+    private var mRxPermission: RxPermissions? = null
+    private var mSongs: List<Song>? = null
 
-    fun getMusics(): List<Song> {
+    companion object {
+        private const val TAG = "MusicAccessUtil"
+    }
+
+    fun getMusics(): List<Song>? {
+        if (mRxPermission == null) {
+            mRxPermission = RxPermissions(mActivity)
+        }
+
+        mRxPermission?.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                ?.subscribe(ExecuteOnceObserver<Boolean>(
+                        onExecuteOnceNext = {
+                            LogUtil.d(TAG, "onExecuteOnceNext")
+                            if (it) {
+                                getMusicsAfterGrant()
+                            } else {
+                                Toast.makeText(mActivity, mActivity.getString(R.string.get_music_need_permission),
+                                        Toast.LENGTH_LONG).show()
+                            }
+                        }
+                ))
+        LogUtil.d(TAG, mSongs.toString())
+        return mSongs
+    }
+
+    private fun getMusicsAfterGrant() {
         val songs = mutableListOf<Song>()
-        val resolver = mContext.contentResolver
+        val resolver = mActivity.contentResolver
         val cursor: Cursor? = resolver.query(mUri, null, null, null, null)
 
         val id = android.provider.MediaStore.Audio.Media._ID
@@ -37,10 +68,10 @@ class MusicAccessUtil(private val mContext: Context) {
 
         when {
             cursor == null -> {
-                Toast.makeText(mContext, mContext.getString(R.string.get_music_failed), Toast.LENGTH_LONG).show()
+                Toast.makeText(mActivity, mActivity.getString(R.string.get_music_failed), Toast.LENGTH_LONG).show()
             }
             !cursor.moveToFirst() -> {
-                Toast.makeText(mContext, mContext.getString(R.string.none_music), Toast.LENGTH_LONG).show()
+                Toast.makeText(mActivity, mActivity.getString(R.string.none_music), Toast.LENGTH_LONG).show()
             }
             else -> {
                 cursor.moveToFirst()
@@ -51,7 +82,7 @@ class MusicAccessUtil(private val mContext: Context) {
                     song.duration = cursor.getLong(cursor.getColumnIndex(duration))
 
                     // 略去不是音乐的或者时间小于一分钟的音频
-                    if (song.isMusic != 0 || song.duration < 1000 * 60) {
+                    if (song.isMusic == 0 || song.duration < 1000 * 60) {
                         continue
                     }
 
@@ -74,7 +105,7 @@ class MusicAccessUtil(private val mContext: Context) {
         }
 
         cursor?.close()
-        return songs
+        mSongs =  songs
     }
 
 }

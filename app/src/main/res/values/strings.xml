@@ -4,4 +4,5 @@
     <string name="get_music_failed">获取歌曲失败</string>
     <string name="none_music">没有音乐</string>
     <string name="close">关闭</string>
+    <string name="get_music_need_permission">获取音乐需要上面的权限哟</string>
 </resources>
