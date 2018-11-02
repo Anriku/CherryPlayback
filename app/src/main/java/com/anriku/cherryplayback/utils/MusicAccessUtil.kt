@@ -10,19 +10,26 @@ import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
 import com.tbruyelle.rxpermissions2.RxPermissions
 
 /**
+ * 此类用于获取本地的音乐
+ *
  * Created by anriku on 2018/10/31.
  */
-
 class MusicAccessUtil(private val mActivity: FragmentActivity) {
-
-    private val mUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-    private var mRxPermission: RxPermissions? = null
-    private var mSongs: List<Song>? = null
 
     companion object {
         private const val TAG = "MusicAccessUtil"
     }
 
+    private val mUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+    private var mRxPermission: RxPermissions? = null
+    private var mSongs: List<Song>? = null
+
+    /**
+     * 暴露于外面的获取音乐的方法。
+     * 先会进行运行时权限的检测，再进行音乐的获取。
+     *
+     * @return 获取到的音乐
+     */
     fun getMusics(): List<Song>? {
         if (mRxPermission == null) {
             mRxPermission = RxPermissions(mActivity)
@@ -45,6 +52,10 @@ class MusicAccessUtil(private val mActivity: FragmentActivity) {
         return mSongs
     }
 
+
+    /**
+     * 这整获取音乐的方法。
+     */
     private fun getMusicsAfterGrant() {
         val songs = mutableListOf<Song>()
         val resolver = mActivity.contentResolver

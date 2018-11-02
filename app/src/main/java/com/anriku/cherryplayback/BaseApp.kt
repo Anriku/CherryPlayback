@@ -29,7 +29,7 @@ class BaseApp: Application() {
             val notificationChannel = NotificationChannel(
                     MUSIC_SERVICE_CHANNEL_ID,
                     "CherryPlaybackChannel",
-                    NotificationManager.IMPORTANCE_DEFAULT)
+                    NotificationManager.IMPORTANCE_HIGH)
             val manager = getSystemService(NotificationManager::class.java)
             manager.createNotificationChannel(notificationChannel)
         }

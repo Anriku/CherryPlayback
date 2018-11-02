@@ -41,7 +41,6 @@ class SongListRecAdapter(private val mActivity: FragmentActivity) : BaseRecAdapt
         }
 
         holder.itemView.setOnClickListener {
-            mSongsViewModel.binder?.reset()
             mSongsViewModel.binder?.loadLocalMedia(position)
             mSongsViewModel.binder?.play()
         }
