@@ -5,14 +5,19 @@ import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.anriku.cherryplayback.databinding.ActivityControlBinding
 import com.anriku.cherryplayback.event.ServiceConnectEvent
+import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.service.MusicService
 import com.anriku.cherryplayback.utils.IMusicBinder
 import com.anriku.cherryplayback.utils.LogUtil
 import com.anriku.cherryplayback.utils.MusicAccessUtil
+import com.anriku.cherryplayback.utils.PaletteUtil
 import org.greenrobot.eventbus.EventBus
 
 /**
@@ -25,6 +30,9 @@ class SongsViewModel : ViewModel() {
         private const val TAG = "SongsViewModel"
     }
 
+    val currentPlaySongName: MutableLiveData<String> = MutableLiveData()
+    val currentPlayArtist: MutableLiveData<String> = MutableLiveData()
+
     private lateinit var mMusicAccessUtil: MusicAccessUtil
     // 用于与播放音乐的服务进行通信
     var binder: IMusicBinder? = null
@@ -34,7 +42,6 @@ class SongsViewModel : ViewModel() {
         override fun onServiceDisconnected(name: ComponentName) {}
 
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
-            LogUtil.d(TAG, "onServiceConnect")
             binder = service as IMusicBinder
             EventBus.getDefault().post(ServiceConnectEvent())
         }
@@ -80,5 +87,25 @@ class SongsViewModel : ViewModel() {
      */
     fun unbindService(activity: FragmentActivity) {
         activity.unbindService(connection)
+    }
+
+
+    /**
+     * 在音乐被加载的时候显示歌曲的名称、歌手、专辑图片的信息
+     *
+     * @param song 被加载的歌曲
+     * @param binding ActivityControlBinding
+     */
+    fun onLoadMedia(song: Song, binding: ActivityControlBinding) {
+        currentPlaySongName.value = song.title
+        currentPlayArtist.value = song.artist
+
+        song.data?.let {
+            val bitmap = mMusicAccessUtil.setAlbumBitmap(it, binding.ivAlbum)
+            PaletteUtil.extractColors(bitmap)
+            PaletteUtil.backgroundColor?.let { bkColor ->
+                binding.cl.setBackgroundColor(bkColor)
+            }
+        }
     }
 }

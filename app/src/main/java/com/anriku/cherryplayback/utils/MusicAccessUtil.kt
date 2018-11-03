@@ -2,6 +2,11 @@ package com.anriku.cherryplayback.utils
 
 import android.Manifest
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.media.MediaMetadataRetriever
+import android.net.Uri
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.anriku.cherryplayback.R
@@ -18,9 +23,64 @@ class MusicAccessUtil(private val mActivity: FragmentActivity) {
 
     companion object {
         private const val TAG = "MusicAccessUtil"
+
+        // 取出的音乐各列的index
+        const val IS_MUSIC = 0
+        const val DURATION = 1
+        const val _ID = 2
+        const val DATA = 3
+        const val SIZE = 4
+        const val DISPLAY_NAME = 5
+        const val TITLE = 6
+        const val DATE_ADDED = 7
+        const val DATE_MODIFIED = 8
+        const val MIME_TYPE = 9
+        const val ARTIST = 10
+        const val COMPOSER = 11
+        const val YEAR = 12
+        const val ALBUM_ID = 13
+
+        // 取出的专辑各列的index
+        const val ALBUM_ALBUM_ID = 0
+        const val ALBUM = 1
+        const val FIRST_YEAR = 2
+        const val LAST_YEAR = 3
+        const val ALBUM_ART = 4
     }
 
-    private val mUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+    private val mAudioProjections: Array<String> by lazy(LazyThreadSafetyMode.NONE) {
+        arrayOf(
+            android.provider.MediaStore.Audio.Media.IS_MUSIC,
+            android.provider.MediaStore.Audio.Media.DURATION,
+            android.provider.MediaStore.Audio.Media._ID,
+            android.provider.MediaStore.Audio.Media.DATA,
+            android.provider.MediaStore.Audio.Media.SIZE,
+            android.provider.MediaStore.Audio.Media.DISPLAY_NAME,
+            android.provider.MediaStore.Audio.Media.TITLE,
+            android.provider.MediaStore.Audio.Media.DATE_ADDED,
+            android.provider.MediaStore.Audio.Media.DATE_MODIFIED,
+            android.provider.MediaStore.Audio.Media.MIME_TYPE,
+            android.provider.MediaStore.Audio.Media.ARTIST,
+            android.provider.MediaStore.Audio.Media.COMPOSER,
+            android.provider.MediaStore.Audio.Media.YEAR,
+            android.provider.MediaStore.Audio.Media.ALBUM_ID
+        )
+    }
+    private val mAlbumProjections: Array<String> by lazy(LazyThreadSafetyMode.NONE) {
+        arrayOf(
+            android.provider.MediaStore.Audio.Albums.ALBUM_ID,
+            android.provider.MediaStore.Audio.Albums.ALBUM,
+            android.provider.MediaStore.Audio.Albums.FIRST_YEAR,
+            android.provider.MediaStore.Audio.Albums.LAST_YEAR,
+            android.provider.MediaStore.Audio.Albums.ALBUM_ART
+        )
+    }
+    private val mAlbumPlaceholder: Bitmap by lazy(LazyThreadSafetyMode.NONE) {
+        BitmapFactory.decodeResource(mActivity.resources, R.drawable.ic_music_placeholder)
+    }
+
+    private val mAudioUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+    private val mAlbumUri = android.provider.MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI
     private var mRxPermission: RxPermissions? = null
     private var mSongs: List<Song>? = null
 
@@ -35,20 +95,22 @@ class MusicAccessUtil(private val mActivity: FragmentActivity) {
             mRxPermission = RxPermissions(mActivity)
         }
 
-        mRxPermission?.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                ?.subscribe(ExecuteOnceObserver<Boolean>(
-                        onExecuteOnceNext = {
-                            LogUtil.d(TAG, "onExecuteOnceNext")
-                            if (it) {
-                                getMusicsAfterGrant()
-                            } else {
-                                Toast.makeText(mActivity, mActivity.getString(R.string.get_music_need_permission),
-                                        Toast.LENGTH_LONG).show()
-                            }
-                        }
-                ))
-        LogUtil.d(TAG, mSongs.toString())
+        mRxPermission?.request(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+            ?.subscribe(ExecuteOnceObserver<Boolean>(
+                onExecuteOnceNext = {
+                    if (it) {
+                        getMusicsAfterGrant()
+                    } else {
+                        Toast.makeText(
+                            mActivity, mActivity.getString(R.string.get_music_need_permission),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            ))
         return mSongs
     }
 
@@ -59,56 +121,48 @@ class MusicAccessUtil(private val mActivity: FragmentActivity) {
     private fun getMusicsAfterGrant() {
         val songs = mutableListOf<Song>()
         val resolver = mActivity.contentResolver
-        val cursor: Cursor? = resolver.query(mUri, null, null, null, null)
-
-        val id = android.provider.MediaStore.Audio.Media._ID
-        val data = android.provider.MediaStore.Audio.Media.DATA
-        val size = android.provider.MediaStore.Audio.Media.SIZE
-        val displayName = android.provider.MediaStore.Audio.Media.DISPLAY_NAME
-        val title = android.provider.MediaStore.Audio.Media.TITLE
-        val dateAdded = android.provider.MediaStore.Audio.Media.DATE_ADDED
-        val dateModified = android.provider.MediaStore.Audio.Media.DATE_MODIFIED
-        val mineType = android.provider.MediaStore.Audio.Media.MIME_TYPE
-        val duration = android.provider.MediaStore.Audio.Media.DURATION
-        val artist = android.provider.MediaStore.Audio.Media.ARTIST
-        val composer = android.provider.MediaStore.Audio.Media.COMPOSER
-        val album = android.provider.MediaStore.Audio.Media.ALBUM
-        val year = android.provider.MediaStore.Audio.Media.YEAR
-        val isMusic = android.provider.MediaStore.Audio.Media.IS_MUSIC
-
+        val cursor: Cursor? = resolver.query(mAudioUri, mAudioProjections, null, null, null)
 
         when {
             cursor == null -> {
-                Toast.makeText(mActivity, mActivity.getString(R.string.get_music_failed), Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    mActivity,
+                    mActivity.getString(R.string.get_music_failed),
+                    Toast.LENGTH_LONG
+                ).show()
             }
             !cursor.moveToFirst() -> {
-                Toast.makeText(mActivity, mActivity.getString(R.string.none_music), Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    mActivity,
+                    mActivity.getString(R.string.none_music),
+                    Toast.LENGTH_LONG
+                ).show()
             }
             else -> {
                 cursor.moveToFirst()
 
                 do {
                     val song = Song()
-                    song.isMusic = cursor.getInt(cursor.getColumnIndex(isMusic))
-                    song.duration = cursor.getLong(cursor.getColumnIndex(duration))
+                    song.isMusic = cursor.getInt(IS_MUSIC)
+                    song.duration = cursor.getLong(DURATION)
 
                     // 略去不是音乐的或者时间小于一分钟的音频
                     if (song.isMusic == 0 || song.duration < 1000 * 60) {
                         continue
                     }
 
-                    song.id = cursor.getLong(cursor.getColumnIndex(id))
-                    song.data = cursor.getString(cursor.getColumnIndex(data))
-                    song.size = cursor.getLong(cursor.getColumnIndex(size))
-                    song.displayName = cursor.getString(cursor.getColumnIndex(displayName))
-                    song.title = cursor.getString(cursor.getColumnIndex(title))
-                    song.dateAdded = cursor.getLong(cursor.getColumnIndex(dateAdded))
-                    song.dateModified = cursor.getLong(cursor.getColumnIndex(dateModified))
-                    song.mineType = cursor.getString(cursor.getColumnIndex(mineType))
-                    song.artist = cursor.getString(cursor.getColumnIndex(artist))
-                    song.composer = cursor.getString(cursor.getColumnIndex(composer))
-                    song.album = cursor.getString(cursor.getColumnIndex(album))
-                    song.year = cursor.getInt(cursor.getColumnIndex(year))
+                    song.id = cursor.getLong(_ID)
+                    song.data = cursor.getString(DATA)
+                    song.size = cursor.getLong(SIZE)
+                    song.displayName = cursor.getString(DISPLAY_NAME)
+                    song.title = cursor.getString(TITLE)
+                    song.dateAdded = cursor.getLong(DATE_ADDED)
+                    song.dateModified = cursor.getLong(DATE_MODIFIED)
+                    song.mineType = cursor.getString(MIME_TYPE)
+                    song.artist = cursor.getString(ARTIST)
+                    song.composer = cursor.getString(COMPOSER)
+                    song.year = cursor.getInt(YEAR)
+                    song.albumId = cursor.getLong(ALBUM_ID)
 
                     songs.add(song)
                 } while (cursor.moveToNext())
@@ -116,7 +170,66 @@ class MusicAccessUtil(private val mActivity: FragmentActivity) {
         }
 
         cursor?.close()
-        mSongs =  songs
+        mSongs = songs
     }
 
+//    /**
+//     * 根据albumId获取专辑信息。
+//     *
+//     * @param albumId 专辑Id
+//     * @return 包含专辑信息的类
+//     */
+//    fun getAlbumInfo(albumId: Long): Song.Album {
+//        val resolver = mActivity.contentResolver
+//        val cursor: Cursor? = resolver.query(
+//            Uri.parse("${mAlbumUri.path}/$albumId"),
+//            mAlbumProjections,
+//            null,
+//            null,
+//            null
+//        )
+//        val album = Song.Album()
+//
+//        cursor?.let {
+//            if (it.moveToFirst()) {
+//                album.albumId = cursor.getLong(ALBUM_ALBUM_ID)
+//                album.album = cursor.getString(ALBUM)
+//                album.firstYear = cursor.getInt(FIRST_YEAR)
+//                album.lastYear = cursor.getInt(LAST_YEAR)
+//                album.albumArt = cursor.getString(ALBUM_ART)
+//                album.albumBitmap = getAlbumBitmap(album.albumArt)
+//                LogUtil.d(TAG, album.albumArt.toString())
+//            }
+//        }
+//        cursor?.close()
+//        return album
+//    }
+//
+//    /**
+//     * 根据[albumArt]来获取对应专辑图片
+//     *
+//     * @param albumArt
+//     * @return 专辑图片，如果没有就用一个占位符代替
+//     */
+//    private fun getAlbumBitmap(albumArt: String?): Bitmap = if (albumArt == null) {
+//        BitmapFactory.decodeResource(mActivity.resources, R.drawable.ic_music_placeholder)
+//    } else {
+//        BitmapFactory.decodeFile(albumArt)
+//    }
+
+    fun setAlbumBitmap(uri: String, imageView: ImageView): Bitmap {
+        val selectedAudio = Uri.parse(uri)
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(mActivity, selectedAudio)
+        val artWork = retriever.embeddedPicture
+
+        return if (artWork == null) {
+            imageView.setImageBitmap(mAlbumPlaceholder)
+            mAlbumPlaceholder
+        } else {
+            val bitmap = BitmapFactory.decodeByteArray(artWork, 0, artWork.size)
+            imageView.setImageBitmap(bitmap)
+            bitmap
+        }
+    }
 }

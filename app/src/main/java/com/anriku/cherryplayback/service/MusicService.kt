@@ -2,22 +2,15 @@ package com.anriku.cherryplayback.service
 
 import android.app.PendingIntent
 import android.app.Service
-import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.anriku.cherryplayback.BaseApp
 import com.anriku.cherryplayback.R
-import com.anriku.cherryplayback.adapter.CherryPlayer
 import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
-import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.ui.ControlActivity
-import com.anriku.cherryplayback.utils.PlaybackInfoListener
-import com.anriku.cherryplayback.utils.PlayerAdapter
 import com.anriku.cherryplayback.config.MUSIC_NOTIFICATION_ID
-import com.anriku.cherryplayback.utils.IMusicBinder
 import com.anriku.cherryplayback.utils.extensions.setSPValue
-import java.util.*
 
 /**
  * 进行音乐后台播放的服务
@@ -44,7 +37,7 @@ class MusicService : Service() {
                 BaseApp.MUSIC_SERVICE_CHANNEL_ID
             ).setContentTitle("CherryPlayback")
                 .setContentText("song")
-                .setSmallIcon(R.drawable.ic_music)
+                .setSmallIcon(R.drawable.ic_music_placeholder)
                 .setContentIntent(pendingIntent)
                 .build()
 

@@ -61,6 +61,7 @@ support.cardview = "androidx.cardview:cardview:$versions.support"
 support.materail = "com.google.android.material:material:$versions.support"
 support.v4 = "androidx.legacy:legacy-support-v4:$versions.support"
 support.multidex = "androidx.multidex:multidex:$versions.multidex"
+support.palette = "androidx.palette:palette:$versions.support"
 deps.support = support
 
 // eventbus

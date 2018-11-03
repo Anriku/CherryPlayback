@@ -1,6 +1,7 @@
 package com.anriku.cherryplayback.utils
 
 import androidx.annotation.IntDef
+import com.anriku.cherryplayback.model.Song
 
 /**
  * Created by anriku on 2018/10/31.
@@ -28,6 +29,8 @@ abstract class PlaybackInfoListener {
         COMPLETE -> "complete"
         else -> "N/A"
     }
+
+    abstract fun onLoadMedia(song: Song)
 
     abstract fun onDurationChanged(duration: Int)
 

@@ -16,7 +16,10 @@ import com.anriku.cherryplayback.config.PLAY_PATTERN
 import com.anriku.cherryplayback.databinding.ActivityControlBinding
 import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.lifecycle.EventBusObserver
+import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.utils.IMusicBinder
+import com.anriku.cherryplayback.utils.LogUtil
+import com.anriku.cherryplayback.utils.PaletteUtil
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.utils.extensions.getSPValue
 import com.anriku.cherryplayback.utils.extensions.setSPValue
@@ -25,6 +28,10 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 class ControlActivity : AppCompatActivity() {
+
+    companion object {
+        private const val TAG = "ControlActivity"
+    }
 
     private lateinit var mBinding: ActivityControlBinding
     private val mMusicListFragment: MusicListFragment by lazy(LazyThreadSafetyMode.NONE) { MusicListFragment() }
@@ -52,6 +59,7 @@ class ControlActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_control)
+        mBinding.setLifecycleOwner(this)
         lifecycle.addObserver(EventBusObserver(this))
 
         initControlActivity()
@@ -68,6 +76,7 @@ class ControlActivity : AppCompatActivity() {
 
         songsViewModel.startAndBindService(this)
 
+        mBinding.viewModel = songsViewModel
         // 设置各个按键的点击事件
         mBinding.listeners = ControlActivityListener(onPattern = {
             mPlayPattern = (mPlayPattern + 1) % 3
@@ -126,16 +135,22 @@ class ControlActivity : AppCompatActivity() {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onServiceConnected(serviceConnectEvent: ServiceConnectEvent) {
+        mPlaybackListener = PlaybackListener()
+        mSongsViewModel.binder?.addPlaybackInfoListener(mPlaybackListener)
+
         if (mSongsViewModel.binder?.isPlaying() == false) {
             mSongsViewModel.getSongs(this)
             val lastPlayIndex = getSPValue().getInt(LAST_PLAY_INDEX, 0)
             mSongsViewModel.binder?.loadLocalMedia(lastPlayIndex)
         }
-        mPlaybackListener = PlaybackListener()
-        mSongsViewModel.binder?.addPlaybackInfoListener(mPlaybackListener)
     }
 
     inner class PlaybackListener : PlaybackInfoListener() {
+
+        override fun onLoadMedia(song: Song) {
+            LogUtil.d(TAG, song.toString())
+            mSongsViewModel.onLoadMedia(song, mBinding)
+        }
 
         override fun onDurationChanged(duration: Int) {
             mBinding.sb.max = duration
@@ -163,10 +178,7 @@ class ControlActivity : AppCompatActivity() {
             }
         }
 
-        override fun onComplete() {
-//            mSongsViewModel.binder?.loadAnotherMusic(mPlayPattern)
-//            mSongsViewModel.binder?.play()
-        }
+        override fun onComplete() {}
     }
 
 

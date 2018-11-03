@@ -206,6 +206,7 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
         mPlaybackInfoListeners?.let {
             for (playbackInfoListener in it) {
                 playbackInfoListener.onDurationChanged(mMediaPlayer?.duration ?: 0)
+                playbackInfoListener.onLoadMedia(mSongs[mCurrentPlayIndex])
             }
         }
         mMediaPlayer?.seekTo(0)

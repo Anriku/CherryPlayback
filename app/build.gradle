@@ -52,7 +52,9 @@ dependencies {
     implementation deps.support.recyclerview
     implementation deps.support.cardview
     implementation deps.support.materail
-//    implementation deps.support.design
+    implementation deps.support.palette
+
+    // implementation deps.support.design
     implementation deps.support.v4
     implementation deps.support.multidex
 
@@ -74,10 +76,10 @@ dependencies {
 
     //architecture
     implementation deps.lifecycle.extensions
-//    implementation deps.lifecycle.java8
+    // implementation deps.lifecycle.java8
     kapt deps.lifecycle.compiler
     implementation deps.lifecycle.reactivestrean
-//    kapt deps.lifecycle.compiler
+    // kapt deps.lifecycle.compiler
     implementation deps.room.runtime
     implementation deps.room.rxjava
     kapt deps.room.compiler
