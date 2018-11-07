@@ -5,20 +5,20 @@ import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
-import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.databinding.ActivityControlBinding
 import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.service.MusicService
 import com.anriku.cherryplayback.utils.IMusicBinder
-import com.anriku.cherryplayback.utils.LogUtil
 import com.anriku.cherryplayback.utils.MusicAccessUtil
 import com.anriku.cherryplayback.utils.PaletteUtil
 import org.greenrobot.eventbus.EventBus
+import org.jetbrains.anko.textColor
 
 /**
  * Created by anriku on 2018/10/31.
@@ -33,7 +33,6 @@ class SongsViewModel : ViewModel() {
     val currentPlaySongName: MutableLiveData<String> = MutableLiveData()
     val currentPlayArtist: MutableLiveData<String> = MutableLiveData()
 
-    private lateinit var mMusicAccessUtil: MusicAccessUtil
     // 用于与播放音乐的服务进行通信
     var binder: IMusicBinder? = null
     // 绑定服务的ServiceConnection
@@ -53,9 +52,9 @@ class SongsViewModel : ViewModel() {
      * @param activity 调用此方法需要一个[androidx.fragment.app.FragmentActivity].因为[MusicAccessUtil]
      * 获取需要进行运行时权限的检测。
      */
-    fun getSongs(activity: FragmentActivity) {
-        mMusicAccessUtil = MusicAccessUtil(activity)
-        binder?.setSongs(mMusicAccessUtil.getMusics() ?: mutableListOf())
+    fun setSongs(activity: FragmentActivity) {
+        val musicAccessUtil = MusicAccessUtil(activity)
+        binder?.setSongs(musicAccessUtil.getMusics() ?: mutableListOf())
     }
 
     /**
@@ -93,19 +92,27 @@ class SongsViewModel : ViewModel() {
     /**
      * 在音乐被加载的时候显示歌曲的名称、歌手、专辑图片的信息
      *
+     * @param activity [FragmentActivity]
      * @param song 被加载的歌曲
      * @param binding ActivityControlBinding
      */
-    fun onLoadMedia(song: Song, binding: ActivityControlBinding) {
+    fun onLoadMedia(activity: FragmentActivity, song: Song, binding: ActivityControlBinding) {
+        val musicAccessUtil = MusicAccessUtil(activity)
+
         currentPlaySongName.value = song.title
         currentPlayArtist.value = song.artist
 
         song.data?.let {
-            val bitmap = mMusicAccessUtil.setAlbumBitmap(it, binding.ivAlbum)
-            PaletteUtil.extractColors(bitmap)
-            PaletteUtil.backgroundColor?.let { bkColor ->
-                binding.cl.setBackgroundColor(bkColor)
-            }
+            val bitmap = musicAccessUtil.setAlbumBitmap(it, binding.ivAlbum)
+            binding.cl.setBackgroundColor(PaletteUtil.extractBackgroundColor(bitmap))
+            val textColor = PaletteUtil.extractTextColor(bitmap)
+            binding.tvSongName.textColor = textColor
+            binding.tvArtist.textColor = textColor
+            return
         }
+        binding.cl.setBackgroundColor(ContextCompat.getColor(activity, R.color.default_bk_color))
+        val textColor = ContextCompat.getColor(activity, R.color.default_text_color)
+        binding.tvSongName.textColor = textColor
+        binding.tvArtist.textColor = textColor
     }
 }

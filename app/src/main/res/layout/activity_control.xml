@@ -18,6 +18,8 @@
         android:id="@+id/cl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/default_bk_color"
+        android:fitsSystemWindows="true"
         tools:context=".ui.ControlActivity">
 
 
@@ -50,6 +52,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:text="@{viewModel.currentPlaySongName}"
+            android:textColor="@color/default_text_color"
             app:layout_constraintBottom_toTopOf="@id/tv_artist"
             app:layout_constraintLeft_toRightOf="@id/iv_back"
             app:layout_constraintRight_toLeftOf="@id/iv_menu"
@@ -63,6 +66,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:text="@{viewModel.currentPlayArtist}"
+            android:textColor="@color/default_text_color"
             app:layout_constraintBottom_toBottomOf="@id/gl_artist_album"
             app:layout_constraintLeft_toRightOf="@id/iv_back"
             app:layout_constraintRight_toLeftOf="@id/iv_menu"

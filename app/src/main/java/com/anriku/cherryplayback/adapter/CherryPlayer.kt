@@ -29,7 +29,7 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
 
     // 当前本地音乐播放到的位置
     private var mCurrentPlayIndex: Int = 0
-    // 获取的音乐
+    // 播放源
     private var mSongs: List<Song> = mutableListOf()
 
     private var mMediaPlayer: MediaPlayer? = null
@@ -63,6 +63,11 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
     }
 
     override fun loadAnotherMusic(pattern: Int, isNext: Boolean) {
+
+        // 如果播放资源为空就不进行加载
+        if (mSongs.isEmpty()) {
+            return
+        }
         when (pattern) {
             IMusicBinder.SEQUENCE_PLAY -> {
                 if (isNext) {
@@ -80,25 +85,34 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
                         return
                     }
                 }
-                loadLocalMedia(mCurrentPlayIndex)
+                loadMediaByPosition(mCurrentPlayIndex)
             }
             IMusicBinder.RANDOM_PLAY -> {
                 var randomIndex = Random().nextInt(mSongs.size)
                 while (randomIndex == mCurrentPlayIndex) {
                     randomIndex = Random().nextInt(mSongs.size)
                 }
-                mCurrentPlayIndex = randomIndex
-                loadLocalMedia(mCurrentPlayIndex)
+                loadMediaByPosition(randomIndex)
             }
             IMusicBinder.SINGLE_PLAY -> {
-                loadLocalMedia(mCurrentPlayIndex)
+                loadMediaByPosition(mCurrentPlayIndex)
             }
         }
     }
 
-    override fun loadLocalMedia(position: Int) {
-        reset()
-        mCurrentPlayIndex = position
+    override fun loadMediaByPosition(position: Int) {
+        // 如果播放资源为空就不进行加载
+        if (mSongs.isEmpty()) {
+            return
+        }
+
+        // 防止数组越界
+        mCurrentPlayIndex = when {
+            position >= mSongs.size -> mSongs.size - 1
+            position < 0 -> 0
+            else -> position
+        }
+
         mSongs[position].data?.let {
             loadMedia(it, false)
         }
@@ -146,6 +160,7 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
 
 
     override fun setSongs(songs: List<Song>) {
+        reset()
         mSongs = songs
     }
 
@@ -165,6 +180,12 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
         }
         mPlaybackInfoListeners?.add(listener)
         listener.onDurationChanged(mMediaPlayer?.duration ?: 0)
+        if (mSongs.isNotEmpty()) {
+            listener.onLoadMedia(mSongs[mCurrentPlayIndex])
+        }
+        if (mMediaPlayer?.isPlaying == true) {
+            listener.onStateChange(PlaybackInfoListener.PLAY)
+        }
     }
 
     override fun removePlaybackInfoListener(listener: PlaybackInfoListener) {
@@ -206,7 +227,9 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
         mPlaybackInfoListeners?.let {
             for (playbackInfoListener in it) {
                 playbackInfoListener.onDurationChanged(mMediaPlayer?.duration ?: 0)
-                playbackInfoListener.onLoadMedia(mSongs[mCurrentPlayIndex])
+                if (mSongs.isNotEmpty()) {
+                    playbackInfoListener.onLoadMedia(mSongs[mCurrentPlayIndex])
+                }
             }
         }
         mMediaPlayer?.seekTo(0)

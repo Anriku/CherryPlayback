@@ -2,10 +2,8 @@ package com.anriku.cherryplayback.adapter
 
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.anriku.cherryplayback.R
-import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.utils.LogUtil
 import com.anriku.cherryplayback.viewmodel.SongsViewModel
 
@@ -41,7 +39,7 @@ class SongListRecAdapter(private val mActivity: FragmentActivity) : BaseRecAdapt
         }
 
         holder.itemView.setOnClickListener {
-            mSongsViewModel.binder?.loadLocalMedia(position)
+            mSongsViewModel.binder?.loadMediaByPosition(position)
             mSongsViewModel.binder?.play()
         }
     }

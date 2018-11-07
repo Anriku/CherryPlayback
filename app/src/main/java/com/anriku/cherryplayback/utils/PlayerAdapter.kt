@@ -49,7 +49,7 @@ interface PlayerAdapter {
      *
      * @param position 要播放的音乐在本地音乐列表的中的位置
      */
-    abstract fun loadLocalMedia(position: Int)
+    abstract fun loadMediaByPosition(position: Int)
 
     /**
      * 根据本地音乐的路径或者在线音乐的Uri进行音乐的加载。

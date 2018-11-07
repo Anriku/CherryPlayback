@@ -23,10 +23,11 @@ class MusicService : Service() {
         const val TAG = "MusicService"
     }
 
+    private var mIsServiceFirstCreate: Boolean = true
     private val mMusicBinder: MusicBinder by lazy(LazyThreadSafetyMode.NONE) { MusicBinder(this) }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (!mMusicBinder.isPlaying()) {
+        if (mIsServiceFirstCreate) {
             val notificationIntent = Intent(this, ControlActivity::class.java)
             val pendingIntent = PendingIntent.getActivity(
                 this, 0, notificationIntent, 0
@@ -43,6 +44,7 @@ class MusicService : Service() {
 
             // 将服务置于前台
             startForeground(MUSIC_NOTIFICATION_ID, notification)
+            mIsServiceFirstCreate = false
         }
 
         return super.onStartCommand(intent, flags, startId)

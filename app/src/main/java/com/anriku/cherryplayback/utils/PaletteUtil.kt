@@ -1,6 +1,9 @@
 package com.anriku.cherryplayback.utils
 
 import android.graphics.Bitmap
+import android.graphics.Color
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.palette.graphics.Palette
 
 /**
@@ -10,25 +13,18 @@ import androidx.palette.graphics.Palette
  */
 object PaletteUtil {
 
-    var backgroundColor: Int? = null
-    var textColor: Int? = null
-
-    /**
-     * Create a [Palette] using a bitmap.
-     *
-     * @param bitmap
-     */
     fun createPalette(bitmap: Bitmap): Palette = Palette.from(bitmap).generate()
 
-    /**
-     * Extract the bitmap's color
-     *
-     * @param bitmap
-     */
-    fun extractColors(bitmap: Bitmap) {
-        val vibrantSwatch = createPalette(bitmap).vibrantSwatch
+    @ColorInt
+    fun extractBackgroundColor(bitmap: Bitmap): Int {
+        val lightMutedSwatch = createPalette(bitmap).lightMutedSwatch
 
-        backgroundColor = vibrantSwatch?.rgb
-        textColor = vibrantSwatch?.titleTextColor
+        return lightMutedSwatch?.rgb ?: Color.parseColor("#cccccc")
+    }
+
+    @ColorInt
+    fun extractTextColor(bitmap: Bitmap): Int {
+        val lightMutedSwatch = createPalette(bitmap).lightMutedSwatch
+        return lightMutedSwatch?.titleTextColor ?: Color.parseColor("444444")
     }
 }

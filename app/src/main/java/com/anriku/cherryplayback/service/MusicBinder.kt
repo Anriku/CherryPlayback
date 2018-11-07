@@ -42,8 +42,8 @@ class MusicBinder(private val mContext: Context) : IMusicBinder() {
         mPlayerAdapter.loadAnotherMusic(pattern, isNext)
     }
 
-    override fun loadLocalMedia(position: Int) {
-        mPlayerAdapter.loadLocalMedia(position)
+    override fun loadMediaByPosition(position: Int) {
+        mPlayerAdapter.loadMediaByPosition(position)
     }
 
     override fun loadMedia(resourcePath: String, isOnlineData: Boolean) {
@@ -73,5 +73,4 @@ class MusicBinder(private val mContext: Context) : IMusicBinder() {
     }
 
     override fun getCurrentPlayIndex(): Int = mPlayerAdapter.getCurrentPlayIndex()
-
 }

@@ -2,7 +2,6 @@ package com.anriku.cherryplayback.ui
 
 import android.graphics.drawable.Drawable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -15,11 +14,9 @@ import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
 import com.anriku.cherryplayback.config.PLAY_PATTERN
 import com.anriku.cherryplayback.databinding.ActivityControlBinding
 import com.anriku.cherryplayback.event.ServiceConnectEvent
-import com.anriku.cherryplayback.lifecycle.EventBusObserver
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.utils.IMusicBinder
 import com.anriku.cherryplayback.utils.LogUtil
-import com.anriku.cherryplayback.utils.PaletteUtil
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.utils.extensions.getSPValue
 import com.anriku.cherryplayback.utils.extensions.setSPValue
@@ -27,7 +24,7 @@ import com.anriku.cherryplayback.viewmodel.SongsViewModel
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class ControlActivity : AppCompatActivity() {
+class ControlActivity : BaseActivity() {
 
     companion object {
         private const val TAG = "ControlActivity"
@@ -60,7 +57,6 @@ class ControlActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_control)
         mBinding.setLifecycleOwner(this)
-        lifecycle.addObserver(EventBusObserver(this))
 
         initControlActivity()
     }
@@ -135,21 +131,20 @@ class ControlActivity : AppCompatActivity() {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onServiceConnected(serviceConnectEvent: ServiceConnectEvent) {
+        if ((mSongsViewModel.binder?.getSongs()?.size ?: 0) == 0) {
+            mSongsViewModel.setSongs(this)
+            val lastPlayIndex = getSPValue().getInt(LAST_PLAY_INDEX, 0)
+            mSongsViewModel.binder?.loadMediaByPosition(lastPlayIndex)
+        }
+
         mPlaybackListener = PlaybackListener()
         mSongsViewModel.binder?.addPlaybackInfoListener(mPlaybackListener)
-
-        if (mSongsViewModel.binder?.isPlaying() == false) {
-            mSongsViewModel.getSongs(this)
-            val lastPlayIndex = getSPValue().getInt(LAST_PLAY_INDEX, 0)
-            mSongsViewModel.binder?.loadLocalMedia(lastPlayIndex)
-        }
     }
 
     inner class PlaybackListener : PlaybackInfoListener() {
 
         override fun onLoadMedia(song: Song) {
-            LogUtil.d(TAG, song.toString())
-            mSongsViewModel.onLoadMedia(song, mBinding)
+            mSongsViewModel.onLoadMedia(this@ControlActivity, song, mBinding)
         }
 
         override fun onDurationChanged(duration: Int) {
