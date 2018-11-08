@@ -1,8 +1,10 @@
 package com.anriku.cherryplayback
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Context
 import android.os.Build
 
 /**
@@ -13,11 +15,16 @@ class BaseApp: Application() {
 
     companion object {
         const val MUSIC_SERVICE_CHANNEL_ID = "com.anriku.music_service_channel_id"
+
+        @SuppressLint("StaticFieldLeak")
+        lateinit var context: Context
     }
+
 
     override fun onCreate() {
         super.onCreate()
 
+        context = applicationContext
         createNotificationChannel()
     }
 

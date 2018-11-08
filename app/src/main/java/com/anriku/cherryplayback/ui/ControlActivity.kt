@@ -41,8 +41,8 @@ class ControlActivity : BaseActivity() {
 
     private val mPlayAndPauseIcons: List<Drawable?> by lazy(LazyThreadSafetyMode.NONE) {
         listOf(
-            ContextCompat.getDrawable(this, R.drawable.ic_play),
-            ContextCompat.getDrawable(this, R.drawable.ic_pause)
+            ContextCompat.getDrawable(this, R.drawable.ic_pause),
+            ContextCompat.getDrawable(this, R.drawable.ic_play)
         )
     }
     private val mPatternIcons: List<Drawable?> by lazy(LazyThreadSafetyMode.NONE) {

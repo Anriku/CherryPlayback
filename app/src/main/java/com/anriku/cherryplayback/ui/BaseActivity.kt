@@ -1,14 +1,15 @@
 package com.anriku.cherryplayback.ui
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.anriku.cherryplayback.event.PuppetEvent
 import com.anriku.cherryplayback.lifecycle.EventBusObserver
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * Created by anriku on 2018/11/7.
@@ -32,5 +33,10 @@ open class BaseActivity: AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
             )
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun puppet(puppetEvent: PuppetEvent) {
+
     }
 }

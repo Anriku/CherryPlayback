@@ -16,20 +16,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.ControlActivity"></activity>
 
-        </activity>
-        <activity android:name=".ui.ControlActivity">
+        <service
+            android:name=".service.MusicService"
+            android:exported="false" />
+
+        <activity android:name=".ui.SingerListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name=".service.MusicService"
-            android:exported="false" />
+        <activity android:name=".ui.SingerDetailActivity"></activity>
     </application>
 
 </manifest>
