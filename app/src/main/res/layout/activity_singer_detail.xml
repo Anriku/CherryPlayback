@@ -13,7 +13,6 @@
         android:orientation="vertical"
         tools:context=".ui.SingerListActivity">
 
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb"
             android:layout_width="match_parent"
@@ -24,7 +23,7 @@
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/songs"
+            android:id="@+id/rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"

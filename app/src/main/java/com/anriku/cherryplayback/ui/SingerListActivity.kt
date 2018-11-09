@@ -1,10 +1,11 @@
 package com.anriku.cherryplayback.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.adapter.SingerListAdapter
 import com.anriku.cherryplayback.databinding.ActivitySingerListBinding
@@ -24,5 +25,10 @@ class SingerListActivity : BaseActivity() {
         mBinding.rv.adapter = adapter
         mSingerListViewModel.singerList.observe(this, Observer(adapter::submitList))
 
+//        mBinding.rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//
+//            }
+//        })
     }
 }

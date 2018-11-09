@@ -1,14 +1,11 @@
 package com.anriku.cherryplayback.network
 
+import com.anriku.cherryplayback.model.SearchResult
 import com.anriku.cherryplayback.model.SingerDetail
 import com.anriku.cherryplayback.model.SingerList
-import com.anriku.cherryplayback.model.SingerWrapper
 import com.anriku.cherryplayback.model.SongVKey
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Created by anriku on 2018/11/8.
@@ -19,7 +16,7 @@ interface QQMusicService {
     /**
      * 获取歌手列表
      *
-     * @param pageSize 每一页的大小
+     * @param pageSize 每一页的大小。第一页的index是1
      * @param pageNum 查询那页
      */
     @FormUrlEncoded
@@ -47,14 +44,15 @@ interface QQMusicService {
      * 查看歌手详情
      *
      * @param singerMid 歌手mid。可从歌手列表里面获取
-     * @param begin 从该歌手哪一首歌开始获取数据
+     * @param begin 从该歌手哪一首歌开始获取数据。第一个的index为0
      * @param num 每次获取多少首歌
      */
-    @GET("/v8/fcg-bin/fcg_v8_singer_track_cp.fcg")
+    @FormUrlEncoded
+    @POST("v8/fcg-bin/fcg_v8_singer_track_cp.fcg")
     fun getSingerDetail(
         @Field("singermid") singerMid: String,
-        @Field("begin") begin: String,
-        @Field("num") num: String,
+        @Field("num") num: Int,
+        @Field("begin") begin: Int,
 
         @Field("order") order: String = "order",
         @Field("songstatus") songStatus: String = "1",
@@ -67,7 +65,7 @@ interface QQMusicService {
         @Field("notice") notice: String = "0",
         @Field("platform") platform: String = "yqq",
         @Field("needNewCode") needNewCode: String = "0"
-    ): Observable<SingerWrapper<SingerDetail>>
+    ): Observable<SingerDetail>
 
 
     /**
@@ -76,7 +74,7 @@ interface QQMusicService {
      * @param songMid 歌曲mid。可从歌单、专辑、歌手、排行榜接口中获取
      * @param filename C400 + [songMid] + .m4a
      */
-    @GET("/base/fcgi-bin/fcg_music_express_mobile3.fcg")
+    @GET("base/fcgi-bin/fcg_music_express_mobile3.fcg")
     fun getSongVKey(
         @Field("songmid") songMid: String,
         @Field("filename") filename: String,
@@ -94,4 +92,62 @@ interface QQMusicService {
         @Field("uin") uin: String = "0",
         @Field("guid") guid: String = GUID
     ): Observable<SongVKey>
+
+    /**
+     * 根据关键词查询内容。
+     *
+     * @param content 查询的内容
+     * @param n 每页多少内容
+     * @param p 查询哪一页，从1开始
+     */
+    @GET("soso/fcgi-bin/client_search_cp")
+    fun search(
+        @Query("w") content: String,
+        @Query("n") n: Int,
+        @Query("p") p: Int,
+
+        @Query("ct") ct: String = "24",
+        @Query("qqmusic_ver") qqmusicVer: String = "1298",
+        @Query("new_json") newJson: String = "1",
+        @Query("remoteplace") remotePlace: String = "txt.yqq.center",
+        @Query("searchid") searchId: String = "37602803789127241",
+        @Query("t") t: String = "0",
+        @Query("aggr") aggr: String = "1",
+        @Query("cr") cr: String = "1",
+        @Query("catZhida") catZhida: String = "1",
+        @Query("lossless") lossLess: String = "0",
+        @Query("flag_qc") flagQc: String = "0",
+
+        @Query("g_tk") gTk: String = "5381",
+        @Query("loginUin") loginUin: String = "0",
+        @Query("hostUin") hostUin: String = "0",
+        @Query("format") format: String = "json",
+        @Query("inCharset") inCharset: String = "utf-8",
+        @Query("outCharset") outCharset: String = "utf-8",
+        @Query("notice") notice: String = "0",
+        @Query("platform") platform: String = "yqq",
+        @Query("needNewCode") needNewCode: String = "0"
+    ): Observable<SearchResult>
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

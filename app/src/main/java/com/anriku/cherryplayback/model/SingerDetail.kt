@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * Created by anriku on 2018/11/8.
  */
 
-class SingerDetail {
+class SingerDetail1 {
 
     var singer_id: String? = null
     var singer_mid: String? = null

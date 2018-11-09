@@ -89,6 +89,9 @@ dependencies {
 
     //permission
     implementation deps.rxpermissions.runtime
+
+    // CircleImageView
+    implementation deps.circle_image_view
 }
 repositories {
     mavenCentral()
