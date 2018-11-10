@@ -12,7 +12,7 @@ public class SearchResult {
 
     /**
      * code : 0
-     * data : {"keyword":"周杰伦","priority":0,"qc":[],"semantic":{"curnum":0,"curpage":1,"list":[],"totalnum":0},"song":{"curnum":3,"curpage":1,"list":[{"action":{"alert":2,"icons":147324,"msg":14,"switch":17413891},"album":{"id":1458791,"mid":"003RMaRI1iFoYd","name":"周杰伦的床边故事","subtitle":"","title":"周杰伦的床边故事","title_hilight":"<em>周杰伦<\/em>的床边故事"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"7065911643897223382","file":{"media_mid":"003OUlho2HcRHC","size_128":3443771,"size_320":8608939,"size_aac":5191087,"size_ape":24929083,"size_dts":0,"size_flac":24971563,"size_ogg":5001304,"size_try":0,"strMediaMid":"003OUlho2HcRHC","try_begin":65138,"try_end":85421},"fnote":4009,"genre":33,"grp":[{"action":{"alert":2,"icons":139132,"msg":14,"switch":17413891},"album":{"id":2272887,"mid":"001hDUGQ4OTEXL","name":"中国新歌声第二季 第14期","subtitle":"","title":"中国新歌声第二季 第14期","title_hilight":"中国新歌声第二季 第14期"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"13235255486380208149","file":{"media_mid":"002b3VP635HgLn","size_128":3404091,"size_320":8509362,"size_aac":5151522,"size_ape":25074786,"size_dts":0,"size_flac":25153863,"size_ogg":4543037,"size_try":0,"strMediaMid":"002b3VP635HgLn","try_begin":0,"try_end":0},"fnote":4009,"genre":1,"id":204292892,"index_album":5,"index_cd":0,"interval":212,"isonly":1,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"002b3VP635HgLn","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":0,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":10,"time_public":"2017-10-05","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/204292892.wma","ver":0,"volume":{"gain":-7.630000114440918,"lra":5.754000186920166,"peak":0.9649999737739563}},{"action":{"alert":11,"icons":135752,"msg":0,"switch":605971},"album":{"id":3920738,"mid":"004gOuQY3jO91g","name":"2018中央电视台春节联欢晚会","subtitle":"","title":"2018中央电视台春节联欢晚会","title_hilight":"2018中央电视台春节联欢晚会"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"8706298625697363053","file":{"media_mid":"000qio2e46ClYB","size_128":2246750,"size_320":0,"size_aac":0,"size_ape":0,"size_dts":0,"size_flac":0,"size_ogg":0,"size_try":0,"strMediaMid":"000qio2e46ClYB","try_begin":0,"try_end":0},"fnote":0,"genre":1,"id":213131677,"index_album":9,"index_cd":0,"interval":140,"isonly":0,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"000qio2e46ClYB","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":0,"pay_month":0,"pay_play":0,"pay_status":0,"price_album":0,"price_track":0,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":31,"subtitle":"","t":1,"tag":10,"time_public":"2018-02-15","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/213131677.wma","ver":0,"volume":{"gain":0.7559999823570251,"lra":4.927999973297119,"peak":0.5860000252723694}}],"id":107192078,"index_album":8,"index_cd":0,"interval":215,"isonly":1,"ksong":{"id":2313607,"mid":"002gSnbX3Xznq0"},"language":0,"lyric":"","lyric_hilight":"","mid":"003OUlho2HcRHC","mv":{"id":1053277,"vid":"u00222le4ox"},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":2000,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":11,"time_public":"2016-06-24","title":"告白气球","title_hilight":"告白气球","type":0,"url":"http://stream10.qqmusic.qq.com/107192078.wma","ver":0,"volume":{"gain":-8.993000030517578,"lra":5.026000022888184,"peak":0.9940000176429749}}],"totalnum":395},"tab":0,"taglist":[],"totaltime":0,"zhida":{"type":1,"zhida_singer":{"albumNum":31,"hotalbum":[{"albumID":1458791,"albumMID":"003RMaRI1iFoYd","albumName":"周杰伦的床边故事","albumname_hilight":"周杰伦的床边故事"},{"albumID":33021,"albumMID":"002eFUFm2XYZ7z","albumName":"我很忙","albumname_hilight":"我很忙"},{"albumID":852856,"albumMID":"001uqejs3d6EID","albumName":"哎呦，不错哦","albumname_hilight":"哎呦，不错哦"},{"albumID":194021,"albumMID":"003Ow85E3pnoqi","albumName":"十二新作","albumname_hilight":"十二新作"},{"albumID":36062,"albumMID":"002Neh8l0uciQZ","albumName":"魔杰座","albumname_hilight":"魔杰座"},{"albumID":8218,"albumMID":"000f01724fd7TH","albumName":"Jay","albumname_hilight":"Jay"},{"albumID":56705,"albumMID":"000bviBl4FjTpO","albumName":"跨时代","albumname_hilight":"跨时代"},{"albumID":60671,"albumMID":"0024bjiL2aocxT","albumName":"十一月的萧邦","albumname_hilight":"十一月的萧邦"},{"albumID":8220,"albumMID":"000MkMni19ClKG","albumName":"叶惠美","albumname_hilight":"叶惠美"},{"albumID":8217,"albumMID":"000I5jJB3blWeN","albumName":"范特西","albumname_hilight":"范特西"}],"hotsong":[{"f":"107192078|告白气球|4558|周杰伦|1458791|周杰伦的床边故事|1856582|215|1|1|0|8608939|3443771|0|0|24929083|24971563|5001304|5191087|0|003OUlho2HcRHC|0025NhlN2yWrP4|003RMaRI1iFoYd|0|4009","songID":107192078,"songMID":"003OUlho2HcRHC","songName":"告白气球","songname_hilight":"告白气球"},{"f":"212877900|等你下课(with 杨瑞代)|4558|周杰伦|3883404|等你下课|0|270|4|1|0|10802353|4321060|0|0|31780875|31922907|6045129|6521861|0|001J5QJL1pRQYB|0025NhlN2yWrP4|003bSL0v4bpKAx|0|4009","songID":212877900,"songMID":"001J5QJL1pRQYB","songName":"等你下课(with 杨瑞代)","songname_hilight":"等你下课(with 杨瑞代)"},{"f":"449205|稻香|4558|周杰伦|36062|魔杰座|1813383|223|9|1|0|8929849|3581117|0|0|25245000|26093502|5156630|5354369|0|003aAYrm3GE0Ac|0025NhlN2yWrP4|002Neh8l0uciQZ|0|4009","songID":449205,"songMID":"003aAYrm3GE0Ac","songName":"稻香","songname_hilight":"稻香"},{"f":"97773|晴天|4558|周杰伦|8220|叶惠美|2186317|269|9|1|0|10793267|4319991|0|0|30143423|31518872|5871273|6308305|0|0039MnYb0qxYhV|0025NhlN2yWrP4|000MkMni19ClKG|0|4009","songID":97773,"songMID":"0039MnYb0qxYhV","songName":"晴天","songname_hilight":"晴天"},{"f":"410316|青花瓷|4558|周杰伦|33021|我很忙|1942555|239|8|1|0|9573872|3836490|0|0|25541938|26237796|5414428|5617369|0|002qU5aY3Qu24y|0025NhlN2yWrP4|002eFUFm2XYZ7z|0|4009","songID":410316,"songMID":"002qU5aY3Qu24y","songName":"青花瓷","songname_hilight":"青花瓷"},{"f":"97744|简单爱|4558|周杰伦|8217|范特西|2201337|271|1|1|0|10843422|4338381|0|0|31636245|32393334|6511185|6723781|0|0009BCJK1nRaad|0025NhlN2yWrP4|000I5jJB3blWeN|0|4009","songID":97744,"songMID":"0009BCJK1nRaad","songName":"简单爱","songname_hilight":"简单爱"},{"f":"102065756|七里香|4558|周杰伦|20612|七里香|2579770|299|2|1|0|11970172|4788334|0|0|35517977|35894637|7050920|7336394|0|004Z8Ihr0JIu5s|0025NhlN2yWrP4|003DFRzD192KKD|0|4009","songID":102065756,"songMID":"004Z8Ihr0JIu5s","songName":"七里香","songname_hilight":"七里香"},{"f":"403778|不能说的秘密|4558|周杰伦|32611|不能说的秘密 电影原声带|2408613|296|2|1|0|11854801|4747981|0|0|32596051|33431091|6573767|7019224|0|002MXZNu1GToOk|0025NhlN2yWrP4|001UP7mW458ipG|0|4009","songID":403778,"songMID":"002MXZNu1GToOk","songName":"不能说的秘密","songname_hilight":"不能说的秘密"},{"f":"718477|夜曲|4558|周杰伦|60671|十一月的萧邦|1840421|226|7|1|0|9069409|3634616|0|0|25655984|26842143|5614538|5659229|0|001zMQr71F1Qo8|0025NhlN2yWrP4|0024bjiL2aocxT|0|4009","songID":718477,"songMID":"001zMQr71F1Qo8","songName":"夜曲","songname_hilight":"夜曲"},{"f":"102066449|退后|4558|周杰伦|13004|依然范特西|2253372|261|4|1|0|10461714|4184803|0|0|29857096|30118750|5958853|6299745|0|001L1lqm4UAdyo|0025NhlN2yWrP4|002jLGWe16Tf1H|0|4009","songID":102066449,"songMID":"001L1lqm4UAdyo","songName":"退后","songname_hilight":"退后"}],"mvNum":1419,"singerID":4558,"singerMID":"0025NhlN2yWrP4","singerName":"周杰伦","singerPic":"http://y.gtimg.cn/music/photo_new/T001R150x150M0000025NhlN2yWrP4.jpg","singername_hilight":"周杰伦","songNum":811}}}
+     * data : {"keyword":"周杰伦","priority":0,"qc":[],"semantic":{"curnum":0,"curpage":1,"list":[],"totalnum":0},"song":{"curnum":3,"curpage":1,"list":[{"action":{"alert":2,"icons":147324,"msg":14,"switch":17413891},"album":{"id":1458791,"mid":"003RMaRI1iFoYd","name":"周杰伦的床边故事","subtitle":"","title":"周杰伦的床边故事","title_hilight":"<em>周杰伦<\/em>的床边故事"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"7065911643897223382","file":{"media_mid":"003OUlho2HcRHC","size_128":3443771,"size_320":8608939,"size_aac":5191087,"size_ape":24929083,"size_dts":0,"size_flac":24971563,"size_ogg":5001304,"size_try":0,"strMediaMid":"003OUlho2HcRHC","try_begin":65138,"try_end":85421},"fnote":4009,"genre":33,"grp":[{"action":{"alert":2,"icons":139132,"msg":14,"switch":17413891},"album":{"id":2272887,"mid":"001hDUGQ4OTEXL","name":"中国新歌声第二季 第14期","subtitle":"","title":"中国新歌声第二季 第14期","title_hilight":"中国新歌声第二季 第14期"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"13235255486380208149","file":{"media_mid":"002b3VP635HgLn","size_128":3404091,"size_320":8509362,"size_aac":5151522,"size_ape":25074786,"size_dts":0,"size_flac":25153863,"size_ogg":4543037,"size_try":0,"strMediaMid":"002b3VP635HgLn","try_begin":0,"try_end":0},"fnote":4009,"genre":1,"id":204292892,"index_album":5,"index_cd":0,"Stringerval":212,"isonly":1,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"002b3VP635HgLn","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":0,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":10,"time_public":"2017-10-05","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/204292892.wma","ver":0,"volume":{"gain":-7.630000114440918,"lra":5.754000186920166,"peak":0.9649999737739563}},{"action":{"alert":11,"icons":135752,"msg":0,"switch":605971},"album":{"id":3920738,"mid":"004gOuQY3jO91g","name":"2018中央电视台春节联欢晚会","subtitle":"","title":"2018中央电视台春节联欢晚会","title_hilight":"2018中央电视台春节联欢晚会"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"8706298625697363053","file":{"media_mid":"000qio2e46ClYB","size_128":2246750,"size_320":0,"size_aac":0,"size_ape":0,"size_dts":0,"size_flac":0,"size_ogg":0,"size_try":0,"strMediaMid":"000qio2e46ClYB","try_begin":0,"try_end":0},"fnote":0,"genre":1,"id":213131677,"index_album":9,"index_cd":0,"Stringerval":140,"isonly":0,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"000qio2e46ClYB","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":0,"pay_month":0,"pay_play":0,"pay_status":0,"price_album":0,"price_track":0,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":31,"subtitle":"","t":1,"tag":10,"time_public":"2018-02-15","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/213131677.wma","ver":0,"volume":{"gain":0.7559999823570251,"lra":4.927999973297119,"peak":0.5860000252723694}}],"id":107192078,"index_album":8,"index_cd":0,"Stringerval":215,"isonly":1,"ksong":{"id":2313607,"mid":"002gSnbX3Xznq0"},"language":0,"lyric":"","lyric_hilight":"","mid":"003OUlho2HcRHC","mv":{"id":1053277,"vid":"u00222le4ox"},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":2000,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":11,"time_public":"2016-06-24","title":"告白气球","title_hilight":"告白气球","type":0,"url":"http://stream10.qqmusic.qq.com/107192078.wma","ver":0,"volume":{"gain":-8.993000030517578,"lra":5.026000022888184,"peak":0.9940000176429749}}],"totalnum":395},"tab":0,"taglist":[],"totaltime":0,"zhida":{"type":1,"zhida_singer":{"albumNum":31,"hotalbum":[{"albumID":1458791,"albumMID":"003RMaRI1iFoYd","albumName":"周杰伦的床边故事","albumname_hilight":"周杰伦的床边故事"},{"albumID":33021,"albumMID":"002eFUFm2XYZ7z","albumName":"我很忙","albumname_hilight":"我很忙"},{"albumID":852856,"albumMID":"001uqejs3d6EID","albumName":"哎呦，不错哦","albumname_hilight":"哎呦，不错哦"},{"albumID":194021,"albumMID":"003Ow85E3pnoqi","albumName":"十二新作","albumname_hilight":"十二新作"},{"albumID":36062,"albumMID":"002Neh8l0uciQZ","albumName":"魔杰座","albumname_hilight":"魔杰座"},{"albumID":8218,"albumMID":"000f01724fd7TH","albumName":"Jay","albumname_hilight":"Jay"},{"albumID":56705,"albumMID":"000bviBl4FjTpO","albumName":"跨时代","albumname_hilight":"跨时代"},{"albumID":60671,"albumMID":"0024bjiL2aocxT","albumName":"十一月的萧邦","albumname_hilight":"十一月的萧邦"},{"albumID":8220,"albumMID":"000MkMni19ClKG","albumName":"叶惠美","albumname_hilight":"叶惠美"},{"albumID":8217,"albumMID":"000I5jJB3blWeN","albumName":"范特西","albumname_hilight":"范特西"}],"hotsong":[{"f":"107192078|告白气球|4558|周杰伦|1458791|周杰伦的床边故事|1856582|215|1|1|0|8608939|3443771|0|0|24929083|24971563|5001304|5191087|0|003OUlho2HcRHC|0025NhlN2yWrP4|003RMaRI1iFoYd|0|4009","songID":107192078,"songMID":"003OUlho2HcRHC","songName":"告白气球","songname_hilight":"告白气球"},{"f":"212877900|等你下课(with 杨瑞代)|4558|周杰伦|3883404|等你下课|0|270|4|1|0|10802353|4321060|0|0|31780875|31922907|6045129|6521861|0|001J5QJL1pRQYB|0025NhlN2yWrP4|003bSL0v4bpKAx|0|4009","songID":212877900,"songMID":"001J5QJL1pRQYB","songName":"等你下课(with 杨瑞代)","songname_hilight":"等你下课(with 杨瑞代)"},{"f":"449205|稻香|4558|周杰伦|36062|魔杰座|1813383|223|9|1|0|8929849|3581117|0|0|25245000|26093502|5156630|5354369|0|003aAYrm3GE0Ac|0025NhlN2yWrP4|002Neh8l0uciQZ|0|4009","songID":449205,"songMID":"003aAYrm3GE0Ac","songName":"稻香","songname_hilight":"稻香"},{"f":"97773|晴天|4558|周杰伦|8220|叶惠美|2186317|269|9|1|0|10793267|4319991|0|0|30143423|31518872|5871273|6308305|0|0039MnYb0qxYhV|0025NhlN2yWrP4|000MkMni19ClKG|0|4009","songID":97773,"songMID":"0039MnYb0qxYhV","songName":"晴天","songname_hilight":"晴天"},{"f":"410316|青花瓷|4558|周杰伦|33021|我很忙|1942555|239|8|1|0|9573872|3836490|0|0|25541938|26237796|5414428|5617369|0|002qU5aY3Qu24y|0025NhlN2yWrP4|002eFUFm2XYZ7z|0|4009","songID":410316,"songMID":"002qU5aY3Qu24y","songName":"青花瓷","songname_hilight":"青花瓷"},{"f":"97744|简单爱|4558|周杰伦|8217|范特西|2201337|271|1|1|0|10843422|4338381|0|0|31636245|32393334|6511185|6723781|0|0009BCJK1nRaad|0025NhlN2yWrP4|000I5jJB3blWeN|0|4009","songID":97744,"songMID":"0009BCJK1nRaad","songName":"简单爱","songname_hilight":"简单爱"},{"f":"102065756|七里香|4558|周杰伦|20612|七里香|2579770|299|2|1|0|11970172|4788334|0|0|35517977|35894637|7050920|7336394|0|004Z8Ihr0JIu5s|0025NhlN2yWrP4|003DFRzD192KKD|0|4009","songID":102065756,"songMID":"004Z8Ihr0JIu5s","songName":"七里香","songname_hilight":"七里香"},{"f":"403778|不能说的秘密|4558|周杰伦|32611|不能说的秘密 电影原声带|2408613|296|2|1|0|11854801|4747981|0|0|32596051|33431091|6573767|7019224|0|002MXZNu1GToOk|0025NhlN2yWrP4|001UP7mW458ipG|0|4009","songID":403778,"songMID":"002MXZNu1GToOk","songName":"不能说的秘密","songname_hilight":"不能说的秘密"},{"f":"718477|夜曲|4558|周杰伦|60671|十一月的萧邦|1840421|226|7|1|0|9069409|3634616|0|0|25655984|26842143|5614538|5659229|0|001zMQr71F1Qo8|0025NhlN2yWrP4|0024bjiL2aocxT|0|4009","songID":718477,"songMID":"001zMQr71F1Qo8","songName":"夜曲","songname_hilight":"夜曲"},{"f":"102066449|退后|4558|周杰伦|13004|依然范特西|2253372|261|4|1|0|10461714|4184803|0|0|29857096|30118750|5958853|6299745|0|001L1lqm4UAdyo|0025NhlN2yWrP4|002jLGWe16Tf1H|0|4009","songID":102066449,"songMID":"001L1lqm4UAdyo","songName":"退后","songname_hilight":"退后"}],"mvNum":1419,"singerID":4558,"singerMID":"0025NhlN2yWrP4","singerName":"周杰伦","singerPic":"http://y.gtimg.cn/music/photo_new/T001R150x150M0000025NhlN2yWrP4.jpg","singername_hilight":"周杰伦","songNum":811}}}
      * message :
      * notice :
      * subcode : 0
@@ -20,19 +20,19 @@ public class SearchResult {
      * tips :
      */
 
-    private int code;
+    private String code;
     private DataBean data;
     private String message;
     private String notice;
-    private int subcode;
-    private int time;
+    private String subcode;
+    private String time;
     private String tips;
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -60,19 +60,19 @@ public class SearchResult {
         this.notice = notice;
     }
 
-    public int getSubcode() {
+    public String getSubcode() {
         return subcode;
     }
 
-    public void setSubcode(int subcode) {
+    public void setSubcode(String subcode) {
         this.subcode = subcode;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -90,7 +90,7 @@ public class SearchResult {
          * priority : 0
          * qc : []
          * semantic : {"curnum":0,"curpage":1,"list":[],"totalnum":0}
-         * song : {"curnum":3,"curpage":1,"list":[{"action":{"alert":2,"icons":147324,"msg":14,"switch":17413891},"album":{"id":1458791,"mid":"003RMaRI1iFoYd","name":"周杰伦的床边故事","subtitle":"","title":"周杰伦的床边故事","title_hilight":"<em>周杰伦<\/em>的床边故事"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"7065911643897223382","file":{"media_mid":"003OUlho2HcRHC","size_128":3443771,"size_320":8608939,"size_aac":5191087,"size_ape":24929083,"size_dts":0,"size_flac":24971563,"size_ogg":5001304,"size_try":0,"strMediaMid":"003OUlho2HcRHC","try_begin":65138,"try_end":85421},"fnote":4009,"genre":33,"grp":[{"action":{"alert":2,"icons":139132,"msg":14,"switch":17413891},"album":{"id":2272887,"mid":"001hDUGQ4OTEXL","name":"中国新歌声第二季 第14期","subtitle":"","title":"中国新歌声第二季 第14期","title_hilight":"中国新歌声第二季 第14期"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"13235255486380208149","file":{"media_mid":"002b3VP635HgLn","size_128":3404091,"size_320":8509362,"size_aac":5151522,"size_ape":25074786,"size_dts":0,"size_flac":25153863,"size_ogg":4543037,"size_try":0,"strMediaMid":"002b3VP635HgLn","try_begin":0,"try_end":0},"fnote":4009,"genre":1,"id":204292892,"index_album":5,"index_cd":0,"interval":212,"isonly":1,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"002b3VP635HgLn","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":0,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":10,"time_public":"2017-10-05","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/204292892.wma","ver":0,"volume":{"gain":-7.630000114440918,"lra":5.754000186920166,"peak":0.9649999737739563}},{"action":{"alert":11,"icons":135752,"msg":0,"switch":605971},"album":{"id":3920738,"mid":"004gOuQY3jO91g","name":"2018中央电视台春节联欢晚会","subtitle":"","title":"2018中央电视台春节联欢晚会","title_hilight":"2018中央电视台春节联欢晚会"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"8706298625697363053","file":{"media_mid":"000qio2e46ClYB","size_128":2246750,"size_320":0,"size_aac":0,"size_ape":0,"size_dts":0,"size_flac":0,"size_ogg":0,"size_try":0,"strMediaMid":"000qio2e46ClYB","try_begin":0,"try_end":0},"fnote":0,"genre":1,"id":213131677,"index_album":9,"index_cd":0,"interval":140,"isonly":0,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"000qio2e46ClYB","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":0,"pay_month":0,"pay_play":0,"pay_status":0,"price_album":0,"price_track":0,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":31,"subtitle":"","t":1,"tag":10,"time_public":"2018-02-15","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/213131677.wma","ver":0,"volume":{"gain":0.7559999823570251,"lra":4.927999973297119,"peak":0.5860000252723694}}],"id":107192078,"index_album":8,"index_cd":0,"interval":215,"isonly":1,"ksong":{"id":2313607,"mid":"002gSnbX3Xznq0"},"language":0,"lyric":"","lyric_hilight":"","mid":"003OUlho2HcRHC","mv":{"id":1053277,"vid":"u00222le4ox"},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":2000,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":11,"time_public":"2016-06-24","title":"告白气球","title_hilight":"告白气球","type":0,"url":"http://stream10.qqmusic.qq.com/107192078.wma","ver":0,"volume":{"gain":-8.993000030517578,"lra":5.026000022888184,"peak":0.9940000176429749}}],"totalnum":395}
+         * song : {"curnum":3,"curpage":1,"list":[{"action":{"alert":2,"icons":147324,"msg":14,"switch":17413891},"album":{"id":1458791,"mid":"003RMaRI1iFoYd","name":"周杰伦的床边故事","subtitle":"","title":"周杰伦的床边故事","title_hilight":"<em>周杰伦<\/em>的床边故事"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"7065911643897223382","file":{"media_mid":"003OUlho2HcRHC","size_128":3443771,"size_320":8608939,"size_aac":5191087,"size_ape":24929083,"size_dts":0,"size_flac":24971563,"size_ogg":5001304,"size_try":0,"strMediaMid":"003OUlho2HcRHC","try_begin":65138,"try_end":85421},"fnote":4009,"genre":33,"grp":[{"action":{"alert":2,"icons":139132,"msg":14,"switch":17413891},"album":{"id":2272887,"mid":"001hDUGQ4OTEXL","name":"中国新歌声第二季 第14期","subtitle":"","title":"中国新歌声第二季 第14期","title_hilight":"中国新歌声第二季 第14期"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"13235255486380208149","file":{"media_mid":"002b3VP635HgLn","size_128":3404091,"size_320":8509362,"size_aac":5151522,"size_ape":25074786,"size_dts":0,"size_flac":25153863,"size_ogg":4543037,"size_try":0,"strMediaMid":"002b3VP635HgLn","try_begin":0,"try_end":0},"fnote":4009,"genre":1,"id":204292892,"index_album":5,"index_cd":0,"Stringerval":212,"isonly":1,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"002b3VP635HgLn","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":0,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":10,"time_public":"2017-10-05","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/204292892.wma","ver":0,"volume":{"gain":-7.630000114440918,"lra":5.754000186920166,"peak":0.9649999737739563}},{"action":{"alert":11,"icons":135752,"msg":0,"switch":605971},"album":{"id":3920738,"mid":"004gOuQY3jO91g","name":"2018中央电视台春节联欢晚会","subtitle":"","title":"2018中央电视台春节联欢晚会","title_hilight":"2018中央电视台春节联欢晚会"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"8706298625697363053","file":{"media_mid":"000qio2e46ClYB","size_128":2246750,"size_320":0,"size_aac":0,"size_ape":0,"size_dts":0,"size_flac":0,"size_ogg":0,"size_try":0,"strMediaMid":"000qio2e46ClYB","try_begin":0,"try_end":0},"fnote":0,"genre":1,"id":213131677,"index_album":9,"index_cd":0,"Stringerval":140,"isonly":0,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"000qio2e46ClYB","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":0,"pay_month":0,"pay_play":0,"pay_status":0,"price_album":0,"price_track":0,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":31,"subtitle":"","t":1,"tag":10,"time_public":"2018-02-15","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/213131677.wma","ver":0,"volume":{"gain":0.7559999823570251,"lra":4.927999973297119,"peak":0.5860000252723694}}],"id":107192078,"index_album":8,"index_cd":0,"Stringerval":215,"isonly":1,"ksong":{"id":2313607,"mid":"002gSnbX3Xznq0"},"language":0,"lyric":"","lyric_hilight":"","mid":"003OUlho2HcRHC","mv":{"id":1053277,"vid":"u00222le4ox"},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":2000,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":11,"time_public":"2016-06-24","title":"告白气球","title_hilight":"告白气球","type":0,"url":"http://stream10.qqmusic.qq.com/107192078.wma","ver":0,"volume":{"gain":-8.993000030517578,"lra":5.026000022888184,"peak":0.9940000176429749}}],"totalnum":395}
          * tab : 0
          * taglist : []
          * totaltime : 0
@@ -98,11 +98,11 @@ public class SearchResult {
          */
 
         private String keyword;
-        private int priority;
+        private String priority;
         private SemanticBean semantic;
         private SongBean song;
-        private int tab;
-        private int totaltime;
+        private String tab;
+        private String totaltime;
         private ZhidaBean zhida;
         private List<?> qc;
         private List<?> taglist;
@@ -115,11 +115,11 @@ public class SearchResult {
             this.keyword = keyword;
         }
 
-        public int getPriority() {
+        public String getPriority() {
             return priority;
         }
 
-        public void setPriority(int priority) {
+        public void setPriority(String priority) {
             this.priority = priority;
         }
 
@@ -139,19 +139,19 @@ public class SearchResult {
             this.song = song;
         }
 
-        public int getTab() {
+        public String getTab() {
             return tab;
         }
 
-        public void setTab(int tab) {
+        public void setTab(String tab) {
             this.tab = tab;
         }
 
-        public int getTotaltime() {
+        public String getTotaltime() {
             return totaltime;
         }
 
-        public void setTotaltime(int totaltime) {
+        public void setTotaltime(String totaltime) {
             this.totaltime = totaltime;
         }
 
@@ -187,32 +187,32 @@ public class SearchResult {
              * totalnum : 0
              */
 
-            private int curnum;
-            private int curpage;
-            private int totalnum;
+            private String curnum;
+            private String curpage;
+            private String totalnum;
             private List<?> list;
 
-            public int getCurnum() {
+            public String getCurnum() {
                 return curnum;
             }
 
-            public void setCurnum(int curnum) {
+            public void setCurnum(String curnum) {
                 this.curnum = curnum;
             }
 
-            public int getCurpage() {
+            public String getCurpage() {
                 return curpage;
             }
 
-            public void setCurpage(int curpage) {
+            public void setCurpage(String curpage) {
                 this.curpage = curpage;
             }
 
-            public int getTotalnum() {
+            public String getTotalnum() {
                 return totalnum;
             }
 
-            public void setTotalnum(int totalnum) {
+            public void setTotalnum(String totalnum) {
                 this.totalnum = totalnum;
             }
 
@@ -229,36 +229,36 @@ public class SearchResult {
             /**
              * curnum : 3
              * curpage : 1
-             * list : [{"action":{"alert":2,"icons":147324,"msg":14,"switch":17413891},"album":{"id":1458791,"mid":"003RMaRI1iFoYd","name":"周杰伦的床边故事","subtitle":"","title":"周杰伦的床边故事","title_hilight":"<em>周杰伦<\/em>的床边故事"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"7065911643897223382","file":{"media_mid":"003OUlho2HcRHC","size_128":3443771,"size_320":8608939,"size_aac":5191087,"size_ape":24929083,"size_dts":0,"size_flac":24971563,"size_ogg":5001304,"size_try":0,"strMediaMid":"003OUlho2HcRHC","try_begin":65138,"try_end":85421},"fnote":4009,"genre":33,"grp":[{"action":{"alert":2,"icons":139132,"msg":14,"switch":17413891},"album":{"id":2272887,"mid":"001hDUGQ4OTEXL","name":"中国新歌声第二季 第14期","subtitle":"","title":"中国新歌声第二季 第14期","title_hilight":"中国新歌声第二季 第14期"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"13235255486380208149","file":{"media_mid":"002b3VP635HgLn","size_128":3404091,"size_320":8509362,"size_aac":5151522,"size_ape":25074786,"size_dts":0,"size_flac":25153863,"size_ogg":4543037,"size_try":0,"strMediaMid":"002b3VP635HgLn","try_begin":0,"try_end":0},"fnote":4009,"genre":1,"id":204292892,"index_album":5,"index_cd":0,"interval":212,"isonly":1,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"002b3VP635HgLn","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":0,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":10,"time_public":"2017-10-05","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/204292892.wma","ver":0,"volume":{"gain":-7.630000114440918,"lra":5.754000186920166,"peak":0.9649999737739563}},{"action":{"alert":11,"icons":135752,"msg":0,"switch":605971},"album":{"id":3920738,"mid":"004gOuQY3jO91g","name":"2018中央电视台春节联欢晚会","subtitle":"","title":"2018中央电视台春节联欢晚会","title_hilight":"2018中央电视台春节联欢晚会"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"8706298625697363053","file":{"media_mid":"000qio2e46ClYB","size_128":2246750,"size_320":0,"size_aac":0,"size_ape":0,"size_dts":0,"size_flac":0,"size_ogg":0,"size_try":0,"strMediaMid":"000qio2e46ClYB","try_begin":0,"try_end":0},"fnote":0,"genre":1,"id":213131677,"index_album":9,"index_cd":0,"interval":140,"isonly":0,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"000qio2e46ClYB","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":0,"pay_month":0,"pay_play":0,"pay_status":0,"price_album":0,"price_track":0,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":31,"subtitle":"","t":1,"tag":10,"time_public":"2018-02-15","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/213131677.wma","ver":0,"volume":{"gain":0.7559999823570251,"lra":4.927999973297119,"peak":0.5860000252723694}}],"id":107192078,"index_album":8,"index_cd":0,"interval":215,"isonly":1,"ksong":{"id":2313607,"mid":"002gSnbX3Xznq0"},"language":0,"lyric":"","lyric_hilight":"","mid":"003OUlho2HcRHC","mv":{"id":1053277,"vid":"u00222le4ox"},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":2000,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":11,"time_public":"2016-06-24","title":"告白气球","title_hilight":"告白气球","type":0,"url":"http://stream10.qqmusic.qq.com/107192078.wma","ver":0,"volume":{"gain":-8.993000030517578,"lra":5.026000022888184,"peak":0.9940000176429749}}]
+             * list : [{"action":{"alert":2,"icons":147324,"msg":14,"switch":17413891},"album":{"id":1458791,"mid":"003RMaRI1iFoYd","name":"周杰伦的床边故事","subtitle":"","title":"周杰伦的床边故事","title_hilight":"<em>周杰伦<\/em>的床边故事"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"7065911643897223382","file":{"media_mid":"003OUlho2HcRHC","size_128":3443771,"size_320":8608939,"size_aac":5191087,"size_ape":24929083,"size_dts":0,"size_flac":24971563,"size_ogg":5001304,"size_try":0,"strMediaMid":"003OUlho2HcRHC","try_begin":65138,"try_end":85421},"fnote":4009,"genre":33,"grp":[{"action":{"alert":2,"icons":139132,"msg":14,"switch":17413891},"album":{"id":2272887,"mid":"001hDUGQ4OTEXL","name":"中国新歌声第二季 第14期","subtitle":"","title":"中国新歌声第二季 第14期","title_hilight":"中国新歌声第二季 第14期"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"13235255486380208149","file":{"media_mid":"002b3VP635HgLn","size_128":3404091,"size_320":8509362,"size_aac":5151522,"size_ape":25074786,"size_dts":0,"size_flac":25153863,"size_ogg":4543037,"size_try":0,"strMediaMid":"002b3VP635HgLn","try_begin":0,"try_end":0},"fnote":4009,"genre":1,"id":204292892,"index_album":5,"index_cd":0,"Stringerval":212,"isonly":1,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"002b3VP635HgLn","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":0,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":10,"time_public":"2017-10-05","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/204292892.wma","ver":0,"volume":{"gain":-7.630000114440918,"lra":5.754000186920166,"peak":0.9649999737739563}},{"action":{"alert":11,"icons":135752,"msg":0,"switch":605971},"album":{"id":3920738,"mid":"004gOuQY3jO91g","name":"2018中央电视台春节联欢晚会","subtitle":"","title":"2018中央电视台春节联欢晚会","title_hilight":"2018中央电视台春节联欢晚会"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"8706298625697363053","file":{"media_mid":"000qio2e46ClYB","size_128":2246750,"size_320":0,"size_aac":0,"size_ape":0,"size_dts":0,"size_flac":0,"size_ogg":0,"size_try":0,"strMediaMid":"000qio2e46ClYB","try_begin":0,"try_end":0},"fnote":0,"genre":1,"id":213131677,"index_album":9,"index_cd":0,"Stringerval":140,"isonly":0,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"000qio2e46ClYB","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":0,"pay_month":0,"pay_play":0,"pay_status":0,"price_album":0,"price_track":0,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":31,"subtitle":"","t":1,"tag":10,"time_public":"2018-02-15","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/213131677.wma","ver":0,"volume":{"gain":0.7559999823570251,"lra":4.927999973297119,"peak":0.5860000252723694}}],"id":107192078,"index_album":8,"index_cd":0,"Stringerval":215,"isonly":1,"ksong":{"id":2313607,"mid":"002gSnbX3Xznq0"},"language":0,"lyric":"","lyric_hilight":"","mid":"003OUlho2HcRHC","mv":{"id":1053277,"vid":"u00222le4ox"},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":2000,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":11,"time_public":"2016-06-24","title":"告白气球","title_hilight":"告白气球","type":0,"url":"http://stream10.qqmusic.qq.com/107192078.wma","ver":0,"volume":{"gain":-8.993000030517578,"lra":5.026000022888184,"peak":0.9940000176429749}}]
              * totalnum : 395
              */
 
-            private int curnum;
-            private int curpage;
-            private int totalnum;
+            private String curnum;
+            private String curpage;
+            private String totalnum;
             private List<ListBean> list;
 
-            public int getCurnum() {
+            public String getCurnum() {
                 return curnum;
             }
 
-            public void setCurnum(int curnum) {
+            public void setCurnum(String curnum) {
                 this.curnum = curnum;
             }
 
-            public int getCurpage() {
+            public String getCurpage() {
                 return curpage;
             }
 
-            public void setCurpage(int curpage) {
+            public void setCurpage(String curpage) {
                 this.curpage = curpage;
             }
 
-            public int getTotalnum() {
+            public String getTotalnum() {
                 return totalnum;
             }
 
-            public void setTotalnum(int totalnum) {
+            public void setTotalnum(String totalnum) {
                 this.totalnum = totalnum;
             }
 
@@ -281,11 +281,11 @@ public class SearchResult {
                  * file : {"media_mid":"003OUlho2HcRHC","size_128":3443771,"size_320":8608939,"size_aac":5191087,"size_ape":24929083,"size_dts":0,"size_flac":24971563,"size_ogg":5001304,"size_try":0,"strMediaMid":"003OUlho2HcRHC","try_begin":65138,"try_end":85421}
                  * fnote : 4009
                  * genre : 33
-                 * grp : [{"action":{"alert":2,"icons":139132,"msg":14,"switch":17413891},"album":{"id":2272887,"mid":"001hDUGQ4OTEXL","name":"中国新歌声第二季 第14期","subtitle":"","title":"中国新歌声第二季 第14期","title_hilight":"中国新歌声第二季 第14期"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"13235255486380208149","file":{"media_mid":"002b3VP635HgLn","size_128":3404091,"size_320":8509362,"size_aac":5151522,"size_ape":25074786,"size_dts":0,"size_flac":25153863,"size_ogg":4543037,"size_try":0,"strMediaMid":"002b3VP635HgLn","try_begin":0,"try_end":0},"fnote":4009,"genre":1,"id":204292892,"index_album":5,"index_cd":0,"interval":212,"isonly":1,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"002b3VP635HgLn","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":0,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":10,"time_public":"2017-10-05","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/204292892.wma","ver":0,"volume":{"gain":-7.630000114440918,"lra":5.754000186920166,"peak":0.9649999737739563}},{"action":{"alert":11,"icons":135752,"msg":0,"switch":605971},"album":{"id":3920738,"mid":"004gOuQY3jO91g","name":"2018中央电视台春节联欢晚会","subtitle":"","title":"2018中央电视台春节联欢晚会","title_hilight":"2018中央电视台春节联欢晚会"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"8706298625697363053","file":{"media_mid":"000qio2e46ClYB","size_128":2246750,"size_320":0,"size_aac":0,"size_ape":0,"size_dts":0,"size_flac":0,"size_ogg":0,"size_try":0,"strMediaMid":"000qio2e46ClYB","try_begin":0,"try_end":0},"fnote":0,"genre":1,"id":213131677,"index_album":9,"index_cd":0,"interval":140,"isonly":0,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"000qio2e46ClYB","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":0,"pay_month":0,"pay_play":0,"pay_status":0,"price_album":0,"price_track":0,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":31,"subtitle":"","t":1,"tag":10,"time_public":"2018-02-15","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/213131677.wma","ver":0,"volume":{"gain":0.7559999823570251,"lra":4.927999973297119,"peak":0.5860000252723694}}]
+                 * grp : [{"action":{"alert":2,"icons":139132,"msg":14,"switch":17413891},"album":{"id":2272887,"mid":"001hDUGQ4OTEXL","name":"中国新歌声第二季 第14期","subtitle":"","title":"中国新歌声第二季 第14期","title_hilight":"中国新歌声第二季 第14期"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"13235255486380208149","file":{"media_mid":"002b3VP635HgLn","size_128":3404091,"size_320":8509362,"size_aac":5151522,"size_ape":25074786,"size_dts":0,"size_flac":25153863,"size_ogg":4543037,"size_try":0,"strMediaMid":"002b3VP635HgLn","try_begin":0,"try_end":0},"fnote":4009,"genre":1,"id":204292892,"index_album":5,"index_cd":0,"Stringerval":212,"isonly":1,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"002b3VP635HgLn","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":1,"pay_month":1,"pay_play":0,"pay_status":0,"price_album":0,"price_track":200,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":0,"subtitle":"","t":1,"tag":10,"time_public":"2017-10-05","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/204292892.wma","ver":0,"volume":{"gain":-7.630000114440918,"lra":5.754000186920166,"peak":0.9649999737739563}},{"action":{"alert":11,"icons":135752,"msg":0,"switch":605971},"album":{"id":3920738,"mid":"004gOuQY3jO91g","name":"2018中央电视台春节联欢晚会","subtitle":"","title":"2018中央电视台春节联欢晚会","title_hilight":"2018中央电视台春节联欢晚会"},"chinesesinger":0,"desc":"","desc_hilight":"","docid":"8706298625697363053","file":{"media_mid":"000qio2e46ClYB","size_128":2246750,"size_320":0,"size_aac":0,"size_ape":0,"size_dts":0,"size_flac":0,"size_ogg":0,"size_try":0,"strMediaMid":"000qio2e46ClYB","try_begin":0,"try_end":0},"fnote":0,"genre":1,"id":213131677,"index_album":9,"index_cd":0,"Stringerval":140,"isonly":0,"ksong":{"id":3016637,"mid":"003hNDuZ25l6nB"},"language":0,"lyric":"","lyric_hilight":"","mid":"000qio2e46ClYB","mv":{"id":0,"vid":""},"name":"告白气球","newStatus":2,"nt":10000,"pay":{"pay_down":0,"pay_month":0,"pay_play":0,"pay_status":0,"price_album":0,"price_track":0,"time_free":0},"pure":0,"singer":[{"id":4558,"mid":"0025NhlN2yWrP4","name":"周杰伦","title":"周杰伦","title_hilight":"<em>周杰伦<\/em>","type":0,"uin":0}],"status":31,"subtitle":"","t":1,"tag":10,"time_public":"2018-02-15","title":"告白气球 (Live)","title_hilight":"告白气球 (Live)","type":0,"url":"http://stream10.qqmusic.qq.com/213131677.wma","ver":0,"volume":{"gain":0.7559999823570251,"lra":4.927999973297119,"peak":0.5860000252723694}}]
                  * id : 107192078
                  * index_album : 8
                  * index_cd : 0
-                 * interval : 215
+                 * Stringerval : 215
                  * isonly : 1
                  * ksong : {"id":2313607,"mid":"002gSnbX3Xznq0"}
                  * language : 0
@@ -314,39 +314,39 @@ public class SearchResult {
 
                 private ActionBean action;
                 private AlbumBean album;
-                private int chinesesinger;
+                private String chinesesinger;
                 private String desc;
                 private String desc_hilight;
                 private String docid;
                 private FileBean file;
-                private int fnote;
-                private int genre;
-                private int id;
-                private int index_album;
-                private int index_cd;
-                private int interval;
-                private int isonly;
+                private String fnote;
+                private String genre;
+                private String id;
+                private String index_album;
+                private String index_cd;
+                private String Stringerval;
+                private String isonly;
                 private KsongBean ksong;
-                private int language;
+                private String language;
                 private String lyric;
                 private String lyric_hilight;
                 private String mid;
                 private MvBean mv;
                 private String name;
-                private int newStatus;
-                private int nt;
+                private String newStatus;
+                private String nt;
                 private PayBean pay;
-                private int pure;
-                private int status;
+                private String pure;
+                private String status;
                 private String subtitle;
-                private int t;
-                private int tag;
+                private String t;
+                private String tag;
                 private String time_public;
                 private String title;
                 private String title_hilight;
-                private int type;
+                private String type;
                 private String url;
-                private int ver;
+                private String ver;
                 private VolumeBean volume;
                 private List<GrpBean> grp;
                 private List<SingerBeanX> singer;
@@ -367,11 +367,11 @@ public class SearchResult {
                     this.album = album;
                 }
 
-                public int getChinesesinger() {
+                public String getChinesesinger() {
                     return chinesesinger;
                 }
 
-                public void setChinesesinger(int chinesesinger) {
+                public void setChinesesinger(String chinesesinger) {
                     this.chinesesinger = chinesesinger;
                 }
 
@@ -407,59 +407,59 @@ public class SearchResult {
                     this.file = file;
                 }
 
-                public int getFnote() {
+                public String getFnote() {
                     return fnote;
                 }
 
-                public void setFnote(int fnote) {
+                public void setFnote(String fnote) {
                     this.fnote = fnote;
                 }
 
-                public int getGenre() {
+                public String getGenre() {
                     return genre;
                 }
 
-                public void setGenre(int genre) {
+                public void setGenre(String genre) {
                     this.genre = genre;
                 }
 
-                public int getId() {
+                public String getId() {
                     return id;
                 }
 
-                public void setId(int id) {
+                public void setId(String id) {
                     this.id = id;
                 }
 
-                public int getIndex_album() {
+                public String getIndex_album() {
                     return index_album;
                 }
 
-                public void setIndex_album(int index_album) {
+                public void setIndex_album(String index_album) {
                     this.index_album = index_album;
                 }
 
-                public int getIndex_cd() {
+                public String getIndex_cd() {
                     return index_cd;
                 }
 
-                public void setIndex_cd(int index_cd) {
+                public void setIndex_cd(String index_cd) {
                     this.index_cd = index_cd;
                 }
 
-                public int getInterval() {
-                    return interval;
+                public String getInterval() {
+                    return Stringerval;
                 }
 
-                public void setInterval(int interval) {
-                    this.interval = interval;
+                public void setInterval(String Stringerval) {
+                    this.Stringerval = Stringerval;
                 }
 
-                public int getIsonly() {
+                public String getIsonly() {
                     return isonly;
                 }
 
-                public void setIsonly(int isonly) {
+                public void setIsonly(String isonly) {
                     this.isonly = isonly;
                 }
 
@@ -471,11 +471,11 @@ public class SearchResult {
                     this.ksong = ksong;
                 }
 
-                public int getLanguage() {
+                public String getLanguage() {
                     return language;
                 }
 
-                public void setLanguage(int language) {
+                public void setLanguage(String language) {
                     this.language = language;
                 }
 
@@ -519,19 +519,19 @@ public class SearchResult {
                     this.name = name;
                 }
 
-                public int getNewStatus() {
+                public String getNewStatus() {
                     return newStatus;
                 }
 
-                public void setNewStatus(int newStatus) {
+                public void setNewStatus(String newStatus) {
                     this.newStatus = newStatus;
                 }
 
-                public int getNt() {
+                public String getNt() {
                     return nt;
                 }
 
-                public void setNt(int nt) {
+                public void setNt(String nt) {
                     this.nt = nt;
                 }
 
@@ -543,19 +543,19 @@ public class SearchResult {
                     this.pay = pay;
                 }
 
-                public int getPure() {
+                public String getPure() {
                     return pure;
                 }
 
-                public void setPure(int pure) {
+                public void setPure(String pure) {
                     this.pure = pure;
                 }
 
-                public int getStatus() {
+                public String getStatus() {
                     return status;
                 }
 
-                public void setStatus(int status) {
+                public void setStatus(String status) {
                     this.status = status;
                 }
 
@@ -567,19 +567,19 @@ public class SearchResult {
                     this.subtitle = subtitle;
                 }
 
-                public int getT() {
+                public String getT() {
                     return t;
                 }
 
-                public void setT(int t) {
+                public void setT(String t) {
                     this.t = t;
                 }
 
-                public int getTag() {
+                public String getTag() {
                     return tag;
                 }
 
-                public void setTag(int tag) {
+                public void setTag(String tag) {
                     this.tag = tag;
                 }
 
@@ -607,11 +607,11 @@ public class SearchResult {
                     this.title_hilight = title_hilight;
                 }
 
-                public int getType() {
+                public String getType() {
                     return type;
                 }
 
-                public void setType(int type) {
+                public void setType(String type) {
                     this.type = type;
                 }
 
@@ -623,11 +623,11 @@ public class SearchResult {
                     this.url = url;
                 }
 
-                public int getVer() {
+                public String getVer() {
                     return ver;
                 }
 
-                public void setVer(int ver) {
+                public void setVer(String ver) {
                     this.ver = ver;
                 }
 
@@ -663,41 +663,41 @@ public class SearchResult {
                      * switch : 17413891
                      */
 
-                    private int alert;
-                    private int icons;
-                    private int msg;
+                    private String alert;
+                    private String icons;
+                    private String msg;
                     @SerializedName("switch")
-                    private int switchX;
+                    private String switchX;
 
-                    public int getAlert() {
+                    public String getAlert() {
                         return alert;
                     }
 
-                    public void setAlert(int alert) {
+                    public void setAlert(String alert) {
                         this.alert = alert;
                     }
 
-                    public int getIcons() {
+                    public String getIcons() {
                         return icons;
                     }
 
-                    public void setIcons(int icons) {
+                    public void setIcons(String icons) {
                         this.icons = icons;
                     }
 
-                    public int getMsg() {
+                    public String getMsg() {
                         return msg;
                     }
 
-                    public void setMsg(int msg) {
+                    public void setMsg(String msg) {
                         this.msg = msg;
                     }
 
-                    public int getSwitchX() {
+                    public String getSwitchX() {
                         return switchX;
                     }
 
-                    public void setSwitchX(int switchX) {
+                    public void setSwitchX(String switchX) {
                         this.switchX = switchX;
                     }
                 }
@@ -712,18 +712,18 @@ public class SearchResult {
                      * title_hilight : <em>周杰伦</em>的床边故事
                      */
 
-                    private int id;
+                    private String id;
                     private String mid;
                     private String name;
                     private String subtitle;
                     private String title;
                     private String title_hilight;
 
-                    public int getId() {
+                    public String getId() {
                         return id;
                     }
 
-                    public void setId(int id) {
+                    public void setId(String id) {
                         this.id = id;
                     }
 
@@ -785,17 +785,17 @@ public class SearchResult {
                      */
 
                     private String media_mid;
-                    private int size_128;
-                    private int size_320;
-                    private int size_aac;
-                    private int size_ape;
-                    private int size_dts;
-                    private int size_flac;
-                    private int size_ogg;
-                    private int size_try;
+                    private String size_128;
+                    private String size_320;
+                    private String size_aac;
+                    private String size_ape;
+                    private String size_dts;
+                    private String size_flac;
+                    private String size_ogg;
+                    private String size_try;
                     private String strMediaMid;
-                    private int try_begin;
-                    private int try_end;
+                    private String try_begin;
+                    private String try_end;
 
                     public String getMedia_mid() {
                         return media_mid;
@@ -805,67 +805,67 @@ public class SearchResult {
                         this.media_mid = media_mid;
                     }
 
-                    public int getSize_128() {
+                    public String getSize_128() {
                         return size_128;
                     }
 
-                    public void setSize_128(int size_128) {
+                    public void setSize_128(String size_128) {
                         this.size_128 = size_128;
                     }
 
-                    public int getSize_320() {
+                    public String getSize_320() {
                         return size_320;
                     }
 
-                    public void setSize_320(int size_320) {
+                    public void setSize_320(String size_320) {
                         this.size_320 = size_320;
                     }
 
-                    public int getSize_aac() {
+                    public String getSize_aac() {
                         return size_aac;
                     }
 
-                    public void setSize_aac(int size_aac) {
+                    public void setSize_aac(String size_aac) {
                         this.size_aac = size_aac;
                     }
 
-                    public int getSize_ape() {
+                    public String getSize_ape() {
                         return size_ape;
                     }
 
-                    public void setSize_ape(int size_ape) {
+                    public void setSize_ape(String size_ape) {
                         this.size_ape = size_ape;
                     }
 
-                    public int getSize_dts() {
+                    public String getSize_dts() {
                         return size_dts;
                     }
 
-                    public void setSize_dts(int size_dts) {
+                    public void setSize_dts(String size_dts) {
                         this.size_dts = size_dts;
                     }
 
-                    public int getSize_flac() {
+                    public String getSize_flac() {
                         return size_flac;
                     }
 
-                    public void setSize_flac(int size_flac) {
+                    public void setSize_flac(String size_flac) {
                         this.size_flac = size_flac;
                     }
 
-                    public int getSize_ogg() {
+                    public String getSize_ogg() {
                         return size_ogg;
                     }
 
-                    public void setSize_ogg(int size_ogg) {
+                    public void setSize_ogg(String size_ogg) {
                         this.size_ogg = size_ogg;
                     }
 
-                    public int getSize_try() {
+                    public String getSize_try() {
                         return size_try;
                     }
 
-                    public void setSize_try(int size_try) {
+                    public void setSize_try(String size_try) {
                         this.size_try = size_try;
                     }
 
@@ -877,19 +877,19 @@ public class SearchResult {
                         this.strMediaMid = strMediaMid;
                     }
 
-                    public int getTry_begin() {
+                    public String getTry_begin() {
                         return try_begin;
                     }
 
-                    public void setTry_begin(int try_begin) {
+                    public void setTry_begin(String try_begin) {
                         this.try_begin = try_begin;
                     }
 
-                    public int getTry_end() {
+                    public String getTry_end() {
                         return try_end;
                     }
 
-                    public void setTry_end(int try_end) {
+                    public void setTry_end(String try_end) {
                         this.try_end = try_end;
                     }
                 }
@@ -900,14 +900,14 @@ public class SearchResult {
                      * mid : 002gSnbX3Xznq0
                      */
 
-                    private int id;
+                    private String id;
                     private String mid;
 
-                    public int getId() {
+                    public String getId() {
                         return id;
                     }
 
-                    public void setId(int id) {
+                    public void setId(String id) {
                         this.id = id;
                     }
 
@@ -926,14 +926,14 @@ public class SearchResult {
                      * vid : u00222le4ox
                      */
 
-                    private int id;
+                    private String id;
                     private String vid;
 
-                    public int getId() {
+                    public String getId() {
                         return id;
                     }
 
-                    public void setId(int id) {
+                    public void setId(String id) {
                         this.id = id;
                     }
 
@@ -957,67 +957,67 @@ public class SearchResult {
                      * time_free : 0
                      */
 
-                    private int pay_down;
-                    private int pay_month;
-                    private int pay_play;
-                    private int pay_status;
-                    private int price_album;
-                    private int price_track;
-                    private int time_free;
+                    private String pay_down;
+                    private String pay_month;
+                    private String pay_play;
+                    private String pay_status;
+                    private String price_album;
+                    private String price_track;
+                    private String time_free;
 
-                    public int getPay_down() {
+                    public String getPay_down() {
                         return pay_down;
                     }
 
-                    public void setPay_down(int pay_down) {
+                    public void setPay_down(String pay_down) {
                         this.pay_down = pay_down;
                     }
 
-                    public int getPay_month() {
+                    public String getPay_month() {
                         return pay_month;
                     }
 
-                    public void setPay_month(int pay_month) {
+                    public void setPay_month(String pay_month) {
                         this.pay_month = pay_month;
                     }
 
-                    public int getPay_play() {
+                    public String getPay_play() {
                         return pay_play;
                     }
 
-                    public void setPay_play(int pay_play) {
+                    public void setPay_play(String pay_play) {
                         this.pay_play = pay_play;
                     }
 
-                    public int getPay_status() {
+                    public String getPay_status() {
                         return pay_status;
                     }
 
-                    public void setPay_status(int pay_status) {
+                    public void setPay_status(String pay_status) {
                         this.pay_status = pay_status;
                     }
 
-                    public int getPrice_album() {
+                    public String getPrice_album() {
                         return price_album;
                     }
 
-                    public void setPrice_album(int price_album) {
+                    public void setPrice_album(String price_album) {
                         this.price_album = price_album;
                     }
 
-                    public int getPrice_track() {
+                    public String getPrice_track() {
                         return price_track;
                     }
 
-                    public void setPrice_track(int price_track) {
+                    public void setPrice_track(String price_track) {
                         this.price_track = price_track;
                     }
 
-                    public int getTime_free() {
+                    public String getTime_free() {
                         return time_free;
                     }
 
-                    public void setTime_free(int time_free) {
+                    public void setTime_free(String time_free) {
                         this.time_free = time_free;
                     }
                 }
@@ -1072,7 +1072,7 @@ public class SearchResult {
                      * id : 204292892
                      * index_album : 5
                      * index_cd : 0
-                     * interval : 212
+                     * Stringerval : 212
                      * isonly : 1
                      * ksong : {"id":3016637,"mid":"003hNDuZ25l6nB"}
                      * language : 0
@@ -1101,39 +1101,39 @@ public class SearchResult {
 
                     private ActionBeanX action;
                     private AlbumBeanX album;
-                    private int chinesesinger;
+                    private String chinesesinger;
                     private String desc;
                     private String desc_hilight;
                     private String docid;
                     private FileBeanX file;
-                    private int fnote;
-                    private int genre;
-                    private int id;
-                    private int index_album;
-                    private int index_cd;
-                    private int interval;
-                    private int isonly;
+                    private String fnote;
+                    private String genre;
+                    private String id;
+                    private String index_album;
+                    private String index_cd;
+                    private String Stringerval;
+                    private String isonly;
                     private KsongBeanX ksong;
-                    private int language;
+                    private String language;
                     private String lyric;
                     private String lyric_hilight;
                     private String mid;
                     private MvBeanX mv;
                     private String name;
-                    private int newStatus;
-                    private int nt;
+                    private String newStatus;
+                    private String nt;
                     private PayBeanX pay;
-                    private int pure;
-                    private int status;
+                    private String pure;
+                    private String status;
                     private String subtitle;
-                    private int t;
-                    private int tag;
+                    private String t;
+                    private String tag;
                     private String time_public;
                     private String title;
                     private String title_hilight;
-                    private int type;
+                    private String type;
                     private String url;
-                    private int ver;
+                    private String ver;
                     private VolumeBeanX volume;
                     private List<SingerBean> singer;
 
@@ -1153,11 +1153,11 @@ public class SearchResult {
                         this.album = album;
                     }
 
-                    public int getChinesesinger() {
+                    public String getChinesesinger() {
                         return chinesesinger;
                     }
 
-                    public void setChinesesinger(int chinesesinger) {
+                    public void setChinesesinger(String chinesesinger) {
                         this.chinesesinger = chinesesinger;
                     }
 
@@ -1193,59 +1193,59 @@ public class SearchResult {
                         this.file = file;
                     }
 
-                    public int getFnote() {
+                    public String getFnote() {
                         return fnote;
                     }
 
-                    public void setFnote(int fnote) {
+                    public void setFnote(String fnote) {
                         this.fnote = fnote;
                     }
 
-                    public int getGenre() {
+                    public String getGenre() {
                         return genre;
                     }
 
-                    public void setGenre(int genre) {
+                    public void setGenre(String genre) {
                         this.genre = genre;
                     }
 
-                    public int getId() {
+                    public String getId() {
                         return id;
                     }
 
-                    public void setId(int id) {
+                    public void setId(String id) {
                         this.id = id;
                     }
 
-                    public int getIndex_album() {
+                    public String getIndex_album() {
                         return index_album;
                     }
 
-                    public void setIndex_album(int index_album) {
+                    public void setIndex_album(String index_album) {
                         this.index_album = index_album;
                     }
 
-                    public int getIndex_cd() {
+                    public String getIndex_cd() {
                         return index_cd;
                     }
 
-                    public void setIndex_cd(int index_cd) {
+                    public void setIndex_cd(String index_cd) {
                         this.index_cd = index_cd;
                     }
 
-                    public int getInterval() {
-                        return interval;
+                    public String getInterval() {
+                        return Stringerval;
                     }
 
-                    public void setInterval(int interval) {
-                        this.interval = interval;
+                    public void setInterval(String Stringerval) {
+                        this.Stringerval = Stringerval;
                     }
 
-                    public int getIsonly() {
+                    public String getIsonly() {
                         return isonly;
                     }
 
-                    public void setIsonly(int isonly) {
+                    public void setIsonly(String isonly) {
                         this.isonly = isonly;
                     }
 
@@ -1257,11 +1257,11 @@ public class SearchResult {
                         this.ksong = ksong;
                     }
 
-                    public int getLanguage() {
+                    public String getLanguage() {
                         return language;
                     }
 
-                    public void setLanguage(int language) {
+                    public void setLanguage(String language) {
                         this.language = language;
                     }
 
@@ -1305,19 +1305,19 @@ public class SearchResult {
                         this.name = name;
                     }
 
-                    public int getNewStatus() {
+                    public String getNewStatus() {
                         return newStatus;
                     }
 
-                    public void setNewStatus(int newStatus) {
+                    public void setNewStatus(String newStatus) {
                         this.newStatus = newStatus;
                     }
 
-                    public int getNt() {
+                    public String getNt() {
                         return nt;
                     }
 
-                    public void setNt(int nt) {
+                    public void setNt(String nt) {
                         this.nt = nt;
                     }
 
@@ -1329,19 +1329,19 @@ public class SearchResult {
                         this.pay = pay;
                     }
 
-                    public int getPure() {
+                    public String getPure() {
                         return pure;
                     }
 
-                    public void setPure(int pure) {
+                    public void setPure(String pure) {
                         this.pure = pure;
                     }
 
-                    public int getStatus() {
+                    public String getStatus() {
                         return status;
                     }
 
-                    public void setStatus(int status) {
+                    public void setStatus(String status) {
                         this.status = status;
                     }
 
@@ -1353,19 +1353,19 @@ public class SearchResult {
                         this.subtitle = subtitle;
                     }
 
-                    public int getT() {
+                    public String getT() {
                         return t;
                     }
 
-                    public void setT(int t) {
+                    public void setT(String t) {
                         this.t = t;
                     }
 
-                    public int getTag() {
+                    public String getTag() {
                         return tag;
                     }
 
-                    public void setTag(int tag) {
+                    public void setTag(String tag) {
                         this.tag = tag;
                     }
 
@@ -1393,11 +1393,11 @@ public class SearchResult {
                         this.title_hilight = title_hilight;
                     }
 
-                    public int getType() {
+                    public String getType() {
                         return type;
                     }
 
-                    public void setType(int type) {
+                    public void setType(String type) {
                         this.type = type;
                     }
 
@@ -1409,11 +1409,11 @@ public class SearchResult {
                         this.url = url;
                     }
 
-                    public int getVer() {
+                    public String getVer() {
                         return ver;
                     }
 
-                    public void setVer(int ver) {
+                    public void setVer(String ver) {
                         this.ver = ver;
                     }
 
@@ -1441,41 +1441,41 @@ public class SearchResult {
                          * switch : 17413891
                          */
 
-                        private int alert;
-                        private int icons;
-                        private int msg;
+                        private String alert;
+                        private String icons;
+                        private String msg;
                         @SerializedName("switch")
-                        private int switchX;
+                        private String switchX;
 
-                        public int getAlert() {
+                        public String getAlert() {
                             return alert;
                         }
 
-                        public void setAlert(int alert) {
+                        public void setAlert(String alert) {
                             this.alert = alert;
                         }
 
-                        public int getIcons() {
+                        public String getIcons() {
                             return icons;
                         }
 
-                        public void setIcons(int icons) {
+                        public void setIcons(String icons) {
                             this.icons = icons;
                         }
 
-                        public int getMsg() {
+                        public String getMsg() {
                             return msg;
                         }
 
-                        public void setMsg(int msg) {
+                        public void setMsg(String msg) {
                             this.msg = msg;
                         }
 
-                        public int getSwitchX() {
+                        public String getSwitchX() {
                             return switchX;
                         }
 
-                        public void setSwitchX(int switchX) {
+                        public void setSwitchX(String switchX) {
                             this.switchX = switchX;
                         }
                     }
@@ -1490,18 +1490,18 @@ public class SearchResult {
                          * title_hilight : 中国新歌声第二季 第14期
                          */
 
-                        private int id;
+                        private String id;
                         private String mid;
                         private String name;
                         private String subtitle;
                         private String title;
                         private String title_hilight;
 
-                        public int getId() {
+                        public String getId() {
                             return id;
                         }
 
-                        public void setId(int id) {
+                        public void setId(String id) {
                             this.id = id;
                         }
 
@@ -1563,17 +1563,17 @@ public class SearchResult {
                          */
 
                         private String media_mid;
-                        private int size_128;
-                        private int size_320;
-                        private int size_aac;
-                        private int size_ape;
-                        private int size_dts;
-                        private int size_flac;
-                        private int size_ogg;
-                        private int size_try;
+                        private String size_128;
+                        private String size_320;
+                        private String size_aac;
+                        private String size_ape;
+                        private String size_dts;
+                        private String size_flac;
+                        private String size_ogg;
+                        private String size_try;
                         private String strMediaMid;
-                        private int try_begin;
-                        private int try_end;
+                        private String try_begin;
+                        private String try_end;
 
                         public String getMedia_mid() {
                             return media_mid;
@@ -1583,67 +1583,67 @@ public class SearchResult {
                             this.media_mid = media_mid;
                         }
 
-                        public int getSize_128() {
+                        public String getSize_128() {
                             return size_128;
                         }
 
-                        public void setSize_128(int size_128) {
+                        public void setSize_128(String size_128) {
                             this.size_128 = size_128;
                         }
 
-                        public int getSize_320() {
+                        public String getSize_320() {
                             return size_320;
                         }
 
-                        public void setSize_320(int size_320) {
+                        public void setSize_320(String size_320) {
                             this.size_320 = size_320;
                         }
 
-                        public int getSize_aac() {
+                        public String getSize_aac() {
                             return size_aac;
                         }
 
-                        public void setSize_aac(int size_aac) {
+                        public void setSize_aac(String size_aac) {
                             this.size_aac = size_aac;
                         }
 
-                        public int getSize_ape() {
+                        public String getSize_ape() {
                             return size_ape;
                         }
 
-                        public void setSize_ape(int size_ape) {
+                        public void setSize_ape(String size_ape) {
                             this.size_ape = size_ape;
                         }
 
-                        public int getSize_dts() {
+                        public String getSize_dts() {
                             return size_dts;
                         }
 
-                        public void setSize_dts(int size_dts) {
+                        public void setSize_dts(String size_dts) {
                             this.size_dts = size_dts;
                         }
 
-                        public int getSize_flac() {
+                        public String getSize_flac() {
                             return size_flac;
                         }
 
-                        public void setSize_flac(int size_flac) {
+                        public void setSize_flac(String size_flac) {
                             this.size_flac = size_flac;
                         }
 
-                        public int getSize_ogg() {
+                        public String getSize_ogg() {
                             return size_ogg;
                         }
 
-                        public void setSize_ogg(int size_ogg) {
+                        public void setSize_ogg(String size_ogg) {
                             this.size_ogg = size_ogg;
                         }
 
-                        public int getSize_try() {
+                        public String getSize_try() {
                             return size_try;
                         }
 
-                        public void setSize_try(int size_try) {
+                        public void setSize_try(String size_try) {
                             this.size_try = size_try;
                         }
 
@@ -1655,19 +1655,19 @@ public class SearchResult {
                             this.strMediaMid = strMediaMid;
                         }
 
-                        public int getTry_begin() {
+                        public String getTry_begin() {
                             return try_begin;
                         }
 
-                        public void setTry_begin(int try_begin) {
+                        public void setTry_begin(String try_begin) {
                             this.try_begin = try_begin;
                         }
 
-                        public int getTry_end() {
+                        public String getTry_end() {
                             return try_end;
                         }
 
-                        public void setTry_end(int try_end) {
+                        public void setTry_end(String try_end) {
                             this.try_end = try_end;
                         }
                     }
@@ -1678,14 +1678,14 @@ public class SearchResult {
                          * mid : 003hNDuZ25l6nB
                          */
 
-                        private int id;
+                        private String id;
                         private String mid;
 
-                        public int getId() {
+                        public String getId() {
                             return id;
                         }
 
-                        public void setId(int id) {
+                        public void setId(String id) {
                             this.id = id;
                         }
 
@@ -1704,14 +1704,14 @@ public class SearchResult {
                          * vid :
                          */
 
-                        private int id;
+                        private String id;
                         private String vid;
 
-                        public int getId() {
+                        public String getId() {
                             return id;
                         }
 
-                        public void setId(int id) {
+                        public void setId(String id) {
                             this.id = id;
                         }
 
@@ -1735,67 +1735,67 @@ public class SearchResult {
                          * time_free : 0
                          */
 
-                        private int pay_down;
-                        private int pay_month;
-                        private int pay_play;
-                        private int pay_status;
-                        private int price_album;
-                        private int price_track;
-                        private int time_free;
+                        private String pay_down;
+                        private String pay_month;
+                        private String pay_play;
+                        private String pay_status;
+                        private String price_album;
+                        private String price_track;
+                        private String time_free;
 
-                        public int getPay_down() {
+                        public String getPay_down() {
                             return pay_down;
                         }
 
-                        public void setPay_down(int pay_down) {
+                        public void setPay_down(String pay_down) {
                             this.pay_down = pay_down;
                         }
 
-                        public int getPay_month() {
+                        public String getPay_month() {
                             return pay_month;
                         }
 
-                        public void setPay_month(int pay_month) {
+                        public void setPay_month(String pay_month) {
                             this.pay_month = pay_month;
                         }
 
-                        public int getPay_play() {
+                        public String getPay_play() {
                             return pay_play;
                         }
 
-                        public void setPay_play(int pay_play) {
+                        public void setPay_play(String pay_play) {
                             this.pay_play = pay_play;
                         }
 
-                        public int getPay_status() {
+                        public String getPay_status() {
                             return pay_status;
                         }
 
-                        public void setPay_status(int pay_status) {
+                        public void setPay_status(String pay_status) {
                             this.pay_status = pay_status;
                         }
 
-                        public int getPrice_album() {
+                        public String getPrice_album() {
                             return price_album;
                         }
 
-                        public void setPrice_album(int price_album) {
+                        public void setPrice_album(String price_album) {
                             this.price_album = price_album;
                         }
 
-                        public int getPrice_track() {
+                        public String getPrice_track() {
                             return price_track;
                         }
 
-                        public void setPrice_track(int price_track) {
+                        public void setPrice_track(String price_track) {
                             this.price_track = price_track;
                         }
 
-                        public int getTime_free() {
+                        public String getTime_free() {
                             return time_free;
                         }
 
-                        public void setTime_free(int time_free) {
+                        public void setTime_free(String time_free) {
                             this.time_free = time_free;
                         }
                     }
@@ -1847,19 +1847,19 @@ public class SearchResult {
                          * uin : 0
                          */
 
-                        private int id;
+                        private String id;
                         private String mid;
                         private String name;
                         private String title;
                         private String title_hilight;
-                        private int type;
-                        private int uin;
+                        private String type;
+                        private String uin;
 
-                        public int getId() {
+                        public String getId() {
                             return id;
                         }
 
-                        public void setId(int id) {
+                        public void setId(String id) {
                             this.id = id;
                         }
 
@@ -1895,19 +1895,19 @@ public class SearchResult {
                             this.title_hilight = title_hilight;
                         }
 
-                        public int getType() {
+                        public String getType() {
                             return type;
                         }
 
-                        public void setType(int type) {
+                        public void setType(String type) {
                             this.type = type;
                         }
 
-                        public int getUin() {
+                        public String getUin() {
                             return uin;
                         }
 
-                        public void setUin(int uin) {
+                        public void setUin(String uin) {
                             this.uin = uin;
                         }
                     }
@@ -1924,19 +1924,19 @@ public class SearchResult {
                      * uin : 0
                      */
 
-                    private int id;
+                    private String id;
                     private String mid;
                     private String name;
                     private String title;
                     private String title_hilight;
-                    private int type;
-                    private int uin;
+                    private String type;
+                    private String uin;
 
-                    public int getId() {
+                    public String getId() {
                         return id;
                     }
 
-                    public void setId(int id) {
+                    public void setId(String id) {
                         this.id = id;
                     }
 
@@ -1972,19 +1972,19 @@ public class SearchResult {
                         this.title_hilight = title_hilight;
                     }
 
-                    public int getType() {
+                    public String getType() {
                         return type;
                     }
 
-                    public void setType(int type) {
+                    public void setType(String type) {
                         this.type = type;
                     }
 
-                    public int getUin() {
+                    public String getUin() {
                         return uin;
                     }
 
-                    public void setUin(int uin) {
+                    public void setUin(String uin) {
                         this.uin = uin;
                     }
                 }
@@ -1997,14 +1997,14 @@ public class SearchResult {
              * zhida_singer : {"albumNum":31,"hotalbum":[{"albumID":1458791,"albumMID":"003RMaRI1iFoYd","albumName":"周杰伦的床边故事","albumname_hilight":"周杰伦的床边故事"},{"albumID":33021,"albumMID":"002eFUFm2XYZ7z","albumName":"我很忙","albumname_hilight":"我很忙"},{"albumID":852856,"albumMID":"001uqejs3d6EID","albumName":"哎呦，不错哦","albumname_hilight":"哎呦，不错哦"},{"albumID":194021,"albumMID":"003Ow85E3pnoqi","albumName":"十二新作","albumname_hilight":"十二新作"},{"albumID":36062,"albumMID":"002Neh8l0uciQZ","albumName":"魔杰座","albumname_hilight":"魔杰座"},{"albumID":8218,"albumMID":"000f01724fd7TH","albumName":"Jay","albumname_hilight":"Jay"},{"albumID":56705,"albumMID":"000bviBl4FjTpO","albumName":"跨时代","albumname_hilight":"跨时代"},{"albumID":60671,"albumMID":"0024bjiL2aocxT","albumName":"十一月的萧邦","albumname_hilight":"十一月的萧邦"},{"albumID":8220,"albumMID":"000MkMni19ClKG","albumName":"叶惠美","albumname_hilight":"叶惠美"},{"albumID":8217,"albumMID":"000I5jJB3blWeN","albumName":"范特西","albumname_hilight":"范特西"}],"hotsong":[{"f":"107192078|告白气球|4558|周杰伦|1458791|周杰伦的床边故事|1856582|215|1|1|0|8608939|3443771|0|0|24929083|24971563|5001304|5191087|0|003OUlho2HcRHC|0025NhlN2yWrP4|003RMaRI1iFoYd|0|4009","songID":107192078,"songMID":"003OUlho2HcRHC","songName":"告白气球","songname_hilight":"告白气球"},{"f":"212877900|等你下课(with 杨瑞代)|4558|周杰伦|3883404|等你下课|0|270|4|1|0|10802353|4321060|0|0|31780875|31922907|6045129|6521861|0|001J5QJL1pRQYB|0025NhlN2yWrP4|003bSL0v4bpKAx|0|4009","songID":212877900,"songMID":"001J5QJL1pRQYB","songName":"等你下课(with 杨瑞代)","songname_hilight":"等你下课(with 杨瑞代)"},{"f":"449205|稻香|4558|周杰伦|36062|魔杰座|1813383|223|9|1|0|8929849|3581117|0|0|25245000|26093502|5156630|5354369|0|003aAYrm3GE0Ac|0025NhlN2yWrP4|002Neh8l0uciQZ|0|4009","songID":449205,"songMID":"003aAYrm3GE0Ac","songName":"稻香","songname_hilight":"稻香"},{"f":"97773|晴天|4558|周杰伦|8220|叶惠美|2186317|269|9|1|0|10793267|4319991|0|0|30143423|31518872|5871273|6308305|0|0039MnYb0qxYhV|0025NhlN2yWrP4|000MkMni19ClKG|0|4009","songID":97773,"songMID":"0039MnYb0qxYhV","songName":"晴天","songname_hilight":"晴天"},{"f":"410316|青花瓷|4558|周杰伦|33021|我很忙|1942555|239|8|1|0|9573872|3836490|0|0|25541938|26237796|5414428|5617369|0|002qU5aY3Qu24y|0025NhlN2yWrP4|002eFUFm2XYZ7z|0|4009","songID":410316,"songMID":"002qU5aY3Qu24y","songName":"青花瓷","songname_hilight":"青花瓷"},{"f":"97744|简单爱|4558|周杰伦|8217|范特西|2201337|271|1|1|0|10843422|4338381|0|0|31636245|32393334|6511185|6723781|0|0009BCJK1nRaad|0025NhlN2yWrP4|000I5jJB3blWeN|0|4009","songID":97744,"songMID":"0009BCJK1nRaad","songName":"简单爱","songname_hilight":"简单爱"},{"f":"102065756|七里香|4558|周杰伦|20612|七里香|2579770|299|2|1|0|11970172|4788334|0|0|35517977|35894637|7050920|7336394|0|004Z8Ihr0JIu5s|0025NhlN2yWrP4|003DFRzD192KKD|0|4009","songID":102065756,"songMID":"004Z8Ihr0JIu5s","songName":"七里香","songname_hilight":"七里香"},{"f":"403778|不能说的秘密|4558|周杰伦|32611|不能说的秘密 电影原声带|2408613|296|2|1|0|11854801|4747981|0|0|32596051|33431091|6573767|7019224|0|002MXZNu1GToOk|0025NhlN2yWrP4|001UP7mW458ipG|0|4009","songID":403778,"songMID":"002MXZNu1GToOk","songName":"不能说的秘密","songname_hilight":"不能说的秘密"},{"f":"718477|夜曲|4558|周杰伦|60671|十一月的萧邦|1840421|226|7|1|0|9069409|3634616|0|0|25655984|26842143|5614538|5659229|0|001zMQr71F1Qo8|0025NhlN2yWrP4|0024bjiL2aocxT|0|4009","songID":718477,"songMID":"001zMQr71F1Qo8","songName":"夜曲","songname_hilight":"夜曲"},{"f":"102066449|退后|4558|周杰伦|13004|依然范特西|2253372|261|4|1|0|10461714|4184803|0|0|29857096|30118750|5958853|6299745|0|001L1lqm4UAdyo|0025NhlN2yWrP4|002jLGWe16Tf1H|0|4009","songID":102066449,"songMID":"001L1lqm4UAdyo","songName":"退后","songname_hilight":"退后"}],"mvNum":1419,"singerID":4558,"singerMID":"0025NhlN2yWrP4","singerName":"周杰伦","singerPic":"http://y.gtimg.cn/music/photo_new/T001R150x150M0000025NhlN2yWrP4.jpg","singername_hilight":"周杰伦","songNum":811}
              */
 
-            private int type;
+            private String type;
             private ZhidaSingerBean zhida_singer;
 
-            public int getType() {
+            public String getType() {
                 return type;
             }
 
-            public void setType(int type) {
+            public void setType(String type) {
                 this.type = type;
             }
 
@@ -2030,38 +2030,38 @@ public class SearchResult {
                  * songNum : 811
                  */
 
-                private int albumNum;
-                private int mvNum;
-                private int singerID;
+                private String albumNum;
+                private String mvNum;
+                private String singerID;
                 private String singerMID;
                 private String singerName;
                 private String singerPic;
                 private String singername_hilight;
-                private int songNum;
+                private String songNum;
                 private List<HotalbumBean> hotalbum;
                 private List<HotsongBean> hotsong;
 
-                public int getAlbumNum() {
+                public String getAlbumNum() {
                     return albumNum;
                 }
 
-                public void setAlbumNum(int albumNum) {
+                public void setAlbumNum(String albumNum) {
                     this.albumNum = albumNum;
                 }
 
-                public int getMvNum() {
+                public String getMvNum() {
                     return mvNum;
                 }
 
-                public void setMvNum(int mvNum) {
+                public void setMvNum(String mvNum) {
                     this.mvNum = mvNum;
                 }
 
-                public int getSingerID() {
+                public String getSingerID() {
                     return singerID;
                 }
 
-                public void setSingerID(int singerID) {
+                public void setSingerID(String singerID) {
                     this.singerID = singerID;
                 }
 
@@ -2097,11 +2097,11 @@ public class SearchResult {
                     this.singername_hilight = singername_hilight;
                 }
 
-                public int getSongNum() {
+                public String getSongNum() {
                     return songNum;
                 }
 
-                public void setSongNum(int songNum) {
+                public void setSongNum(String songNum) {
                     this.songNum = songNum;
                 }
 
@@ -2129,16 +2129,16 @@ public class SearchResult {
                      * albumname_hilight : 周杰伦的床边故事
                      */
 
-                    private int albumID;
+                    private String albumID;
                     private String albumMID;
                     private String albumName;
                     private String albumname_hilight;
 
-                    public int getAlbumID() {
+                    public String getAlbumID() {
                         return albumID;
                     }
 
-                    public void setAlbumID(int albumID) {
+                    public void setAlbumID(String albumID) {
                         this.albumID = albumID;
                     }
 
@@ -2177,7 +2177,7 @@ public class SearchResult {
                      */
 
                     private String f;
-                    private int songID;
+                    private String songID;
                     private String songMID;
                     private String songName;
                     private String songname_hilight;
@@ -2190,11 +2190,11 @@ public class SearchResult {
                         this.f = f;
                     }
 
-                    public int getSongID() {
+                    public String getSongID() {
                         return songID;
                     }
 
-                    public void setSongID(int songID) {
+                    public void setSongID(String songID) {
                         this.songID = songID;
                     }
 

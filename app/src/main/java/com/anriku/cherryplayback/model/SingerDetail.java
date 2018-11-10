@@ -10,16 +10,16 @@ import java.util.List;
 
 public class SingerDetail {
 
-    private int code;
+    private String code;
     private DataBean data;
     private String message;
-    private int subcode;
+    private String subcode;
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -39,11 +39,11 @@ public class SingerDetail {
         this.message = message;
     }
 
-    public int getSubcode() {
+    public String getSubcode() {
         return subcode;
     }
 
-    public void setSubcode(int subcode) {
+    public void setSubcode(String subcode) {
         this.subcode = subcode;
     }
 
@@ -52,7 +52,7 @@ public class SingerDetail {
         private String singer_id;
         private String singer_mid;
         private String singer_name;
-        private int total;
+        private String total;
         private List<ListBean> list;
 
         public String getSinger_id() {
@@ -79,11 +79,11 @@ public class SingerDetail {
             this.singer_name = singer_name;
         }
 
-        public int getTotal() {
+        public String getTotal() {
             return total;
         }
 
-        public void setTotal(int total) {
+        public void setTotal(String total) {
             this.total = total;
         }
 
@@ -97,21 +97,21 @@ public class SingerDetail {
 
         public static class ListBean {
 
-            private int Flisten_count1;
+            private String Flisten_count1;
             private String Fupload_time;
-            private int index;
-            private int isnew;
-            private int listenCount;
+            private String index;
+            private String isnew;
+            private String listenCount;
             private MusicDataBean musicData;
             private String playurl;
-            private int price;
+            private String price;
             private VidBean vid;
 
-            public int getFlisten_count1() {
+            public String getFlisten_count1() {
                 return Flisten_count1;
             }
 
-            public void setFlisten_count1(int Flisten_count1) {
+            public void setFlisten_count1(String Flisten_count1) {
                 this.Flisten_count1 = Flisten_count1;
             }
 
@@ -123,27 +123,27 @@ public class SingerDetail {
                 this.Fupload_time = Fupload_time;
             }
 
-            public int getIndex() {
+            public String getIndex() {
                 return index;
             }
 
-            public void setIndex(int index) {
+            public void setIndex(String index) {
                 this.index = index;
             }
 
-            public int getIsnew() {
+            public String getIsnew() {
                 return isnew;
             }
 
-            public void setIsnew(int isnew) {
+            public void setIsnew(String isnew) {
                 this.isnew = isnew;
             }
 
-            public int getListenCount() {
+            public String getListenCount() {
                 return listenCount;
             }
 
-            public void setListenCount(int listenCount) {
+            public void setListenCount(String listenCount) {
                 this.listenCount = listenCount;
             }
 
@@ -163,11 +163,11 @@ public class SingerDetail {
                 this.playurl = playurl;
             }
 
-            public int getPrice() {
+            public String getPrice() {
                 return price;
             }
 
-            public void setPrice(int price) {
+            public void setPrice(String price) {
                 this.price = price;
             }
 
@@ -188,7 +188,7 @@ public class SingerDetail {
                  * alertid : 2
                  * belongCD : 8
                  * cdIdx : 0
-                 * interval : 215
+                 * Stringerval : 215
                  * isonly : 1
                  * label : 4611686018435776513
                  * msgid : 14
@@ -215,35 +215,35 @@ public class SingerDetail {
                  */
 
                 private String albumdesc;
-                private int albumid;
+                private String albumid;
                 private String albummid;
                 private String albumname;
-                private int alertid;
-                private int belongCD;
-                private int cdIdx;
-                private int interval;
-                private int isonly;
+                private String alertid;
+                private String belongCD;
+                private String cdIdx;
+                private String Stringerval;
+                private String isonly;
                 private String label;
-                private int msgid;
+                private String msgid;
                 private PayBean pay;
                 private PreviewBean preview;
-                private int rate;
-                private int size128;
-                private int size320;
-                private int size5_1;
-                private int sizeape;
-                private int sizeflac;
-                private int sizeogg;
-                private int songid;
+                private String rate;
+                private String size128;
+                private String size320;
+                private String size5_1;
+                private String sizeape;
+                private String sizeflac;
+                private String sizeogg;
+                private String songid;
                 private String songmid;
                 private String songname;
                 private String songorig;
-                private int songtype;
+                private String songtype;
                 private String strMediaMid;
-                private int stream;
+                private String stream;
                 @SerializedName("switch")
-                private int switchX;
-                private int type;
+                private String switchX;
+                private String type;
                 private String vid;
                 private List<SingerBean> singer;
 
@@ -255,11 +255,11 @@ public class SingerDetail {
                     this.albumdesc = albumdesc;
                 }
 
-                public int getAlbumid() {
+                public String getAlbumid() {
                     return albumid;
                 }
 
-                public void setAlbumid(int albumid) {
+                public void setAlbumid(String albumid) {
                     this.albumid = albumid;
                 }
 
@@ -279,43 +279,43 @@ public class SingerDetail {
                     this.albumname = albumname;
                 }
 
-                public int getAlertid() {
+                public String getAlertid() {
                     return alertid;
                 }
 
-                public void setAlertid(int alertid) {
+                public void setAlertid(String alertid) {
                     this.alertid = alertid;
                 }
 
-                public int getBelongCD() {
+                public String getBelongCD() {
                     return belongCD;
                 }
 
-                public void setBelongCD(int belongCD) {
+                public void setBelongCD(String belongCD) {
                     this.belongCD = belongCD;
                 }
 
-                public int getCdIdx() {
+                public String getCdIdx() {
                     return cdIdx;
                 }
 
-                public void setCdIdx(int cdIdx) {
+                public void setCdIdx(String cdIdx) {
                     this.cdIdx = cdIdx;
                 }
 
-                public int getInterval() {
-                    return interval;
+                public String getInterval() {
+                    return Stringerval;
                 }
 
-                public void setInterval(int interval) {
-                    this.interval = interval;
+                public void setInterval(String Stringerval) {
+                    this.Stringerval = Stringerval;
                 }
 
-                public int getIsonly() {
+                public String getIsonly() {
                     return isonly;
                 }
 
-                public void setIsonly(int isonly) {
+                public void setIsonly(String isonly) {
                     this.isonly = isonly;
                 }
 
@@ -327,11 +327,11 @@ public class SingerDetail {
                     this.label = label;
                 }
 
-                public int getMsgid() {
+                public String getMsgid() {
                     return msgid;
                 }
 
-                public void setMsgid(int msgid) {
+                public void setMsgid(String msgid) {
                     this.msgid = msgid;
                 }
 
@@ -351,67 +351,67 @@ public class SingerDetail {
                     this.preview = preview;
                 }
 
-                public int getRate() {
+                public String getRate() {
                     return rate;
                 }
 
-                public void setRate(int rate) {
+                public void setRate(String rate) {
                     this.rate = rate;
                 }
 
-                public int getSize128() {
+                public String getSize128() {
                     return size128;
                 }
 
-                public void setSize128(int size128) {
+                public void setSize128(String size128) {
                     this.size128 = size128;
                 }
 
-                public int getSize320() {
+                public String getSize320() {
                     return size320;
                 }
 
-                public void setSize320(int size320) {
+                public void setSize320(String size320) {
                     this.size320 = size320;
                 }
 
-                public int getSize5_1() {
+                public String getSize5_1() {
                     return size5_1;
                 }
 
-                public void setSize5_1(int size5_1) {
+                public void setSize5_1(String size5_1) {
                     this.size5_1 = size5_1;
                 }
 
-                public int getSizeape() {
+                public String getSizeape() {
                     return sizeape;
                 }
 
-                public void setSizeape(int sizeape) {
+                public void setSizeape(String sizeape) {
                     this.sizeape = sizeape;
                 }
 
-                public int getSizeflac() {
+                public String getSizeflac() {
                     return sizeflac;
                 }
 
-                public void setSizeflac(int sizeflac) {
+                public void setSizeflac(String sizeflac) {
                     this.sizeflac = sizeflac;
                 }
 
-                public int getSizeogg() {
+                public String getSizeogg() {
                     return sizeogg;
                 }
 
-                public void setSizeogg(int sizeogg) {
+                public void setSizeogg(String sizeogg) {
                     this.sizeogg = sizeogg;
                 }
 
-                public int getSongid() {
+                public String getSongid() {
                     return songid;
                 }
 
-                public void setSongid(int songid) {
+                public void setSongid(String songid) {
                     this.songid = songid;
                 }
 
@@ -439,11 +439,11 @@ public class SingerDetail {
                     this.songorig = songorig;
                 }
 
-                public int getSongtype() {
+                public String getSongtype() {
                     return songtype;
                 }
 
-                public void setSongtype(int songtype) {
+                public void setSongtype(String songtype) {
                     this.songtype = songtype;
                 }
 
@@ -455,27 +455,27 @@ public class SingerDetail {
                     this.strMediaMid = strMediaMid;
                 }
 
-                public int getStream() {
+                public String getStream() {
                     return stream;
                 }
 
-                public void setStream(int stream) {
+                public void setStream(String stream) {
                     this.stream = stream;
                 }
 
-                public int getSwitchX() {
+                public String getSwitchX() {
                     return switchX;
                 }
 
-                public void setSwitchX(int switchX) {
+                public void setSwitchX(String switchX) {
                     this.switchX = switchX;
                 }
 
-                public int getType() {
+                public String getType() {
                     return type;
                 }
 
-                public void setType(int type) {
+                public void setType(String type) {
                     this.type = type;
                 }
 
@@ -507,76 +507,76 @@ public class SingerDetail {
                      * timefree : 0
                      */
 
-                    private int payalbum;
-                    private int payalbumprice;
-                    private int paydownload;
-                    private int payinfo;
-                    private int payplay;
-                    private int paytrackmouth;
-                    private int paytrackprice;
-                    private int timefree;
+                    private String payalbum;
+                    private String payalbumprice;
+                    private String paydownload;
+                    private String payinfo;
+                    private String payplay;
+                    private String paytrackmouth;
+                    private String paytrackprice;
+                    private String timefree;
 
-                    public int getPayalbum() {
+                    public String getPayalbum() {
                         return payalbum;
                     }
 
-                    public void setPayalbum(int payalbum) {
+                    public void setPayalbum(String payalbum) {
                         this.payalbum = payalbum;
                     }
 
-                    public int getPayalbumprice() {
+                    public String getPayalbumprice() {
                         return payalbumprice;
                     }
 
-                    public void setPayalbumprice(int payalbumprice) {
+                    public void setPayalbumprice(String payalbumprice) {
                         this.payalbumprice = payalbumprice;
                     }
 
-                    public int getPaydownload() {
+                    public String getPaydownload() {
                         return paydownload;
                     }
 
-                    public void setPaydownload(int paydownload) {
+                    public void setPaydownload(String paydownload) {
                         this.paydownload = paydownload;
                     }
 
-                    public int getPayinfo() {
+                    public String getPayinfo() {
                         return payinfo;
                     }
 
-                    public void setPayinfo(int payinfo) {
+                    public void setPayinfo(String payinfo) {
                         this.payinfo = payinfo;
                     }
 
-                    public int getPayplay() {
+                    public String getPayplay() {
                         return payplay;
                     }
 
-                    public void setPayplay(int payplay) {
+                    public void setPayplay(String payplay) {
                         this.payplay = payplay;
                     }
 
-                    public int getPaytrackmouth() {
+                    public String getPaytrackmouth() {
                         return paytrackmouth;
                     }
 
-                    public void setPaytrackmouth(int paytrackmouth) {
+                    public void setPaytrackmouth(String paytrackmouth) {
                         this.paytrackmouth = paytrackmouth;
                     }
 
-                    public int getPaytrackprice() {
+                    public String getPaytrackprice() {
                         return paytrackprice;
                     }
 
-                    public void setPaytrackprice(int paytrackprice) {
+                    public void setPaytrackprice(String paytrackprice) {
                         this.paytrackprice = paytrackprice;
                     }
 
-                    public int getTimefree() {
+                    public String getTimefree() {
                         return timefree;
                     }
 
-                    public void setTimefree(int timefree) {
+                    public void setTimefree(String timefree) {
                         this.timefree = timefree;
                     }
                 }
@@ -588,31 +588,31 @@ public class SingerDetail {
                      * trysize : 0
                      */
 
-                    private int trybegin;
-                    private int tryend;
-                    private int trysize;
+                    private String trybegin;
+                    private String tryend;
+                    private String trysize;
 
-                    public int getTrybegin() {
+                    public String getTrybegin() {
                         return trybegin;
                     }
 
-                    public void setTrybegin(int trybegin) {
+                    public void setTrybegin(String trybegin) {
                         this.trybegin = trybegin;
                     }
 
-                    public int getTryend() {
+                    public String getTryend() {
                         return tryend;
                     }
 
-                    public void setTryend(int tryend) {
+                    public void setTryend(String tryend) {
                         this.tryend = tryend;
                     }
 
-                    public int getTrysize() {
+                    public String getTrysize() {
                         return trysize;
                     }
 
-                    public void setTrysize(int trysize) {
+                    public void setTrysize(String trysize) {
                         this.trysize = trysize;
                     }
                 }
@@ -624,15 +624,15 @@ public class SingerDetail {
                      * name : 周杰伦
                      */
 
-                    private int id;
+                    private String id;
                     private String mid;
                     private String name;
 
-                    public int getId() {
+                    public String getId() {
                         return id;
                     }
 
-                    public void setId(int id) {
+                    public void setId(String id) {
                         this.id = id;
                     }
 

@@ -10,10 +10,13 @@ import com.anriku.cherryplayback.extension.setSchedulers
 import com.anriku.cherryplayback.model.SingerList
 import com.anriku.cherryplayback.network.ApiGenerate
 import com.anriku.cherryplayback.network.QQMusicService
+import com.anriku.cherryplayback.network.subscribeWithDispose
 import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
 import com.anriku.cherryplayback.ui.SingerDetailActivity
 import com.anriku.cherryplayback.utils.LogUtil
+import com.anriku.cherryplayback.utils.ObservableManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.annotation.compiler.GlideIndexer_GlideExtension_com_anriku_cherryplayback_extension_MyGlideExtension
 import com.bumptech.glide.request.RequestOptions
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -48,43 +51,52 @@ class SingerListAdapter(private val mContext: Context) :
     private val mQQMusicService: QQMusicService by lazy(LazyThreadSafetyMode.NONE) {
         ApiGenerate.getApiService(QQMusicService::class.java)
     }
+    private val mObservableManager: ObservableManager<Int> by lazy(LazyThreadSafetyMode.NONE) {
+        ObservableManager<Int>()
+    }
 
     override fun getThePositionLayoutId(position: Int): Int = R.layout.singer_list_rec_item
 
     override fun onViewRecycled(holder: BaseViewHolder) {
+        mObservableManager.dispose(holder.itemView.tag as Int)
         Glide.with(holder.itemView).clear(holder.itemView.findViewById<CircleImageView>(R.id.civ))
         super.onViewRecycled(holder)
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        val itemView = holder.itemView
+        val itemView = holder.itemView.apply {
+            tag = position
+        }
         val item = getItem(position)
-
-        itemView.tag = position
 
         itemView.findViewById<CircleImageView>(R.id.civ).apply {
             item?.fsinger_name?.let {
-                mQQMusicService.search(it, 10, 1)
+
+                val enBracket = it.indexOf('(')
+                val zhBracket = it.indexOf('（')
+                val name = when {
+                    enBracket != -1 -> it.substring(0, enBracket)
+                    zhBracket != -1 -> it.substring(0, zhBracket)
+                    else -> it
+                }
+
+                val disposable = mQQMusicService.search(name, 10, 1)
                     .setSchedulers()
                     .errorHandler()
-                    .subscribe(ExecuteOnceObserver(onExecuteOnceNext = { searchResult ->
+                    .subscribeWithDispose(onNext = { searchResult ->
                         Glide.with(this.context)
                             .load(searchResult.data.zhida.zhida_singer.singerPic)
                             .apply(RequestOptions().placeholder(R.drawable.ic_singer).error(R.drawable.ic_error))
                             .into(this)
-                    }))
+                    })
+                mObservableManager.put(itemView.tag as Int, disposable)
             }
         }
 
         itemView.findViewById<TextView>(R.id.tv_name).apply {
-            val otherName = item?.fother_name
             val name = item?.fsinger_name
 
-            text = if (otherName != null) {
-                "$name($otherName)"
-            } else {
-                name
-            }
+            text = name
         }
 
         itemView.setOnClickListener {

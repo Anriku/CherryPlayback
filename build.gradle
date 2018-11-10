@@ -7,6 +7,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath deps.gradle.gradle
@@ -21,8 +22,10 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
+        jcenter {
+            url "http://jcenter.bintray.com/"
+        }
         maven { url 'https://jitpack.io' }
     }
 }
