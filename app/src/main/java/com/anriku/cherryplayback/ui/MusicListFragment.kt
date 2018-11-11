@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.adapter.SongListRecAdapter
 import com.anriku.cherryplayback.databinding.FragmentMusicListBinding
+import com.anriku.cherryplayback.extension.setDivider
 import com.anriku.cherryplayback.viewmodel.SongsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.jetbrains.anko.dip
@@ -44,12 +45,7 @@ class MusicListFragment : AppCompatDialogFragment() {
         })
 
         mBinding.adapter = SongListRecAdapter(activity!!)
-        ContextCompat.getDrawable(activity!!, R.drawable.recycler_view_divider)?.let {
-            mBinding.rv.addItemDecoration(
-                DividerItemDecoration(activity, DividerItemDecoration.VERTICAL).apply {
-                    setDrawable(it)
-                })
-        }
+        mBinding.rv.setDivider()
 
         mBottomSheetDialog = BottomSheetDialog(activity!!)
         val params = ViewGroup.LayoutParams(

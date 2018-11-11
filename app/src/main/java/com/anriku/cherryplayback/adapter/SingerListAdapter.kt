@@ -59,7 +59,6 @@ class SingerListAdapter(private val mContext: Context) :
 
     override fun onViewRecycled(holder: BaseViewHolder) {
         mObservableManager.dispose(holder.itemView.tag as Int)
-        Glide.with(holder.itemView).clear(holder.itemView.findViewById<CircleImageView>(R.id.civ))
         super.onViewRecycled(holder)
     }
 
@@ -70,6 +69,8 @@ class SingerListAdapter(private val mContext: Context) :
         val item = getItem(position)
 
         itemView.findViewById<CircleImageView>(R.id.civ).apply {
+            Glide.with(holder.itemView).clear(this)
+
             item?.fsinger_name?.let {
 
                 val enBracket = it.indexOf('(')

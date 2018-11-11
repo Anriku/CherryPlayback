@@ -52,8 +52,11 @@ class SingerDetailAdapter(private val mContext: Context) :
             val singers = item?.musicData?.singer ?: return
 
             val artistBuilder = StringBuilder()
-            for (singer in singers) {
+            for ((index, singer) in singers.withIndex()){
                 artistBuilder.append(singer.name)
+                if (index != singers.size - 1) {
+                    artistBuilder.append("·")
+                }
             }
 
             text = artistBuilder.toString()

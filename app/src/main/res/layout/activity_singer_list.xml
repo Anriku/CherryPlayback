@@ -7,31 +7,35 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:orientation="vertical"
         tools:context=".ui.SingerListActivity">
 
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/abl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/default_bk_color"
             android:fitsSystemWindows="true">
 
-        </androidx.appcompat.widget.Toolbar>
+            <include android:id="@+id/tb"
+                layout="@layout/tool_bar"/>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
         </androidx.recyclerview.widget.RecyclerView>
 
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
