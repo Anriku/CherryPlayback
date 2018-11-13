@@ -21,6 +21,7 @@
             android:fitsSystemWindows="true">
 
             <include android:id="@+id/tb"
+                android:fitsSystemWindows="true"
                 layout="@layout/tool_bar"/>
 
 

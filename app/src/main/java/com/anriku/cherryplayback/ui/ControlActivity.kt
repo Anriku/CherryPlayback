@@ -27,6 +27,8 @@ import org.greenrobot.eventbus.ThreadMode
 class ControlActivity : BaseActivity() {
 
     companion object {
+        const val PLAY_INDEX = "play_index"
+        const val SONGS = "songs"
         private const val TAG = "ControlActivity"
     }
 
@@ -63,12 +65,12 @@ class ControlActivity : BaseActivity() {
 
 
     private fun initControlActivity() {
+        mSongsViewModel = ViewModelProviders.of(this).get(SongsViewModel::class.java)
+        val songsViewModel = mSongsViewModel
+
         // 获取之前设置的播放模式并更新图标
         mPlayPattern = getSPValue().getInt(PLAY_PATTERN, IMusicBinder.SEQUENCE_PLAY)
         mBinding.ivPattern.setImageDrawable(mPatternIcons[mPlayPattern])
-
-        mSongsViewModel = ViewModelProviders.of(this).get(SongsViewModel::class.java)
-        val songsViewModel = mSongsViewModel
 
         songsViewModel.startAndBindService(this)
 
@@ -84,11 +86,9 @@ class ControlActivity : BaseActivity() {
             mMusicListFragment.show(supportFragmentManager, "music_list_fragment")
         }, onPrevious = {
             songsViewModel.binder?.loadAnotherMusic(mPlayPattern, false)
-            songsViewModel.binder?.play()
         }, onNext = {
             songsViewModel.binder?.loadAnotherMusic(mPlayPattern)
-            songsViewModel.binder?.play()
-        }, onPlayAndPause = {
+         }, onPlayAndPause = {
             if (songsViewModel.binder?.isPlaying() == true) {
                 songsViewModel.binder?.pause()
             } else {
@@ -133,8 +133,6 @@ class ControlActivity : BaseActivity() {
     fun onServiceConnected(serviceConnectEvent: ServiceConnectEvent) {
         if ((mSongsViewModel.binder?.getSongs()?.size ?: 0) == 0) {
             mSongsViewModel.setSongs(this)
-            val lastPlayIndex = getSPValue().getInt(LAST_PLAY_INDEX, 0)
-            mSongsViewModel.binder?.loadMediaByPosition(lastPlayIndex)
         }
 
         mPlaybackListener = PlaybackListener()

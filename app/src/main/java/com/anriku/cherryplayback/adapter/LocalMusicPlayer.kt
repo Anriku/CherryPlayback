@@ -6,7 +6,6 @@ import com.anriku.cherryplayback.config.PLAY_PATTERN
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.utils.IMusicBinder
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
-import com.anriku.cherryplayback.utils.PlayerAdapter
 import com.anriku.cherryplayback.utils.extensions.getSPValue
 import java.util.*
 import java.util.concurrent.Executors
@@ -19,47 +18,41 @@ import java.util.concurrent.TimeUnit
  * Created by anriku on 2018/10/31.
  */
 
-class CherryPlayer(private val mContext: Context) : PlayerAdapter {
+open class LocalMusicPlayer(protected val mContext: Context) :
+    PlayerAdapter {
 
     companion object {
-        private const val TAG = "CherryPlayer"
+        private const val TAG = "LocalMusicPlayer"
         // 刷新操作的时间间隔
         const val UPDATE_INTERVAL = 1000L
     }
 
     // 当前本地音乐播放到的位置
-    private var mCurrentPlayIndex: Int = 0
+    protected var mCurrentPlayIndex: Int = 0
     // 播放源
-    private var mSongs: List<Song> = mutableListOf()
+    protected var mSongs: List<Song> = mutableListOf()
 
-    private var mMediaPlayer: MediaPlayer? = null
-    private var mPlaybackInfoListeners: MutableList<PlaybackInfoListener>? = null
-    private var mExecutor: ScheduledExecutorService? = null
-    private var mUpdateTask: Runnable? = null
+    protected var mMediaPlayer: MediaPlayer? = null
+    protected var mPlaybackInfoListeners: MutableList<PlaybackInfoListener>? = null
+    protected var mExecutor: ScheduledExecutorService? = null
+    protected var mUpdateTask: Runnable? = null
 
     // 记录当前播放的音乐的路径或Uri
-    private lateinit var mResourcePath: String
+    protected lateinit var mResourcePath: String
     // 是否当前播放的音乐是在线音乐
-    private var mIsOnlineData: Boolean = false
+    protected var mIsOnlineData: Boolean = false
 
-    override fun loadMedia(resourcePath: String, isOnlineData: Boolean) {
+    override fun loadMedia(resourcePath: String, isOnlyLoad: Boolean) {
         reset()
-        initMediaPlayer()
+        initMediaPlayer(isOnlyLoad)
 
         // 更新当前记录的播放信息
         mResourcePath = resourcePath
-        mIsOnlineData = isOnlineData
 
         // 设置播放源
         mMediaPlayer?.setDataSource(resourcePath)
-        // 进行播放准备，如果是在线音乐就进行异步准备。本地音乐的化就直接同步准备
-        if (isOnlineData) {
-            mMediaPlayer?.prepareAsync()
-        } else {
-            mMediaPlayer?.prepare()
-        }
+        mMediaPlayer?.prepare()
 
-        initializeProgressCallback()
     }
 
     override fun loadAnotherMusic(pattern: Int, isNext: Boolean) {
@@ -100,7 +93,7 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
         }
     }
 
-    override fun loadMediaByPosition(position: Int) {
+    override fun loadMediaByPosition(position: Int, isOnlyLoad: Boolean) {
         // 如果播放资源为空就不进行加载
         if (mSongs.isEmpty()) {
             return
@@ -114,7 +107,7 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
         }
 
         mSongs[position].data?.let {
-            loadMedia(it, false)
+            loadMedia(it, isOnlyLoad)
         }
     }
 
@@ -159,8 +152,9 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
     }
 
 
-    override fun setSongs(songs: List<Song>) {
+    override fun setSongs(songs: List<Song>, isOnlineMusic: Boolean) {
         reset()
+        mIsOnlineData = isOnlineMusic
         mSongs = songs
     }
 
@@ -202,15 +196,22 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
     /**
      * 用于初始化[android.media.MediaPlayer]
      */
-    private fun initMediaPlayer() {
+    protected fun initMediaPlayer(isOnlyLoad: Boolean) {
         if (mMediaPlayer == null) {
             mMediaPlayer = MediaPlayer()
         }
+        // 初始化完成调用
+        mMediaPlayer?.setOnPreparedListener {
+            initializeProgressCallback()
+            if (!isOnlyLoad) {
+                play()
+            }
+        }
+        // 一首歌完后调用
         mMediaPlayer?.setOnCompletionListener {
             // 当前一首播放完成时播放下一首
             val pattern = mContext.getSPValue().getInt(PLAY_PATTERN, IMusicBinder.SEQUENCE_PLAY)
             loadAnotherMusic(pattern)
-            play()
 
             mPlaybackInfoListeners?.let { listeners ->
                 for (playbackInfoListener in listeners) {
@@ -238,7 +239,7 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
     /**
      * 设置更新任务
      */
-    private fun setUpdateTask() {
+    protected fun setUpdateTask() {
         // 任务为空的话就进行任务的创建
         if (mUpdateTask == null) {
             mUpdateTask = Runnable {
@@ -261,7 +262,7 @@ class CherryPlayer(private val mContext: Context) : PlayerAdapter {
     /**
      * 清理更新任务
      */
-    private fun cleanUpdateTask() {
+    protected fun cleanUpdateTask() {
         mExecutor?.shutdown()
         mExecutor = null
         mUpdateTask = null

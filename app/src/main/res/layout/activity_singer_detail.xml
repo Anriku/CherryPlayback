@@ -23,9 +23,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
+                expandedTitleGravity="top"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:contentScrim="@color/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
                 <ImageView
                     android:id="@+id/iv_singer"

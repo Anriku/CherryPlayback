@@ -1,10 +1,24 @@
 package com.anriku.cherryplayback.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
 import com.anriku.cherryplayback.R
+import com.anriku.cherryplayback.extension.errorHandler
+import com.anriku.cherryplayback.extension.setSchedulers
+import com.anriku.cherryplayback.map.OnlineSongToSong
 import com.anriku.cherryplayback.model.SingerDetail
+import com.anriku.cherryplayback.model.Song
+import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
+import com.anriku.cherryplayback.service.MusicService
+import com.anriku.cherryplayback.ui.ControlActivity
+import com.anriku.cherryplayback.utils.LogUtil
+import com.anriku.cherryplayback.viewmodel.SongsViewModel
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.android.schedulers.AndroidSchedulers
 import java.lang.StringBuilder
 import kotlin.math.sin
 
@@ -32,9 +46,9 @@ class SingerDetailAdapter(private val mContext: Context) :
             ): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
+
 
     override fun getThePositionLayoutId(position: Int): Int =
         R.layout.singer_detail_rec_item
@@ -42,7 +56,6 @@ class SingerDetailAdapter(private val mContext: Context) :
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val itemView = holder.itemView
         val item = getItem(position)
-
 
         itemView.findViewById<TextView>(R.id.tv_song).apply {
             text = item?.musicData?.songname
@@ -52,7 +65,7 @@ class SingerDetailAdapter(private val mContext: Context) :
             val singers = item?.musicData?.singer ?: return
 
             val artistBuilder = StringBuilder()
-            for ((index, singer) in singers.withIndex()){
+            for ((index, singer) in singers.withIndex()) {
                 artistBuilder.append(singer.name)
                 if (index != singers.size - 1) {
                     artistBuilder.append("·")
@@ -60,6 +73,24 @@ class SingerDetailAdapter(private val mContext: Context) :
             }
 
             text = artistBuilder.toString()
+        }
+
+        itemView.setOnClickListener { _ ->
+
+            Observable.create(ObservableOnSubscribe<List<SingerDetail.DataBean.ListBean>> {
+                it.onNext(currentList?.snapshot() ?: mutableListOf())
+            }).setSchedulers(AndroidSchedulers.mainThread(), AndroidSchedulers.mainThread(), AndroidSchedulers.mainThread())
+                .errorHandler()
+                .map(OnlineSongToSong())
+                .subscribe(ExecuteOnceObserver(
+                    onExecuteOnceNext = {
+                        val intent = Intent(mContext, ControlActivity::class.java).apply {
+                            putExtra(ControlActivity.PLAY_INDEX, position)
+                            putParcelableArrayListExtra(ControlActivity.SONGS, it)
+                        }
+                        mContext.startActivity(intent)
+                    }
+                ))
         }
     }
 }

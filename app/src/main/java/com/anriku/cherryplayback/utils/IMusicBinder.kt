@@ -1,7 +1,7 @@
 package com.anriku.cherryplayback.utils
 
 import android.os.Binder
-import com.anriku.cherryplayback.model.Song
+import com.anriku.cherryplayback.adapter.PlayerAdapter
 
 /**
  * Created by anriku on 2018/11/2.

@@ -10,13 +10,15 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.anriku.cherryplayback.R
+import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
 import com.anriku.cherryplayback.databinding.ActivityControlBinding
 import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.service.MusicService
+import com.anriku.cherryplayback.ui.ControlActivity
 import com.anriku.cherryplayback.utils.IMusicBinder
 import com.anriku.cherryplayback.utils.MusicAccessUtil
-import com.anriku.cherryplayback.utils.PaletteUtil
+import com.anriku.cherryplayback.utils.extensions.getSPValue
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.textColor
 
@@ -53,8 +55,22 @@ class SongsViewModel : ViewModel() {
      * 获取需要进行运行时权限的检测。
      */
     fun setSongs(activity: FragmentActivity) {
-        val musicAccessUtil = MusicAccessUtil(activity)
-        binder?.setSongs(musicAccessUtil.getMusics() ?: mutableListOf())
+        val intent = activity.intent
+        val songs = intent.getParcelableArrayListExtra<Song>(ControlActivity.SONGS)
+        var playIndex = intent.getIntExtra(ControlActivity.PLAY_INDEX, -1)
+
+        // 如果传入的歌曲为空就说明是播放本地音乐。如果不为空就播放在线音乐
+        if (songs != null) {
+            binder?.setSongs(songs, true)
+        } else {
+            val musicAccessUtil = MusicAccessUtil(activity)
+            binder?.setSongs(musicAccessUtil.getMusics() ?: mutableListOf(), false)
+        }
+        if (playIndex == -1) {
+            playIndex = activity.getSPValue().getInt(LAST_PLAY_INDEX, 0)
+        }
+
+        binder?.loadMediaByPosition(playIndex, true)
     }
 
     /**
@@ -102,14 +118,14 @@ class SongsViewModel : ViewModel() {
         currentPlaySongName.value = song.title
         currentPlayArtist.value = song.artist
 
-        song.data?.let {
-            val bitmap = musicAccessUtil.setAlbumBitmap(it, binding.ivAlbum)
-            binding.cl.setBackgroundColor(PaletteUtil.extractBackgroundColor(bitmap))
-            val textColor = PaletteUtil.extractTextColor(bitmap)
-            binding.tvSongName.textColor = textColor
-            binding.tvArtist.textColor = textColor
-            return
-        }
+//        song.data?.let {
+//            val bitmap = musicAccessUtil.setAlbumBitmap(it, binding.ivAlbum)
+//            binding.cl.setBackgroundColor(PaletteUtil.extractBackgroundColor(bitmap))
+//            val textColor = PaletteUtil.extractTextColor(bitmap)
+//            binding.tvSongName.textColor = textColor
+//            binding.tvArtist.textColor = textColor
+//            return
+//        }
         binding.cl.setBackgroundColor(ContextCompat.getColor(activity, R.color.default_bk_color))
         val textColor = ContextCompat.getColor(activity, R.color.default_text_color)
         binding.tvSongName.textColor = textColor

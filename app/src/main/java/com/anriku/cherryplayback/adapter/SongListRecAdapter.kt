@@ -40,7 +40,7 @@ class SongListRecAdapter(private val mActivity: FragmentActivity) : BaseRecAdapt
 
         holder.itemView.setOnClickListener {
             mSongsViewModel.binder?.loadMediaByPosition(position)
-            mSongsViewModel.binder?.play()
+//            mSongsViewModel.binder?.play()
         }
     }
 }

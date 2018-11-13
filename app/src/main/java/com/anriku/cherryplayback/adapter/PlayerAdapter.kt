@@ -1,9 +1,10 @@
-package com.anriku.cherryplayback.utils
+package com.anriku.cherryplayback.adapter
 
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.utils.IMusicBinder.Companion.RANDOM_PLAY
 import com.anriku.cherryplayback.utils.IMusicBinder.Companion.SEQUENCE_PLAY
 import com.anriku.cherryplayback.utils.IMusicBinder.Companion.SINGLE_PLAY
+import com.anriku.cherryplayback.utils.PlaybackInfoListener
 
 /**
  * 播放器类需要实现的接口
@@ -17,21 +18,19 @@ interface PlayerAdapter {
      *
      * @param listener 想获取播放信息的类
      */
-    abstract fun addPlaybackInfoListener(listener: PlaybackInfoListener)
+    fun addPlaybackInfoListener(listener: PlaybackInfoListener)
 
     /**
      * 移除对应的播放器类
      *
      * @param listener 要被移除的获取播放信息的类
      */
-    abstract fun removePlaybackInfoListener(listener: PlaybackInfoListener)
+    fun removePlaybackInfoListener(listener: PlaybackInfoListener)
 
     /**
      * 移除所有的播放器类
-     *
-     * @param listener 想获取播放信息的类
      */
-    abstract fun removeAllPlaybackInfoListener()
+    fun removeAllPlaybackInfoListener()
 
     /**
      * 用于切换音乐的。下面的情况下进行调用
@@ -42,39 +41,40 @@ interface PlayerAdapter {
      * @param pattern 播放的模式。有[SEQUENCE_PLAY]、[RANDOM_PLAY]、[SINGLE_PLAY]三种模式
      * @param isNext 如果是[SEQUENCE_PLAY]模式这个参数表示是下一首还是上一首。
      */
-    abstract fun loadAnotherMusic(pattern: Int, isNext: Boolean = true)
+    fun loadAnotherMusic(pattern: Int, isNext: Boolean = true)
 
     /**
      * 加载本地音乐列表指定的音乐。
      *
      * @param position 要播放的音乐在本地音乐列表的中的位置
+     * @param isOnlyLoad 是否是仅加载不播放
      */
-    abstract fun loadMediaByPosition(position: Int)
+    fun loadMediaByPosition(position: Int, isOnlyLoad: Boolean = false)
 
     /**
      * 根据本地音乐的路径或者在线音乐的Uri进行音乐的加载。
      *
      * @param resourcePath 音乐路径或者Uri
-     * @param isOnlineData 是否是在线音乐
+     * @param isOnlyLoad 是否是仅加载不播放
      */
-    abstract fun loadMedia(resourcePath: String, isOnlineData: Boolean)
+    fun loadMedia(resourcePath: String, isOnlyLoad: Boolean = false)
 
-    abstract fun play()
+    fun play()
 
-    abstract fun pause()
+    fun pause()
 
-    abstract fun reset()
+    fun reset()
 
-    abstract fun isPlaying(): Boolean
+    fun isPlaying(): Boolean
 
-    abstract fun seekTo(position: Int)
+    fun seekTo(position: Int)
 
-    abstract fun release()
+    fun release()
 
-    abstract fun setSongs(songs: List<Song>)
+    fun setSongs(songs: List<Song>, isOnlineMusic: Boolean = false)
 
-    abstract fun getSongs(): List<Song>
+    fun getSongs(): List<Song>?
 
-    abstract fun getCurrentPlayIndex(): Int
+    fun getCurrentPlayIndex(): Int
 
 }

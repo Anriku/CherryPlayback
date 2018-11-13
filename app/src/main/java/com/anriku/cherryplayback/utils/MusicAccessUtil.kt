@@ -169,6 +169,7 @@ class MusicAccessUtil(private val mActivity: FragmentActivity) {
             }
         }
 
+        LogUtil.d(TAG, songs[0].toString())
         cursor?.close()
         mSongs = songs
     }

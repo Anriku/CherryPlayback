@@ -18,6 +18,7 @@ class SingerListActivity : BaseActivity() {
 
     private lateinit var mBinding: ActivitySingerListBinding
     private lateinit var mSingerListViewModel: SingerListViewModel
+    private var startOffset: Int? = null
     companion object {
         private const val TAG = "SingerListActivity"
     }
@@ -30,19 +31,18 @@ class SingerListActivity : BaseActivity() {
     }
 
     private fun initActivity() {
-        mBinding.rv.setDivider()
+        mSingerListViewModel = ViewModelProviders.of(this).get(SingerListViewModel::class.java)
         setSupportActionBar(mBinding.tb as Toolbar)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowTitleEnabled(false)
         }
-        val title = mBinding.tb.findViewById<TextView>(R.id.title).apply {
+
+        mBinding.rv.setDivider()
+        mBinding.tb.findViewById<TextView>(R.id.title).apply {
             text = "歌手列表"
         }
-        mBinding.abl.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-        })
 
-        mSingerListViewModel = ViewModelProviders.of(this).get(SingerListViewModel::class.java)
         val adapter = SingerListAdapter(this)
         mBinding.rv.adapter = adapter
         mSingerListViewModel.singerList.observe(this, Observer(adapter::submitList))

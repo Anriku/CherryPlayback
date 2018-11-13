@@ -10,9 +10,9 @@ object OnlineSongUtil {
 
     private const val BASE = "http://dl.stream.qqmusic.qq.com"
 
-    fun constructUrl (songVKey: SongVKey): String {
-        return "$BASE/${songVKey.data?.items?.get(0)?.filename}?vkey=${songVKey.data?.items?.get(0)?.vkey}" +
-                "&guid=3655047200&fromtag=66"
-    }
+    /**
+     * 合成在线歌曲的Url。如果无法合成就返回null
+     */
+    fun constructUrl (songMid: String): String = "$BASE/C100$songMid.m4a"
 
 }
