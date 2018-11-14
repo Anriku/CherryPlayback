@@ -3,9 +3,7 @@ package com.anriku.cherryplayback.model
 import android.graphics.Bitmap
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Ignore
 
 /**
  * Created by anriku on 2018/10/31.
@@ -26,8 +24,8 @@ class Song() : Parcelable {
     var artist: String? = null
     var composer: String? = null
     var year: Int = 0
-    var isMusic: Int? = null
-    var albumId: Long? = null
+    var whetherMusic: Int = 0
+    var albumId: Long = -1
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readLong()
@@ -43,8 +41,8 @@ class Song() : Parcelable {
         artist = parcel.readString()
         composer = parcel.readString()
         year = parcel.readInt()
-        isMusic = parcel.readValue(Int::class.java.classLoader) as? Int
-        albumId = parcel.readValue(Long::class.java.classLoader) as? Long
+        whetherMusic = parcel.readInt()
+        albumId = parcel.readLong()
     }
 
     data class Album(
@@ -81,8 +79,8 @@ class Song() : Parcelable {
         dest.writeString(artist)
         dest.writeString(composer)
         dest.writeInt(year)
-        dest.writeValue(isMusic)
-        dest.writeValue(albumId)
+        dest.writeInt(whetherMusic)
+        dest.writeLong(albumId)
     }
 
     override fun describeContents(): Int = 0
@@ -91,7 +89,7 @@ class Song() : Parcelable {
         return "Song(id=$id, data=$data, size=$size, displayName=$displayName, title=$title, " +
                 "dateAdded=$dateAdded, dateModified=$dateModified, mineType=$mineType, " +
                 "isDrm=$isDrm, duration=$duration, artist=$artist, composer=$composer, " +
-                "year=$year, isMusic=$isMusic, albumId=$albumId)"
+                "year=$year, whetherMusic=$whetherMusic, albumId=$albumId)"
     }
 
 }

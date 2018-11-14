@@ -1,10 +1,13 @@
 package com.anriku.cherryplayback.adapter
 
 import android.content.Context
+import android.media.AudioAttributes
 import android.media.MediaPlayer
 import com.anriku.cherryplayback.config.PLAY_PATTERN
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.utils.IMusicBinder
+import com.anriku.cherryplayback.utils.LogUtil
+import com.anriku.cherryplayback.utils.OnlineSongUtil
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.utils.extensions.getSPValue
 import java.util.*
@@ -18,11 +21,11 @@ import java.util.concurrent.TimeUnit
  * Created by anriku on 2018/10/31.
  */
 
-open class LocalMusicPlayer(protected val mContext: Context) :
+open class CherryMusicPlayer(protected val mContext: Context) :
     PlayerAdapter {
 
     companion object {
-        private const val TAG = "LocalMusicPlayer"
+        private const val TAG = "CherryMusicPlayer"
         // 刷新操作的时间间隔
         const val UPDATE_INTERVAL = 1000L
     }
@@ -46,16 +49,32 @@ open class LocalMusicPlayer(protected val mContext: Context) :
         reset()
         initMediaPlayer(isOnlyLoad)
 
-        // 更新当前记录的播放信息
-        mResourcePath = resourcePath
+        if (mIsOnlineData) {
+            // 更新当前记录的播放信息
+            mResourcePath = OnlineSongUtil.constructUrl(resourcePath)
 
-        // 设置播放源
-        mMediaPlayer?.setDataSource(resourcePath)
-        mMediaPlayer?.prepare()
+            // 设置播放源
+            mMediaPlayer?.setDataSource(mResourcePath)
+            val aa = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .build()
+            mMediaPlayer?.setAudioAttributes(aa)
 
+            mMediaPlayer?.prepareAsync()
+        } else {
+            // 更新当前记录的播放信息
+            mResourcePath = resourcePath
+
+            // 设置播放源
+            mMediaPlayer?.setDataSource(resourcePath)
+            mMediaPlayer?.prepare()
+        }
     }
 
-    override fun loadAnotherMusic(pattern: Int, isNext: Boolean) {
+    override fun loadAnotherMusic(isNext: Boolean) {
+        // 当前一首播放完成时播放下一首
+        val pattern = mContext.getSPValue().getInt(PLAY_PATTERN, IMusicBinder.SEQUENCE_PLAY)
 
         // 如果播放资源为空就不进行加载
         if (mSongs.isEmpty()) {
@@ -209,9 +228,7 @@ open class LocalMusicPlayer(protected val mContext: Context) :
         }
         // 一首歌完后调用
         mMediaPlayer?.setOnCompletionListener {
-            // 当前一首播放完成时播放下一首
-            val pattern = mContext.getSPValue().getInt(PLAY_PATTERN, IMusicBinder.SEQUENCE_PLAY)
-            loadAnotherMusic(pattern)
+            loadAnotherMusic()
 
             mPlaybackInfoListeners?.let { listeners ->
                 for (playbackInfoListener in listeners) {

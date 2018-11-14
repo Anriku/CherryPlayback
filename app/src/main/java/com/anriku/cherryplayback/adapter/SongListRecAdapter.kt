@@ -17,11 +17,10 @@ class SongListRecAdapter(private val mActivity: FragmentActivity) : BaseRecAdapt
         private const val TAG = "SongListRecAdapter"
     }
 
-    private val mSongsViewModel: SongsViewModel = ViewModelProviders.of(mActivity).get(SongsViewModel::class.java)
+    private val mSongsViewModel: SongsViewModel =
+        ViewModelProviders.of(mActivity).get(SongsViewModel::class.java)
 
-    override fun getThePositionLayoutId(position: Int): Int {
-        return R.layout.music_list_rec_item
-    }
+    override fun getThePositionLayoutId(position: Int): Int = R.layout.music_list_rec_item
 
     override fun getItemCount(): Int {
         return mSongsViewModel.binder?.getSongs()?.size ?: 0
@@ -40,7 +39,6 @@ class SongListRecAdapter(private val mActivity: FragmentActivity) : BaseRecAdapt
 
         holder.itemView.setOnClickListener {
             mSongsViewModel.binder?.loadMediaByPosition(position)
-//            mSongsViewModel.binder?.play()
         }
     }
 }

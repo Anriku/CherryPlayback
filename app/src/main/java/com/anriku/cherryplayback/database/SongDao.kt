@@ -1,10 +1,10 @@
 package com.anriku.cherryplayback.database
 
-import android.database.Observable
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.anriku.cherryplayback.model.Song
+import io.reactivex.Flowable
 
 /**
  * Created by anriku on 2018/11/13.
@@ -20,7 +20,7 @@ interface SongDao {
     fun insertSongs(songs: List<Song>)
 
     @Query("SELECT * FROM songs")
-    fun getAllSongs(): Observable<List<Song>>
+    fun getAllSongs(): Flowable<List<Song>>
 
     @Query("DELETE FROM songs")
     fun deleteAllSongs()

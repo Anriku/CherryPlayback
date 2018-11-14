@@ -11,7 +11,7 @@
 
         <variable
             name="listeners"
-            type="com.anriku.cherryplayback.ui.ControlActivity.ControlActivityListener" />
+            type="com.anriku.cherryplayback.ui.ControlActivity.Listeners" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

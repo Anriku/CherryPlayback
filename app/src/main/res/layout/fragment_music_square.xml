@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="listeners"
+            type="com.anriku.cherryplayback.ui.square.MusicSquareFragment.Listeners" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <ImageView
+            android:id="@+id/iv_singer"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:onClick="@{listeners.onSingerClick}"
+            android:padding="@dimen/fragment_mine_icon_padding"
+            android:src="@drawable/ic_singer"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_rank"
+            app:layout_constraintTop_toBottomOf="@id/vp"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/iv_rank"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:onClick="@{listeners.onRankClick}"
+            android:padding="@dimen/fragment_mine_icon_padding"
+            android:src="@drawable/ic_rank"
+            app:layout_constraintLeft_toRightOf="@id/iv_singer"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vp"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

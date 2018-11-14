@@ -10,15 +10,12 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.anriku.cherryplayback.R
-import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
 import com.anriku.cherryplayback.databinding.ActivityControlBinding
 import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.service.MusicService
-import com.anriku.cherryplayback.ui.ControlActivity
 import com.anriku.cherryplayback.utils.IMusicBinder
 import com.anriku.cherryplayback.utils.MusicAccessUtil
-import com.anriku.cherryplayback.utils.extensions.getSPValue
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.textColor
 
@@ -26,11 +23,7 @@ import org.jetbrains.anko.textColor
  * Created by anriku on 2018/10/31.
  */
 
-class SongsViewModel : ViewModel() {
-
-    companion object {
-        private const val TAG = "SongsViewModel"
-    }
+open class SongsViewModel : ViewModel() {
 
     val currentPlaySongName: MutableLiveData<String> = MutableLiveData()
     val currentPlayArtist: MutableLiveData<String> = MutableLiveData()
@@ -38,7 +31,7 @@ class SongsViewModel : ViewModel() {
     // 用于与播放音乐的服务进行通信
     var binder: IMusicBinder? = null
     // 绑定服务的ServiceConnection
-    private val connection = object : ServiceConnection {
+    protected val connection = object : ServiceConnection {
 
         override fun onServiceDisconnected(name: ComponentName) {}
 
@@ -48,30 +41,17 @@ class SongsViewModel : ViewModel() {
         }
     }
 
-    /**
-     * 获取音乐
-     *
-     * @param activity 调用此方法需要一个[androidx.fragment.app.FragmentActivity].因为[MusicAccessUtil]
-     * 获取需要进行运行时权限的检测。
-     */
-    fun setSongs(activity: FragmentActivity) {
-        val intent = activity.intent
-        val songs = intent.getParcelableArrayListExtra<Song>(ControlActivity.SONGS)
-        var playIndex = intent.getIntExtra(ControlActivity.PLAY_INDEX, -1)
-
-        // 如果传入的歌曲为空就说明是播放本地音乐。如果不为空就播放在线音乐
-        if (songs != null) {
-            binder?.setSongs(songs, true)
-        } else {
-            val musicAccessUtil = MusicAccessUtil(activity)
-            binder?.setSongs(musicAccessUtil.getMusics() ?: mutableListOf(), false)
-        }
-        if (playIndex == -1) {
-            playIndex = activity.getSPValue().getInt(LAST_PLAY_INDEX, 0)
-        }
-
-        binder?.loadMediaByPosition(playIndex, true)
-    }
+//    /**
+//     * 获取音乐
+//     *
+//     * @param activity 调用此方法需要一个[androidx.fragment.app.FragmentActivity].因为[MusicAccessUtil]
+//     * 获取需要进行运行时权限的检测。
+//     */
+//    fun setSongs(activity: FragmentActivity): So {
+//        val intent = activity.intent
+//        val musicAccessUtil = MusicAccessUtil(activity)
+//        binder?.setSongs(musicAccessUtil.getMusics() ?: mutableListOf(), false)
+//    }
 
     /**
      * 进行音乐服务的启用以及访问

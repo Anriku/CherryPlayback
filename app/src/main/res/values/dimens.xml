@@ -4,4 +4,5 @@
     <dimen name="activity_control_iv_width">40dp</dimen>
     <dimen name="activity_control_iv_height">30dp</dimen>
 
+    <dimen name="fragment_mine_icon_padding">25dp</dimen>
 </resources>

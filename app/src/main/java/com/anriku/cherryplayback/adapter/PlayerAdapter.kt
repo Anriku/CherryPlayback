@@ -38,10 +38,9 @@ interface PlayerAdapter {
      * 2. 点击下一首切换
      * 3. 一首歌完了进行切换
      *
-     * @param pattern 播放的模式。有[SEQUENCE_PLAY]、[RANDOM_PLAY]、[SINGLE_PLAY]三种模式
      * @param isNext 如果是[SEQUENCE_PLAY]模式这个参数表示是下一首还是上一首。
      */
-    fun loadAnotherMusic(pattern: Int, isNext: Boolean = true)
+    fun loadAnotherMusic(isNext: Boolean = true)
 
     /**
      * 加载本地音乐列表指定的音乐。

@@ -10,13 +10,11 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.anriku.cherryplayback.R
-import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
 import com.anriku.cherryplayback.config.PLAY_PATTERN
 import com.anriku.cherryplayback.databinding.ActivityControlBinding
 import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.utils.IMusicBinder
-import com.anriku.cherryplayback.utils.LogUtil
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.utils.extensions.getSPValue
 import com.anriku.cherryplayback.utils.extensions.setSPValue
@@ -27,8 +25,6 @@ import org.greenrobot.eventbus.ThreadMode
 class ControlActivity : BaseActivity() {
 
     companion object {
-        const val PLAY_INDEX = "play_index"
-        const val SONGS = "songs"
         private const val TAG = "ControlActivity"
     }
 
@@ -76,7 +72,7 @@ class ControlActivity : BaseActivity() {
 
         mBinding.viewModel = songsViewModel
         // 设置各个按键的点击事件
-        mBinding.listeners = ControlActivityListener(onPattern = {
+        mBinding.listeners = Listeners(onPattern = {
             mPlayPattern = (mPlayPattern + 1) % 3
             setSPValue({
                 putInt(PLAY_PATTERN, mPlayPattern)
@@ -85,10 +81,10 @@ class ControlActivity : BaseActivity() {
         }, onList = {
             mMusicListFragment.show(supportFragmentManager, "music_list_fragment")
         }, onPrevious = {
-            songsViewModel.binder?.loadAnotherMusic(mPlayPattern, false)
+            songsViewModel.binder?.loadAnotherMusic(false)
         }, onNext = {
-            songsViewModel.binder?.loadAnotherMusic(mPlayPattern)
-         }, onPlayAndPause = {
+            songsViewModel.binder?.loadAnotherMusic()
+        }, onPlayAndPause = {
             if (songsViewModel.binder?.isPlaying() == true) {
                 songsViewModel.binder?.pause()
             } else {
@@ -131,10 +127,6 @@ class ControlActivity : BaseActivity() {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onServiceConnected(serviceConnectEvent: ServiceConnectEvent) {
-        if ((mSongsViewModel.binder?.getSongs()?.size ?: 0) == 0) {
-            mSongsViewModel.setSongs(this)
-        }
-
         mPlaybackListener = PlaybackListener()
         mSongsViewModel.binder?.addPlaybackInfoListener(mPlaybackListener)
     }
@@ -175,7 +167,7 @@ class ControlActivity : BaseActivity() {
     }
 
 
-    class ControlActivityListener(
+    class Listeners(
         val onPattern: (ImageView) -> Unit = {},
         val onPrevious: (ImageView) -> Unit = {},
         val onPlayAndPause: (ImageView) -> Unit = {},

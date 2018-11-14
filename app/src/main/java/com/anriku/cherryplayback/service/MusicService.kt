@@ -10,6 +10,8 @@ import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
 import com.anriku.cherryplayback.ui.ControlActivity
 import com.anriku.cherryplayback.config.MUSIC_NOTIFICATION_ID
+import com.anriku.cherryplayback.model.Song
+import com.anriku.cherryplayback.ui.MainActivity
 import com.anriku.cherryplayback.utils.extensions.setSPValue
 
 /**
@@ -20,15 +22,22 @@ import com.anriku.cherryplayback.utils.extensions.setSPValue
 class MusicService : Service() {
 
     companion object {
+        const val INIT_PLAYBACK = -1
+        const val DO_NOTHING = -2
+
+        const val PLAY_INDEX = "play_index"
+        const val SONGS = "songs"
+        const val IS_ONLINE = "is_online"
+
         const val TAG = "MusicService"
     }
 
     private var mIsServiceFirstCreate: Boolean = true
     private val mMusicBinder: MusicBinder by lazy(LazyThreadSafetyMode.NONE) { MusicBinder(this) }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         if (mIsServiceFirstCreate) {
-            val notificationIntent = Intent(this, ControlActivity::class.java)
+            val notificationIntent = Intent(this, MainActivity::class.java)
             val pendingIntent = PendingIntent.getActivity(
                 this, 0, notificationIntent, 0
             )
@@ -47,7 +56,32 @@ class MusicService : Service() {
             mIsServiceFirstCreate = false
         }
 
+        playSet(intent)
+
         return super.onStartCommand(intent, flags, startId)
+    }
+
+    /**
+     * 用于对播放相关的内容设置
+     *
+     * @param intent startService所传入的intent
+     */
+    private fun playSet(intent: Intent) {
+        Thread {
+            val playIndex = intent.getIntExtra(PLAY_INDEX, DO_NOTHING)
+            val songs = intent.getParcelableArrayListExtra<Song>(SONGS)
+            val isOnline = intent.getBooleanExtra(IS_ONLINE, false)
+
+            // 设置播放源
+            songs?.let {
+                mMusicBinder.setSongs(it, isOnline)
+            }
+
+            if (playIndex >= 0) {
+                mMusicBinder.loadMediaByPosition(playIndex)
+            }
+
+        }.start()
     }
 
     override fun onBind(intent: Intent?): IBinder? {

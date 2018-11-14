@@ -3,24 +3,19 @@ package com.anriku.cherryplayback.adapter
 import android.content.Context
 import android.content.Intent
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProviders
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.extension.errorHandler
 import com.anriku.cherryplayback.extension.setSchedulers
 import com.anriku.cherryplayback.map.OnlineSongToSong
 import com.anriku.cherryplayback.model.SingerDetail
-import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
 import com.anriku.cherryplayback.service.MusicService
-import com.anriku.cherryplayback.ui.ControlActivity
-import com.anriku.cherryplayback.utils.LogUtil
-import com.anriku.cherryplayback.viewmodel.SongsViewModel
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.lang.StringBuilder
-import kotlin.math.sin
 
 /**
  * Created by anriku on 2018/11/9.
@@ -48,6 +43,8 @@ class SingerDetailAdapter(private val mContext: Context) :
             }
         }
     }
+
+    private var isLoadSongs: Boolean = false
 
 
     override fun getThePositionLayoutId(position: Int): Int =
@@ -79,16 +76,29 @@ class SingerDetailAdapter(private val mContext: Context) :
 
             Observable.create(ObservableOnSubscribe<List<SingerDetail.DataBean.ListBean>> {
                 it.onNext(currentList?.snapshot() ?: mutableListOf())
-            }).setSchedulers(AndroidSchedulers.mainThread(), AndroidSchedulers.mainThread(), AndroidSchedulers.mainThread())
+            }).setSchedulers(
+                AndroidSchedulers.mainThread(),
+                AndroidSchedulers.mainThread(),
+                AndroidSchedulers.mainThread()
+            )
                 .errorHandler()
                 .map(OnlineSongToSong())
                 .subscribe(ExecuteOnceObserver(
                     onExecuteOnceNext = {
-                        val intent = Intent(mContext, ControlActivity::class.java).apply {
-                            putExtra(ControlActivity.PLAY_INDEX, position)
-                            putParcelableArrayListExtra(ControlActivity.SONGS, it)
+                        val intent = Intent(mContext, MusicService::class.java)
+                        if (!isLoadSongs) {
+                            intent.putExtra(MusicService.SONGS, it)
                         }
-                        mContext.startActivity(intent)
+
+                        intent.putExtra(MusicService.IS_ONLINE, true)
+                        intent.putExtra(MusicService.PLAY_INDEX, position)
+                        ContextCompat.startForegroundService(mContext, intent)
+
+//                        val intent = Intent(context, ControlActivity::class.java).apply {
+//                            putExtra(ControlActivity.PLAY_INDEX, position)
+//                            putParcelableArrayListExtra(ControlActivity.SONGS, it)
+//                        }
+//                        context.startActivity(intent)
                     }
                 ))
         }

@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialogFragment
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.adapter.SongListRecAdapter
 import com.anriku.cherryplayback.databinding.FragmentMusicListBinding

@@ -31,7 +31,7 @@ class OnlineSongToSong : Function<List<SingerDetail.DataBean.ListBean>, ArrayLis
                 }
                 song.artist = singersSb.toString()
             }
-            song.isMusic = 1
+            song.whetherMusic = 1
             song.data = onlineSong.musicData?.songmid
 
             songs.add(song)

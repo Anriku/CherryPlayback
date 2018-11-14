@@ -14,4 +14,5 @@ abstract class IMusicBinder : Binder(), PlayerAdapter {
         const val RANDOM_PLAY = 1
         const val SINGLE_PLAY = 2
     }
+
 }
