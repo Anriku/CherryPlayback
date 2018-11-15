@@ -19,21 +19,7 @@ open class BaseFragment : Fragment() {
         lifecycle.addObserver(EventBusObserver(this))
     }
 
-    protected fun replaceFragment(@IdRes container: Int, fragment: Fragment) {
-        val transaction = fragmentManager?.beginTransaction()
-        transaction?.replace(container, fragment)
-            ?.addToBackStack(null)
-            ?.commit()
-    }
-
-    protected fun replaceFragmentWithBackStack(@IdRes container: Int, fragment: Fragment) {
-        val transaction = fragmentManager?.beginTransaction()
-        transaction?.replace(container, fragment)
-            ?.commit()
-    }
-
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun puppetFunc(puppetEvent: PuppetEvent){
-
+    fun puppetFunc(puppetEvent: PuppetEvent) {
     }
 }

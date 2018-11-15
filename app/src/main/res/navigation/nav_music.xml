@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@id/mainContainerFragment">
+
+    <fragment
+            android:id="@+id/mainContainerFragment"
+            android:name="com.anriku.cherryplayback.ui.MainContainerFragment"
+            android:label="MainContainerFragment"
+            tools:layout="@layout/fragment_main_container">
+        <action
+                android:id="@+id/action_mainContainerFragment_to_localMusicFragment"
+                app:destination="@id/localMusicFragment"/>
+        <action
+                android:id="@+id/action_mainContainerFragment_to_singerListFragment"
+                app:destination="@id/singerListFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/localMusicFragment"
+            android:name="com.anriku.cherryplayback.ui.mine.LocalMusicFragment"
+            android:label="LocalMusicFragment"
+            tools:layout="@layout/fragment_local_music"/>
+    <fragment
+            android:id="@+id/singerListFragment"
+            android:name="com.anriku.cherryplayback.ui.SingerListFragment"
+            android:label="SingerListFragment"
+            tools:layout="@layout/fragment_singer_list">
+        <action
+                android:id="@+id/action_singerListFragment_to_singerDetailFragment"
+                app:destination="@id/singerDetailFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/singerDetailFragment"
+            android:name="com.anriku.cherryplayback.ui.SingerDetailFragment"
+            android:label="SingerDetailFragment"
+            tools:layout="@layout/fragment_singer_detail">
+        <argument
+                android:name="singerInfo"
+                android:defaultValue="null"
+                app:argType="reference"/>
+    </fragment>
+</navigation>

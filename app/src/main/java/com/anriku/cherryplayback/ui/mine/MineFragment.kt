@@ -2,13 +2,16 @@ package com.anriku.cherryplayback.ui.mine
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.databinding.FragmentMineBinding
-import com.anriku.cherryplayback.event.MineFragmentReplaceEvent
+import com.anriku.cherryplayback.event.FragmentReplaceEvent
 import com.anriku.cherryplayback.ui.BaseFragment
 import org.greenrobot.eventbus.EventBus
 
@@ -20,10 +23,10 @@ class MineFragment : BaseFragment() {
     private lateinit var mBinding: FragmentMineBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         mBinding = DataBindingUtil
-            .inflate(inflater, R.layout.fragment_mine, container, false)
+                .inflate(inflater, R.layout.fragment_mine, container, false)
         return mBinding.root
     }
 
@@ -36,7 +39,7 @@ class MineFragment : BaseFragment() {
     private fun initFragment() {
         mBinding.listeners =
                 Listeners(onLocalMusic = {
-                    EventBus.getDefault().post(MineFragmentReplaceEvent(LocalMusicFragment()))
+                    it.findNavController().navigate(R.id.localMusicFragment)
                 }, onDownloadMusic = {
 
                 }, onRecentPlay = {
@@ -48,10 +51,10 @@ class MineFragment : BaseFragment() {
 
 
     class Listeners(
-        val onLocalMusic: (ImageView) -> Unit = {},
-        val onDownloadMusic: (ImageView) -> Unit = {},
-        val onRecentPlay: (ImageView) -> Unit = {},
-        val onILike: (ImageView) -> Unit = {}
+            val onLocalMusic: (ImageView) -> Unit = {},
+            val onDownloadMusic: (ImageView) -> Unit = {},
+            val onRecentPlay: (ImageView) -> Unit = {},
+            val onILike: (ImageView) -> Unit = {}
     ) {
 
         fun onLocalMusicClick(view: View) {

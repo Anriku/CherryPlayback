@@ -3,6 +3,7 @@ package com.anriku.cherryplayback.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
 
 /**
@@ -10,7 +11,7 @@ import androidx.viewpager.widget.PagerAdapter
  */
 
 class MainVPAdapter(fm: FragmentManager, private val mFragments: List<Fragment>,
-                    private val mTitles: List<String>): FragmentPagerAdapter(fm) {
+                    private val mTitles: List<String>): FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         return mFragments[position]

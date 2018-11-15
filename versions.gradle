@@ -25,6 +25,8 @@ versions.lifecycle = '2.0.0'
 versions.room = '2.0.0'
 versions.paging = '2.0.0'
 versions.databinding = '3.2.1'
+versions.navigation = '1.0.0-alpha07'
+versions.ktx = '1.0.0'
 //permission
 versions.rxpermissions = '0.10.2'
 //multidex
@@ -64,6 +66,10 @@ support.materail = "com.google.android.material:material:$versions.support"
 support.v4 = "androidx.legacy:legacy-support-v4:$versions.support"
 support.multidex = "androidx.multidex:multidex:$versions.multidex"
 support.palette = "androidx.palette:palette:$versions.support"
+support.navigation_fragment = "android.arch.navigation:navigation-fragment-ktx:$versions.navigation"
+support.navigation_ui = "android.arch.navigation:navigation-ui-ktx:$versions.navigation"
+support.navigation_plugin = "android.arch.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
+support.ktx = "androidx.core:core-ktx:$versions.ktx"
 deps.support = support
 
 // eventbus

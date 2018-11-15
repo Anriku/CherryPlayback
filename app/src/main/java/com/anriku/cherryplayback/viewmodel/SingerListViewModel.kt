@@ -22,5 +22,4 @@ class SingerListViewModel : ViewModel() {
     ).build()
 
 
-
 }

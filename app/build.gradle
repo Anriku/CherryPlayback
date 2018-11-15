@@ -35,7 +35,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
@@ -46,13 +45,16 @@ dependencies {
     implementation deps.kotlin.anko
 
     //official ui and support library
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation deps.support.constraint
     implementation deps.support.app_compat
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation deps.support.recyclerview
     implementation deps.support.cardview
     implementation deps.support.materail
     implementation deps.support.palette
+    implementation deps.support.navigation_fragment
+    implementation deps.support.navigation_ui
+    implementation deps.support.ktx
 
     // implementation deps.support.design
     implementation deps.support.v4

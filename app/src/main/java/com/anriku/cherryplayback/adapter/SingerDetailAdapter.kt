@@ -93,12 +93,6 @@ class SingerDetailAdapter(private val mContext: Context) :
                         intent.putExtra(MusicService.IS_ONLINE, true)
                         intent.putExtra(MusicService.PLAY_INDEX, position)
                         ContextCompat.startForegroundService(mContext, intent)
-
-//                        val intent = Intent(context, ControlActivity::class.java).apply {
-//                            putExtra(ControlActivity.PLAY_INDEX, position)
-//                            putParcelableArrayListExtra(ControlActivity.SONGS, it)
-//                        }
-//                        context.startActivity(intent)
                     }
                 ))
         }

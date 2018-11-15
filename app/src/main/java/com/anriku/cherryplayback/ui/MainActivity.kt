@@ -3,19 +3,18 @@ package com.anriku.cherryplayback.ui
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.anriku.cherryplayback.R
-import com.anriku.cherryplayback.adapter.MainVPAdapter
 import com.anriku.cherryplayback.databinding.ActivityMainBinding
 import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.model.Song
-import com.anriku.cherryplayback.ui.mine.MineContainerFragment
-import com.anriku.cherryplayback.ui.square.MusicSquareContainerFragment
-import com.anriku.cherryplayback.utils.LogUtil
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.viewmodel.SongsViewModel
 import org.greenrobot.eventbus.Subscribe
@@ -28,6 +27,7 @@ class MainActivity : BaseActivity() {
     private lateinit var mSongsViewModel: SongsViewModel
     private lateinit var mPlaybackListener: PlaybackInfoListener
     private val mMusicListFragment: MusicListFragment by lazy(LazyThreadSafetyMode.NONE) { MusicListFragment() }
+    protected lateinit var mNavController: NavController
 
     companion object {
         private const val TAG = "MainActivity"
@@ -49,6 +49,8 @@ class MainActivity : BaseActivity() {
 
     private fun initActivity() {
         mSongsViewModel = ViewModelProviders.of(this).get(SongsViewModel::class.java)
+        val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
+        mNavController = host.navController
 
         val songsViewModel = mSongsViewModel
         songsViewModel.startAndBindService(this)
@@ -68,15 +70,6 @@ class MainActivity : BaseActivity() {
             }
         )
 
-        mBinding.vp.adapter = MainVPAdapter(
-            supportFragmentManager,
-            mutableListOf(
-                MineContainerFragment(),
-                MusicSquareContainerFragment()
-            ),
-            mutableListOf("我的", "音乐广场")
-        )
-        mBinding.tl.setupWithViewPager(mBinding.vp)
     }
 
     /**
@@ -91,6 +84,16 @@ class MainActivity : BaseActivity() {
         mSongsViewModel.binder!!.addPlaybackInfoListener(mPlaybackListener)
     }
 
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                mNavController.navigateUp()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onDestroy() {
         mSongsViewModel.unbindService(this)

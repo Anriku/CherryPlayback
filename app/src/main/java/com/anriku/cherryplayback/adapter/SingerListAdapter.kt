@@ -1,8 +1,9 @@
 package com.anriku.cherryplayback.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.extension.errorHandler
@@ -11,12 +12,9 @@ import com.anriku.cherryplayback.model.SingerList
 import com.anriku.cherryplayback.network.ApiGenerate
 import com.anriku.cherryplayback.network.QQMusicService
 import com.anriku.cherryplayback.network.subscribeWithDispose
-import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
-import com.anriku.cherryplayback.ui.SingerDetailActivity
-import com.anriku.cherryplayback.utils.LogUtil
+import com.anriku.cherryplayback.ui.SingerDetailFragment
 import com.anriku.cherryplayback.utils.ObservableManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.annotation.compiler.GlideIndexer_GlideExtension_com_anriku_cherryplayback_extension_MyGlideExtension
 import com.bumptech.glide.request.RequestOptions
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -101,11 +99,11 @@ class SingerListAdapter(private val mContext: Context) :
         }
 
         itemView.setOnClickListener {
-            itemView.context.startActivity(
-                Intent(itemView.context, SingerDetailActivity::class.java).apply {
-                    putExtra(SingerDetailActivity.SINGER_INFO, item)
-                }
-            )
+            item?.let { singerInfo ->
+                val bundle = bundleOf(SingerDetailFragment.SINGER_INFO to singerInfo)
+                it.findNavController().navigate(R.id.singerDetailFragment, bundle)
+            }
+
         }
     }
 }

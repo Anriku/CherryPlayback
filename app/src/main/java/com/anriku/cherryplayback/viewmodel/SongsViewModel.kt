@@ -41,18 +41,6 @@ open class SongsViewModel : ViewModel() {
         }
     }
 
-//    /**
-//     * 获取音乐
-//     *
-//     * @param activity 调用此方法需要一个[androidx.fragment.app.FragmentActivity].因为[MusicAccessUtil]
-//     * 获取需要进行运行时权限的检测。
-//     */
-//    fun setSongs(activity: FragmentActivity): So {
-//        val intent = activity.intent
-//        val musicAccessUtil = MusicAccessUtil(activity)
-//        binder?.setSongs(musicAccessUtil.getMusics() ?: mutableListOf(), false)
-//    }
-
     /**
      * 进行音乐服务的启用以及访问
      *
