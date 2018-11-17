@@ -1,8 +1,8 @@
 package com.anriku.cherryplayback.ui.paing
 
 import androidx.paging.PageKeyedDataSource
-import com.anriku.cherryplayback.extension.errorHandler
-import com.anriku.cherryplayback.extension.setSchedulers
+import com.anriku.cherryplayback.utils.extensions.errorHandler
+import com.anriku.cherryplayback.utils.extensions.setSchedulers
 import com.anriku.cherryplayback.model.SingerList
 import com.anriku.cherryplayback.network.ApiGenerate
 import com.anriku.cherryplayback.network.QQMusicService
@@ -19,15 +19,16 @@ class SingerListDataSource : PageKeyedDataSource<Int, SingerList.DataBean.ListBe
     companion object {
        private const val TAG = "SingerListDataSource"
     }
-    private lateinit var mQQMusicService: QQMusicService
+    private val mMusicService: QQMusicService by lazy(LazyThreadSafetyMode.NONE) {
+        ApiGenerate.getApiService(QQMusicService::class.java)
+    }
 
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, SingerList.DataBean.ListBean>
     ) {
-        mQQMusicService = ApiGenerate.getApiService(QQMusicService::class.java)
-        mQQMusicService.getSingerList(params.requestedLoadSize, 1)
+        mMusicService.getSingerList(params.requestedLoadSize, 1)
             .setSchedulers()
             .errorHandler()
             .subscribe(ExecuteOnceObserver(
@@ -44,7 +45,7 @@ class SingerListDataSource : PageKeyedDataSource<Int, SingerList.DataBean.ListBe
         params: LoadParams<Int>,
         callback: LoadCallback<Int, SingerList.DataBean.ListBean>
     ) {
-        mQQMusicService.getSingerList(params.requestedLoadSize, params.key)
+        mMusicService.getSingerList(params.requestedLoadSize, params.key)
             .setSchedulers()
             .errorHandler()
             .subscribe(ExecuteOnceObserver(

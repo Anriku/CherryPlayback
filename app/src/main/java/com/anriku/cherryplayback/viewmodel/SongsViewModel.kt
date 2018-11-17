@@ -4,20 +4,32 @@ import android.app.Activity
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
+import android.graphics.Bitmap
 import android.os.IBinder
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.anriku.cherryplayback.R
-import com.anriku.cherryplayback.databinding.ActivityControlBinding
+import com.anriku.cherryplayback.config.IS_HAVE_RECORD
+import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
+import com.anriku.cherryplayback.database.SongsDatabase
 import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.model.Song
+import com.anriku.cherryplayback.network.ApiGenerate
+import com.anriku.cherryplayback.network.ImageUrl
+import com.anriku.cherryplayback.network.QQMusicService
+import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
 import com.anriku.cherryplayback.service.MusicService
 import com.anriku.cherryplayback.utils.IMusicBinder
+import com.anriku.cherryplayback.utils.LogUtil
 import com.anriku.cherryplayback.utils.MusicAccessUtil
+import com.anriku.cherryplayback.utils.extensions.errorHandler
+import com.anriku.cherryplayback.utils.extensions.getSPValue
+import com.anriku.cherryplayback.utils.extensions.setSchedulers
+import com.bumptech.glide.Glide
 import org.greenrobot.eventbus.EventBus
-import org.jetbrains.anko.textColor
+import java.util.ArrayList
 
 /**
  * Created by anriku on 2018/10/31.
@@ -27,6 +39,10 @@ open class SongsViewModel : ViewModel() {
 
     val currentPlaySongName: MutableLiveData<String> = MutableLiveData()
     val currentPlayArtist: MutableLiveData<String> = MutableLiveData()
+
+    companion object {
+        private const val TAG = "SongsViewModel"
+    }
 
     // 用于与播放音乐的服务进行通信
     var binder: IMusicBinder? = null
@@ -40,16 +56,53 @@ open class SongsViewModel : ViewModel() {
             EventBus.getDefault().post(ServiceConnectEvent())
         }
     }
+    private val mQQMusicService: QQMusicService by lazy(LazyThreadSafetyMode.NONE) {
+        ApiGenerate.getApiService(QQMusicService::class.java)
+    }
 
     /**
      * 进行音乐服务的启用以及访问
      *
      * @param activity 启动服务的Activity
      */
-    fun startAndBindService(activity: FragmentActivity) {
+    fun bindService(activity: FragmentActivity) {
         val intent = Intent(activity, MusicService::class.java)
-        ContextCompat.startForegroundService(activity, intent)
         activity.bindService(intent, connection, Activity.BIND_AUTO_CREATE)
+    }
+
+
+    fun firstStartService(activity: FragmentActivity) {
+        if (binder?.getSongs() == null) {
+            val isHaveRecord = activity.getSPValue().getBoolean(IS_HAVE_RECORD, false)
+            if (isHaveRecord) {
+                val database = SongsDatabase.getDatabase(activity.applicationContext)
+                database.songDao().getAllSongs().toObservable()
+                    .setSchedulers()
+                    .errorHandler()
+                    .subscribe(ExecuteOnceObserver(onExecuteOnceNext = { songsFromDatabase ->
+                        startService(activity, songsFromDatabase as ArrayList<Song>)
+
+                    }, onExecuteOnceError = { _ ->
+                        val musicAccessUtil = MusicAccessUtil(activity)
+                        musicAccessUtil.getMusics(activity) {
+                            startService(activity, it)
+                        }
+                    }))
+            } else {
+                val musicAccessUtil = MusicAccessUtil(activity)
+                musicAccessUtil.getMusics(activity) {
+                    startService(activity, it)
+                }
+            }
+        }
+    }
+
+    private fun startService(activity: FragmentActivity, songs: ArrayList<Song>) {
+        val intent = Intent(activity, MusicService::class.java)
+        intent.putParcelableArrayListExtra(MusicService.SONGS, songs)
+        intent.putExtra(MusicService.IS_ONLY_LOAD, true)
+        intent.putExtra(MusicService.PLAY_INDEX, activity.getSPValue().getInt(LAST_PLAY_INDEX, 0))
+        ContextCompat.startForegroundService(activity, intent)
     }
 
     /**
@@ -61,6 +114,7 @@ open class SongsViewModel : ViewModel() {
         val intent = Intent(activity, MusicService::class.java)
         activity.unbindService(connection)
         activity.stopService(intent)
+        activity.finish()
     }
 
     /**
@@ -72,31 +126,32 @@ open class SongsViewModel : ViewModel() {
         activity.unbindService(connection)
     }
 
-
     /**
      * 在音乐被加载的时候显示歌曲的名称、歌手、专辑图片的信息
      *
      * @param activity [FragmentActivity]
      * @param song 被加载的歌曲
-     * @param binding ActivityControlBinding
      */
-    fun onLoadMedia(activity: FragmentActivity, song: Song, binding: ActivityControlBinding) {
-        val musicAccessUtil = MusicAccessUtil(activity)
-
+    fun onLoadMedia(activity: FragmentActivity, song: Song, imageView: ImageView, width: Int = 500) {
         currentPlaySongName.value = song.title
         currentPlayArtist.value = song.artist
 
-//        song.data?.let {
-//            val bitmap = musicAccessUtil.setAlbumBitmap(it, binding.ivAlbum)
-//            binding.cl.setBackgroundColor(PaletteUtil.extractBackgroundColor(bitmap))
-//            val textColor = PaletteUtil.extractTextColor(bitmap)
-//            binding.tvSongName.textColor = textColor
-//            binding.tvArtist.textColor = textColor
-//            return
-//        }
-        binding.cl.setBackgroundColor(ContextCompat.getColor(activity, R.color.default_bk_color))
-        val textColor = ContextCompat.getColor(activity, R.color.default_text_color)
-        binding.tvSongName.textColor = textColor
-        binding.tvArtist.textColor = textColor
+        if (song.musicType == Song.ONLINE) {
+            Glide.with(imageView.context).load(ImageUrl.getAlbumImageUrl(song.albumId?.toLong() ?: -1))
+                .into(imageView)
+        } else {
+            val searchKey = "${song.title}-${song.artist}"
+
+            mQQMusicService
+                .search(searchKey, 1, 1)
+                .setSchedulers()
+                .errorHandler()
+                .subscribe(ExecuteOnceObserver(onExecuteOnceNext = { searchResult ->
+                    Glide.with(imageView.context)
+                        .load(ImageUrl.getAlbumImageUrl(searchResult.data.song.list[0].album.id.toLong(), width))
+                        .into(imageView)
+                }))
+        }
     }
+
 }

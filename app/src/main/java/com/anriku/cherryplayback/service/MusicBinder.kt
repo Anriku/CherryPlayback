@@ -1,11 +1,17 @@
 package com.anriku.cherryplayback.service
 
 import android.content.Context
+import android.content.Intent
 import com.anriku.cherryplayback.adapter.CherryMusicPlayer
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.utils.IMusicBinder
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.adapter.PlayerAdapter
+import com.anriku.cherryplayback.config.IS_HAVE_RECORD
+import com.anriku.cherryplayback.config.IS_ONLINE
+import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
+import com.anriku.cherryplayback.database.SongsDatabase
+import com.anriku.cherryplayback.utils.extensions.setSPValue
 
 /**
  * Created by anriku on 2018/11/2.
@@ -16,15 +22,63 @@ import com.anriku.cherryplayback.adapter.PlayerAdapter
  */
 class MusicBinder(private val mContext: Context) : IMusicBinder() {
 
+    companion object {
+        private const val TAG = "MusicBinder"
+    }
+
     private val mPlayerAdapter: PlayerAdapter by lazy(LazyThreadSafetyMode.NONE) {
         CherryMusicPlayer(mContext)
     }
+    private val mSongsDatabase: SongsDatabase? by lazy(LazyThreadSafetyMode.NONE) {
+        SongsDatabase.getDatabase(mContext)
+    }
+    private var mIsInit = false
 
-    override fun setSongs(
-        songs: List<Song>,
-        isOnlineMusic: Boolean
-    ) {
-        mPlayerAdapter.setSongs(songs, isOnlineMusic)
+    /**
+     * 用于对播放相关的内容设置
+     *
+     * @param intent startService所传入的intent
+     */
+    override fun playSet(intent: Intent) {
+        Thread {
+            val playIndex = intent.getIntExtra(MusicService.PLAY_INDEX, MusicService.NOT_HAVE_INDEX)
+            val songs = intent.getParcelableArrayListExtra<Song>(MusicService.SONGS)
+            val isOnlyLoad = intent.getBooleanExtra(MusicService.IS_ONLY_LOAD, false)
+
+            // 设置播放源
+            songs?.let {
+                setSongs(it)
+            }
+
+            if (playIndex >= 0) {
+                loadMediaByPosition(playIndex, isOnlyLoad)
+            }
+        }.start()
+    }
+
+
+    /**
+     * 用于记录这次的播放的播放记录
+     */
+    override fun storeSongsAndIndex() {
+        // 存储播放的index
+        mContext.setSPValue({
+            putInt(LAST_PLAY_INDEX, getCurrentPlayIndex())
+        })
+        // 存储当前播放列表
+        getSongs()?.let { songs ->
+            mSongsDatabase?.songDao()?.deleteAllSongs()
+            mSongsDatabase?.songDao()?.insertSongs(songs)
+            mContext.setSPValue(
+                setValue = {
+                    putBoolean(IS_HAVE_RECORD, true)
+                }
+            )
+        }
+    }
+
+    override fun setSongs(songs: List<Song>) {
+        mPlayerAdapter.setSongs(songs)
     }
 
     override fun getSongs(): List<Song>? = mPlayerAdapter.getSongs()
@@ -49,8 +103,8 @@ class MusicBinder(private val mContext: Context) : IMusicBinder() {
         mPlayerAdapter.loadMediaByPosition(position, isOnlyLoad)
     }
 
-    override fun loadMedia(resourcePath: String, isOnlyLoad: Boolean) {
-        mPlayerAdapter.loadMedia(resourcePath, isOnlyLoad)
+    override fun loadMedia(resourcePath: String, isOnlyLoad: Boolean, isOnline: Boolean) {
+        mPlayerAdapter.loadMedia(resourcePath, isOnlyLoad, isOnline)
     }
 
     override fun play() {
@@ -75,5 +129,6 @@ class MusicBinder(private val mContext: Context) : IMusicBinder() {
         mPlayerAdapter.release()
     }
 
-    override fun getCurrentPlayIndex(): Int = mPlayerAdapter.getCurrentPlayIndex() ?: -1
+    override fun getCurrentPlayIndex(): Int = mPlayerAdapter.getCurrentPlayIndex()
+
 }

@@ -1,4 +1,4 @@
-package com.anriku.cherryplayback.extension
+package com.anriku.cherryplayback.utils.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

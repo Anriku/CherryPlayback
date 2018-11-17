@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.anriku.cherryplayback.model.Song
 
 /**
@@ -18,18 +19,20 @@ abstract class SongsDatabase : RoomDatabase() {
     companion object {
         private var INSTANCE: SongsDatabase? = null
 
-        fun getDatabase(context: Context): SongsDatabase? {
+        fun getDatabase(context: Context): SongsDatabase {
             if (INSTANCE == null) {
                 synchronized(SongsDatabase::class) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(
-                            context,
-                            SongsDatabase::class.java, "songs_database"
-                        ).build()
+                                context.applicationContext,
+                                SongsDatabase::class.java, "songs_database"
+                        ).allowMainThreadQueries().build()
                     }
                 }
             }
-            return INSTANCE
+            return INSTANCE!!
         }
     }
+
+
 }

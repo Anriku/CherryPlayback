@@ -1,9 +1,6 @@
 package com.anriku.cherryplayback.network
 
-import com.anriku.cherryplayback.model.SearchResult
-import com.anriku.cherryplayback.model.SingerDetail
-import com.anriku.cherryplayback.model.SingerList
-import com.anriku.cherryplayback.model.SongVKey
+import com.anriku.cherryplayback.model.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -76,21 +73,21 @@ interface QQMusicService {
      */
     @GET("base/fcgi-bin/fcg_music_express_mobile3.fcg")
     fun getSongVKey(
-        @Field("songmid") songMid: String,
-        @Field("filename") filename: String,
+        @Query("songmid") songMid: String,
+        @Query("filename") filename: String,
 
-        @Field("g_tk") gTk: String = "5381",
-        @Field("loginUin") loginUin: String = "0",
-        @Field("hostUin") hostUin: String = "0",
-        @Field("format") format: String = "json",
-        @Field("inCharset") inCharset: String = "utf-8",
-        @Field("outCharset") outCharset: String = "utf-8",
-        @Field("notice") notice: String = "0",
-        @Field("platform") platform: String = "yqq",
-        @Field("needNewCode") needNewCode: String = "0",
-        @Field("cid") cid: String = "205361747",
-        @Field("uin") uin: String = "0",
-        @Field("guid") guid: String = GUID
+        @Query("g_tk") gTk: String = "5381",
+        @Query("loginUin") loginUin: String = "0",
+        @Query("hostUin") hostUin: String = "0",
+        @Query("format") format: String = "json",
+        @Query("inCharset") inCharset: String = "utf-8",
+        @Query("outCharset") outCharset: String = "utf-8",
+        @Query("notice") notice: String = "0",
+        @Query("platform") platform: String = "yqq",
+        @Query("needNewCode") needNewCode: String = "0",
+        @Query("cid") cid: String = "205361747",
+        @Query("uin") uin: String = "0",
+        @Query("guid") guid: String = GUID
     ): Observable<SongVKey>
 
     /**
@@ -128,6 +125,19 @@ interface QQMusicService {
         @Query("platform") platform: String = "yqq",
         @Query("needNewCode") needNewCode: String = "0"
     ): Observable<SearchResult>
+
+
+    @GET("musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg")
+    fun getSlides(
+        @Query("g_tk") gTk: String = "701075963",
+        @Query("uin") uin: String = "0",
+        @Query("format") format: String = "json",
+        @Query("inCharset") inCharset: String = "utf-8",
+        @Query("outCharset") outCharset: String = "utf-8",
+        @Query("notice") notice: String = "0",
+        @Query("platform") platform: String = "h5",
+        @Query("needNewCode") needNewCode: String = "1"
+    ): Observable<Slide>
 }
 
 

@@ -6,8 +6,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import com.anriku.cherryplayback.R
-import com.anriku.cherryplayback.extension.errorHandler
-import com.anriku.cherryplayback.extension.setSchedulers
+import com.anriku.cherryplayback.utils.extensions.errorHandler
+import com.anriku.cherryplayback.utils.extensions.setSchedulers
 import com.anriku.cherryplayback.map.OnlineSongToSong
 import com.anriku.cherryplayback.model.SingerDetail
 import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
@@ -89,8 +89,7 @@ class SingerDetailAdapter(private val mContext: Context) :
                         if (!isLoadSongs) {
                             intent.putExtra(MusicService.SONGS, it)
                         }
-
-                        intent.putExtra(MusicService.IS_ONLINE, true)
+                        intent.putExtra(MusicService.IS_ONLY_LOAD, false)
                         intent.putExtra(MusicService.PLAY_INDEX, position)
                         ContextCompat.startForegroundService(mContext, intent)
                     }

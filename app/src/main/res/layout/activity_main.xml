@@ -1,84 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="listeners"
-            type="com.anriku.cherryplayback.ui.MainActivity.Listeners" />
+                name="listeners"
+                type="com.anriku.cherryplayback.ui.MainActivity.Listeners"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            tools:context=".ui.MainActivity">
 
         <fragment
-            android:id="@+id/fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@id/gl_vp_play_control"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/nav_music" />
+                android:id="@+id/fragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:defaultNavHost="true"
+                app:layout_constraintBottom_toTopOf="@id/gl_vp_play_control"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navGraph="@navigation/nav_music"/>
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_vp_play_control"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="70dp" />
+                android:id="@+id/gl_vp_play_control"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="70dp"/>
+
+        <View android:layout_width="0dp"
+              android:layout_height="1dp"
+              app:layout_constraintLeft_toLeftOf="parent"
+              android:background="@color/divider_color"
+              app:layout_constraintRight_toRightOf="parent"
+              app:layout_constraintTop_toTopOf="@id/gl_vp_play_control"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civ_album"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:onClick="@{listeners.onStartControlActivityClick}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@id/gl_vp_play_control" />
+                android:id="@+id/civ_album"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="15dp"
+                android:src="@drawable/ic_singer"
+                android:onClick="@{listeners.onStartControlActivityClick}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/gl_vp_play_control"/>
 
         <TextView
-            android:id="@+id/tv_lyric"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:onClick="@{listeners.onStartControlActivityClick}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/civ_album"
-            app:layout_constraintRight_toLeftOf="@id/iv_play_or_pause"
-            app:layout_constraintTop_toTopOf="@id/gl_vp_play_control" />
+                android:id="@+id/tv_lyric"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:onClick="@{listeners.onStartControlActivityClick}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/civ_album"
+                app:layout_constraintRight_toLeftOf="@id/iv_play_or_pause"
+                app:layout_constraintTop_toTopOf="@id/gl_vp_play_control"/>
 
         <ImageView
-            android:id="@+id/iv_play_or_pause"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:onClick="@{listeners.onPlayAndPauseClick}"
-            android:padding="15dp"
-            android:src="@drawable/ic_play"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintRight_toLeftOf="@id/iv_play_list"
-            app:layout_constraintTop_toTopOf="@id/gl_vp_play_control"
-            tools:ignore="ContentDescription" />
+                android:id="@+id/iv_play_or_pause"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:onClick="@{listeners.onPlayAndPauseClick}"
+                android:padding="15dp"
+                android:src="@drawable/ic_play"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintRight_toLeftOf="@id/iv_play_list"
+                app:layout_constraintTop_toTopOf="@id/gl_vp_play_control"
+                tools:ignore="ContentDescription"/>
 
         <ImageView
-            android:id="@+id/iv_play_list"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:onClick="@{listeners.onListClick}"
-            android:padding="15dp"
-            android:src="@drawable/ic_play_list"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/gl_vp_play_control"
-            tools:ignore="ContentDescription" />
+                android:id="@+id/iv_play_list"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:onClick="@{listeners.onListClick}"
+                android:padding="15dp"
+                android:src="@drawable/ic_play_list"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/gl_vp_play_control"
+                tools:ignore="ContentDescription"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,4 +1,4 @@
-package com.anriku.cherryplayback.extension
+package com.anriku.cherryplayback.utils.extensions
 
 import com.anriku.cherryplayback.network.DefaultErrorHandler
 import com.anriku.cherryplayback.network.ErrorHandler

@@ -2,7 +2,6 @@ package com.anriku.cherryplayback.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.adapter.SingerDetailAdapter
 import com.anriku.cherryplayback.databinding.FragmentSingerDetailBinding
-import com.anriku.cherryplayback.extension.setDivider
+import com.anriku.cherryplayback.utils.extensions.setDivider
 import com.anriku.cherryplayback.model.SingerList
 import com.anriku.cherryplayback.viewmodel.SingerDetailViewModel
 

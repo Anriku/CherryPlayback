@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlideShowView">
+        <attr name="updateInterval" format="integer"/>
+
+        <attr name="SlideShowViewStyle" format="reference"/>
+    </declare-styleable>
+</resources>

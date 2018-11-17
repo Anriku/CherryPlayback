@@ -15,8 +15,10 @@ import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.databinding.ActivityMainBinding
 import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.model.Song
+import com.anriku.cherryplayback.network.ImageUrl
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.viewmodel.SongsViewModel
+import com.bumptech.glide.Glide
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -53,7 +55,8 @@ class MainActivity : BaseActivity() {
         mNavController = host.navController
 
         val songsViewModel = mSongsViewModel
-        songsViewModel.startAndBindService(this)
+
+        songsViewModel.bindService(this)
 
         mBinding.listeners = Listeners(
             onStartControlActivity = {
@@ -79,20 +82,26 @@ class MainActivity : BaseActivity() {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onServiceConnected(serviceConnectEvent: ServiceConnectEvent) {
-        mPlaybackListener = PlaybackListener()
+        mSongsViewModel.firstStartService(this)
 
+        mPlaybackListener = PlaybackListener()
         mSongsViewModel.binder!!.addPlaybackInfoListener(mPlaybackListener)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return mNavController.navigateUp()
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
                 mNavController.navigateUp()
             }
+            R.id.exit -> {
+                mSongsViewModel.stopAndUnbindService(this)
+            }
         }
-
-        return super.onOptionsItemSelected(item)
+        return true
     }
 
     override fun onDestroy() {
@@ -104,7 +113,9 @@ class MainActivity : BaseActivity() {
 
     inner class PlaybackListener : PlaybackInfoListener() {
 
-        override fun onLoadMedia(song: Song) {}
+        override fun onLoadMedia(song: Song) {
+            mSongsViewModel.onLoadMedia(this@MainActivity, song, mBinding.civAlbum as ImageView, 300)
+        }
 
         override fun onDurationChanged(duration: Int) {}
 

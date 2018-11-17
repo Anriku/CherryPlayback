@@ -1,28 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:fitsSystemWindows="true"
             android:orientation="vertical">
 
-        <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tl"
-                android:background="@color/colorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-                android:layout_gravity="center">
 
-        </com.google.android.material.tabs.TabLayout>
+        <com.google.android.material.appbar.AppBarLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/abl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tb"
+                    android:layout_width="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:background="@color/colorPrimary"
+                    app:popupTheme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+                    android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tl"
+                        android:background="@null"
+                        app:tabSelectedTextColor="@android:color/holo_blue_light"
+                        app:tabTextColor="@android:color/white"
+                        android:layout_width="200dp"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_gravity="center">
+
+                </com.google.android.material.tabs.TabLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
 
 
         <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
         </androidx.viewpager.widget.ViewPager>
 
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

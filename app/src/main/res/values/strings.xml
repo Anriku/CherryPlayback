@@ -8,4 +8,6 @@
 
     <string name="close">关闭</string>
     <string name="get_music_need_permission">获取音乐需要上面的权限哟</string>
+
+    <string name="exit">退出</string>
 </resources>

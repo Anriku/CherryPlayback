@@ -1,16 +1,23 @@
 package com.anriku.cherryplayback.model
 
-import android.graphics.Bitmap
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 
 /**
  * Created by anriku on 2018/10/31.
  */
 
-@Entity(tableName = "songs", primaryKeys = ["id"])
+@Entity(tableName = "songs")
 class Song() : Parcelable {
+
+
+    // 自定义属性表示本音乐是在线音乐还是本地音乐
+    var musicType: Int = LOCAL
+
+    @PrimaryKey(autoGenerate = true)
     var id: Long = 0
     var data: String? = null
     var size: Long = 0
@@ -25,7 +32,7 @@ class Song() : Parcelable {
     var composer: String? = null
     var year: Int = 0
     var whetherMusic: Int = 0
-    var albumId: Long = -1
+    var albumId: String? = null
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readLong()
@@ -42,19 +49,17 @@ class Song() : Parcelable {
         composer = parcel.readString()
         year = parcel.readInt()
         whetherMusic = parcel.readInt()
-        albumId = parcel.readLong()
+        albumId = parcel.readString()
+        musicType = parcel.readInt()
     }
 
-    data class Album(
-        var albumId: Long? = null,
-        var album: String? = null,
-        var firstYear: Int? = null,
-        var lastYear: Int? = null,
-        var albumArt: String? = null,
-        var albumBitmap: Bitmap? = null
-    )
-
     companion object CREATOR : Parcelable.Creator<Song> {
+
+        @Ignore
+        const val LOCAL = 0
+        @Ignore
+        const val ONLINE = 1
+
         override fun createFromParcel(parcel: Parcel): Song {
             return Song(parcel)
         }
@@ -80,16 +85,17 @@ class Song() : Parcelable {
         dest.writeString(composer)
         dest.writeInt(year)
         dest.writeInt(whetherMusic)
-        dest.writeLong(albumId)
+        dest.writeString(albumId)
+        dest.writeInt(musicType)
     }
 
     override fun describeContents(): Int = 0
-
     override fun toString(): String {
-        return "Song(id=$id, data=$data, size=$size, displayName=$displayName, title=$title, " +
-                "dateAdded=$dateAdded, dateModified=$dateModified, mineType=$mineType, " +
-                "isDrm=$isDrm, duration=$duration, artist=$artist, composer=$composer, " +
-                "year=$year, whetherMusic=$whetherMusic, albumId=$albumId)"
+        return "Song(musicType=$musicType, id=$id, data=$data, size=$size, displayName=$displayName, " +
+                "title=$title, dateAdded=$dateAdded, dateModified=$dateModified, mineType=$mineType, " +
+                "isDrm=$isDrm, duration=$duration, artist=$artist, composer=$composer, year=$year, " +
+                "whetherMusic=$whetherMusic, albumId=$albumId)"
     }
+
 
 }

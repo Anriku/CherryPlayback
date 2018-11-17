@@ -6,8 +6,7 @@ import android.media.MediaPlayer
 import com.anriku.cherryplayback.config.PLAY_PATTERN
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.utils.IMusicBinder
-import com.anriku.cherryplayback.utils.LogUtil
-import com.anriku.cherryplayback.utils.OnlineSongUtil
+import com.anriku.cherryplayback.network.OnlineSongUrl
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.utils.extensions.getSPValue
 import java.util.*
@@ -33,35 +32,35 @@ open class CherryMusicPlayer(protected val mContext: Context) :
     // 当前本地音乐播放到的位置
     protected var mCurrentPlayIndex: Int = 0
     // 播放源
-    protected var mSongs: List<Song> = mutableListOf()
-
+    protected var mSongs: List<Song>? = null
     protected var mMediaPlayer: MediaPlayer? = null
     protected var mPlaybackInfoListeners: MutableList<PlaybackInfoListener>? = null
     protected var mExecutor: ScheduledExecutorService? = null
     protected var mUpdateTask: Runnable? = null
+    protected val mOnlineSongUrl: OnlineSongUrl by lazy(LazyThreadSafetyMode.NONE) {
+        OnlineSongUrl()
+    }
 
     // 记录当前播放的音乐的路径或Uri
     protected lateinit var mResourcePath: String
-    // 是否当前播放的音乐是在线音乐
-    protected var mIsOnlineData: Boolean = false
 
-    override fun loadMedia(resourcePath: String, isOnlyLoad: Boolean) {
+    override fun loadMedia(resourcePath: String, isOnlyLoad: Boolean, isOnline: Boolean) {
         reset()
         initMediaPlayer(isOnlyLoad)
 
-        if (mIsOnlineData) {
-            // 更新当前记录的播放信息
-            mResourcePath = OnlineSongUtil.constructUrl(resourcePath)
-
-            // 设置播放源
-            mMediaPlayer?.setDataSource(mResourcePath)
-            val aa = AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_MEDIA)
-                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                .build()
-            mMediaPlayer?.setAudioAttributes(aa)
-
-            mMediaPlayer?.prepareAsync()
+        if (isOnline) {
+            mOnlineSongUrl.getSongUrl(resourcePath, onGetUrl = {
+                it ?: return@getSongUrl
+                // 设置播放源
+                mResourcePath = it
+                val aa = AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build()
+                mMediaPlayer?.setAudioAttributes(aa)
+                mMediaPlayer?.setDataSource(mResourcePath)
+                mMediaPlayer?.prepareAsync()
+            })
         } else {
             // 更新当前记录的播放信息
             mResourcePath = resourcePath
@@ -73,20 +72,20 @@ open class CherryMusicPlayer(protected val mContext: Context) :
     }
 
     override fun loadAnotherMusic(isNext: Boolean) {
-        // 当前一首播放完成时播放下一首
-        val pattern = mContext.getSPValue().getInt(PLAY_PATTERN, IMusicBinder.SEQUENCE_PLAY)
-
         // 如果播放资源为空就不进行加载
-        if (mSongs.isEmpty()) {
+        if (mSongs == null || mSongs!!.isEmpty()) {
             return
         }
+
+        // 当前一首播放完成时播放下一首
+        val pattern = mContext.getSPValue().getInt(PLAY_PATTERN, IMusicBinder.SEQUENCE_PLAY)
         when (pattern) {
             IMusicBinder.SEQUENCE_PLAY -> {
                 if (isNext) {
                     mCurrentPlayIndex++
                     // 防止越界
-                    if (mCurrentPlayIndex >= mSongs.size) {
-                        mCurrentPlayIndex = mSongs.size - 1
+                    if (mCurrentPlayIndex >= mSongs!!.size) {
+                        mCurrentPlayIndex = mSongs!!.size - 1
                         return
                     }
                 } else {
@@ -100,9 +99,9 @@ open class CherryMusicPlayer(protected val mContext: Context) :
                 loadMediaByPosition(mCurrentPlayIndex)
             }
             IMusicBinder.RANDOM_PLAY -> {
-                var randomIndex = Random().nextInt(mSongs.size)
+                var randomIndex = Random().nextInt(mSongs!!.size)
                 while (randomIndex == mCurrentPlayIndex) {
-                    randomIndex = Random().nextInt(mSongs.size)
+                    randomIndex = Random().nextInt(mSongs!!.size)
                 }
                 loadMediaByPosition(randomIndex)
             }
@@ -114,19 +113,21 @@ open class CherryMusicPlayer(protected val mContext: Context) :
 
     override fun loadMediaByPosition(position: Int, isOnlyLoad: Boolean) {
         // 如果播放资源为空就不进行加载
-        if (mSongs.isEmpty()) {
+        if (mSongs == null || mSongs!!.isEmpty()) {
             return
         }
 
         // 防止数组越界
         mCurrentPlayIndex = when {
-            position >= mSongs.size -> mSongs.size - 1
+            position >= mSongs!!.size -> mSongs!!.size - 1
             position < 0 -> 0
             else -> position
         }
 
-        mSongs[position].data?.let {
-            loadMedia(it, isOnlyLoad)
+        val isOnline = mSongs!![position].musicType == Song.ONLINE
+
+        mSongs!![position].data?.let {
+            loadMedia(it, isOnlyLoad, isOnline)
         }
     }
 
@@ -171,13 +172,12 @@ open class CherryMusicPlayer(protected val mContext: Context) :
     }
 
 
-    override fun setSongs(songs: List<Song>, isOnlineMusic: Boolean) {
+    override fun setSongs(songs: List<Song>) {
         reset()
-        mIsOnlineData = isOnlineMusic
         mSongs = songs
     }
 
-    override fun getSongs(): List<Song> = mSongs
+    override fun getSongs(): List<Song>? = mSongs
 
     override fun isPlaying(): Boolean {
         return mMediaPlayer?.isPlaying ?: false
@@ -192,9 +192,11 @@ open class CherryMusicPlayer(protected val mContext: Context) :
             mPlaybackInfoListeners = mutableListOf()
         }
         mPlaybackInfoListeners?.add(listener)
+
+
         listener.onDurationChanged(mMediaPlayer?.duration ?: 0)
-        if (mSongs.isNotEmpty()) {
-            listener.onLoadMedia(mSongs[mCurrentPlayIndex])
+        if (mSongs != null && mSongs!!.isNotEmpty()) {
+            listener.onLoadMedia(mSongs!![mCurrentPlayIndex])
         }
         if (mMediaPlayer?.isPlaying == true) {
             listener.onStateChange(PlaybackInfoListener.PLAY)
@@ -245,8 +247,8 @@ open class CherryMusicPlayer(protected val mContext: Context) :
         mPlaybackInfoListeners?.let {
             for (playbackInfoListener in it) {
                 playbackInfoListener.onDurationChanged(mMediaPlayer?.duration ?: 0)
-                if (mSongs.isNotEmpty()) {
-                    playbackInfoListener.onLoadMedia(mSongs[mCurrentPlayIndex])
+                if (mSongs != null && mSongs!!.isNotEmpty()) {
+                    playbackInfoListener.onLoadMedia(mSongs!![mCurrentPlayIndex])
                 }
             }
         }

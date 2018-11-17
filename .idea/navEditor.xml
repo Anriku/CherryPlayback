@@ -8,35 +8,22 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="localMusicFragment">
+                  <entry key="local_music_fragment">
                     <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="156" />
-                            <option name="y" value="-55" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
+                      <LayoutPositions />
                     </value>
                   </entry>
-                  <entry key="mainContainerFragment">
+                  <entry key="main_container_fragment">
                     <value>
                       <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-290" />
-                            <option name="y" value="164" />
-                          </Point>
-                        </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_mainContainerFragment_to_localMusicFragment">
+                            <entry key="action_main_container_fragment_to_local_music_fragment">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_mainContainerFragment_to_singerListFragment">
+                            <entry key="action_main_container_fragment_to_singer_list_fragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -46,30 +33,17 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="singerDetailFragment">
+                  <entry key="singer_detail_fragment">
                     <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="475" />
-                            <option name="y" value="435" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
+                      <LayoutPositions />
                     </value>
                   </entry>
-                  <entry key="singerListFragment">
+                  <entry key="singer_list_fragment">
                     <value>
                       <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="179" />
-                            <option name="y" value="441" />
-                          </Point>
-                        </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_singerListFragment_to_singerDetailFragment">
+                            <entry key="action_singer_list_fragment_to_singer_detail_fragment">
                               <value>
                                 <LayoutPositions />
                               </value>

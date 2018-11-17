@@ -55,8 +55,9 @@ interface PlayerAdapter {
      *
      * @param resourcePath 音乐路径或者Uri
      * @param isOnlyLoad 是否是仅加载不播放
+     * @param isOnline 表示是否为在线音乐
      */
-    fun loadMedia(resourcePath: String, isOnlyLoad: Boolean = false)
+    fun loadMedia(resourcePath: String, isOnlyLoad: Boolean = false, isOnline: Boolean = false)
 
     fun play()
 
@@ -70,10 +71,9 @@ interface PlayerAdapter {
 
     fun release()
 
-    fun setSongs(songs: List<Song>, isOnlineMusic: Boolean = false)
+    fun setSongs(songs: List<Song>)
 
     fun getSongs(): List<Song>?
 
     fun getCurrentPlayIndex(): Int
-
 }

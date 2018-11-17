@@ -14,14 +14,14 @@ import io.reactivex.Flowable
 interface SongDao {
 
     @Insert
-    fun insertSong(song: Song)
+    fun insertSong(song: Song): Long
 
     @Insert
-    fun insertSongs(songs: List<Song>)
+    fun insertSongs(songs: List<Song>): LongArray
 
     @Query("SELECT * FROM songs")
     fun getAllSongs(): Flowable<List<Song>>
 
     @Query("DELETE FROM songs")
-    fun deleteAllSongs()
+    fun deleteAllSongs(): Int
 }

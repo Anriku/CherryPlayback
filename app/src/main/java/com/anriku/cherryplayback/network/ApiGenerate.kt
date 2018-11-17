@@ -16,17 +16,19 @@ object ApiGenerate {
 
     private const val DEFAULT_TIME_OUT = 30
 
-    private var retrofit: Retrofit
-    private var okHttpClient: OkHttpClient
+    private lateinit var retrofit: Retrofit
+    private lateinit var okHttpClient: OkHttpClient
 
-    init {
+
+    private fun getRetrofit(baseUrl: String): Retrofit {
         okHttpClient = configureOkHttp(OkHttpClient.Builder())
         retrofit = Retrofit.Builder()
-            .baseUrl(BASE_1)
+            .baseUrl(baseUrl)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
+        return retrofit
     }
 
     private fun configureOkHttp(builder: OkHttpClient.Builder): OkHttpClient {
@@ -40,7 +42,7 @@ object ApiGenerate {
         return builder.build()
     }
 
-    fun <T> getApiService(clazz: Class<T>) = retrofit.create(clazz)
+    fun <T> getApiService(clazz: Class<T>, baseUrl: String = BASE_MUSIC) = getRetrofit(baseUrl).create(clazz)
 
     fun <T> getApiService(retrofit: Retrofit, clazz: Class<T>) = retrofit.create(clazz)
 }

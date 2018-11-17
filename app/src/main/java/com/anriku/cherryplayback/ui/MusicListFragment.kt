@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.adapter.SongListRecAdapter
 import com.anriku.cherryplayback.databinding.FragmentMusicListBinding
-import com.anriku.cherryplayback.extension.setDivider
+import com.anriku.cherryplayback.utils.extensions.setDivider
 import com.anriku.cherryplayback.viewmodel.SongsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.jetbrains.anko.dip

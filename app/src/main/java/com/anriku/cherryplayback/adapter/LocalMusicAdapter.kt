@@ -37,7 +37,7 @@ class LocalMusicAdapter(context: Context, private val mSongs: ArrayList<Song>) :
                 isLoadSongs = true
             }
 
-            intent.putExtra(MusicService.IS_ONLINE, false)
+            intent.putExtra(MusicService.IS_ONLY_LOAD, false)
             intent.putExtra(MusicService.PLAY_INDEX, position)
             ContextCompat.startForegroundService(context, intent)
         }

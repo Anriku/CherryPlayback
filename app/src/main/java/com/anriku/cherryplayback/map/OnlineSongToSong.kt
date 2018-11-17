@@ -18,6 +18,8 @@ class OnlineSongToSong : Function<List<SingerDetail.DataBean.ListBean>, ArrayLis
                 continue
             }
             val song = Song()
+            song.musicType = Song.ONLINE
+            song.albumId = onlineSong.musicData?.albumid
             song.id = onlineSong.musicData?.songid?.toLong() ?: System.currentTimeMillis()
             song.title = onlineSong.musicData?.songname
             song.mineType = "audio/mpeg"

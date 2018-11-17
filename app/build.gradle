@@ -6,6 +6,9 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'androidx.navigation.safeargs'
+
+
 android {
     compileSdkVersion build_versions.target_sdk
     defaultConfig {
@@ -76,6 +79,7 @@ dependencies {
     implementation deps.rxjava.rxandroid
     implementation deps.rxjava.rxkotlin
     implementation deps.gson.runtime
+    implementation "com.squareup.retrofit2:converter-jaxb:2.4.0"
 
     //architecture
     implementation deps.lifecycle.extensions

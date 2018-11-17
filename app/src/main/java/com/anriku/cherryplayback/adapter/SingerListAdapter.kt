@@ -6,12 +6,10 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import com.anriku.cherryplayback.R
-import com.anriku.cherryplayback.extension.errorHandler
-import com.anriku.cherryplayback.extension.setSchedulers
 import com.anriku.cherryplayback.model.SingerList
 import com.anriku.cherryplayback.network.ApiGenerate
+import com.anriku.cherryplayback.network.ImageUrl
 import com.anriku.cherryplayback.network.QQMusicService
-import com.anriku.cherryplayback.network.subscribeWithDispose
 import com.anriku.cherryplayback.ui.SingerDetailFragment
 import com.anriku.cherryplayback.utils.ObservableManager
 import com.bumptech.glide.Glide
@@ -46,17 +44,11 @@ class SingerListAdapter(private val mContext: Context) :
         }
     }
 
-    private val mQQMusicService: QQMusicService by lazy(LazyThreadSafetyMode.NONE) {
-        ApiGenerate.getApiService(QQMusicService::class.java)
-    }
-    private val mObservableManager: ObservableManager<Int> by lazy(LazyThreadSafetyMode.NONE) {
-        ObservableManager<Int>()
-    }
-
     override fun getThePositionLayoutId(position: Int): Int = R.layout.singer_list_rec_item
 
     override fun onViewRecycled(holder: BaseViewHolder) {
-        mObservableManager.dispose(holder.itemView.tag as Int)
+        val circleImageView = holder.itemView.findViewById<CircleImageView>(R.id.civ)
+        Glide.with(circleImageView.context).clear(circleImageView)
         super.onViewRecycled(holder)
     }
 
@@ -67,28 +59,11 @@ class SingerListAdapter(private val mContext: Context) :
         val item = getItem(position)
 
         itemView.findViewById<CircleImageView>(R.id.civ).apply {
-            Glide.with(holder.itemView).clear(this)
-
-            item?.fsinger_name?.let {
-
-                val enBracket = it.indexOf('(')
-                val zhBracket = it.indexOf('（')
-                val name = when {
-                    enBracket != -1 -> it.substring(0, enBracket)
-                    zhBracket != -1 -> it.substring(0, zhBracket)
-                    else -> it
-                }
-
-                val disposable = mQQMusicService.search(name, 10, 1)
-                    .setSchedulers()
-                    .errorHandler()
-                    .subscribeWithDispose(onNext = { searchResult ->
-                        Glide.with(this.context)
-                            .load(searchResult.data.zhida.zhida_singer.singerPic)
-                            .apply(RequestOptions().placeholder(R.drawable.ic_singer).error(R.drawable.ic_error))
-                            .into(this)
-                    })
-                mObservableManager.put(itemView.tag as Int, disposable)
+            item?.fsinger_id?.let {
+                Glide.with(this.context)
+                    .load(ImageUrl.getSingerImageUrl(it.toLong(), 300))
+                    .apply(RequestOptions().placeholder(R.drawable.ic_singer).error(R.drawable.ic_error))
+                    .into(this)
             }
         }
 
@@ -101,7 +76,7 @@ class SingerListAdapter(private val mContext: Context) :
         itemView.setOnClickListener {
             item?.let { singerInfo ->
                 val bundle = bundleOf(SingerDetailFragment.SINGER_INFO to singerInfo)
-                it.findNavController().navigate(R.id.singerDetailFragment, bundle)
+                it.findNavController().navigate(R.id.action_singer_list_fragment_to_singer_detail_fragment, bundle)
             }
 
         }

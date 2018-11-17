@@ -1,6 +1,5 @@
-package com.anriku.cherryplayback.extension
+package com.anriku.cherryplayback.utils.extensions
 
-import android.content.Context
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView

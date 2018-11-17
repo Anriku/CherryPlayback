@@ -1,4 +1,4 @@
-package com.anriku.cherryplayback.extension
+package com.anriku.cherryplayback.utils.extensions
 
 import android.annotation.SuppressLint
 import com.anriku.cherryplayback.R

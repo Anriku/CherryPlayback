@@ -6,14 +6,33 @@
 
         <variable
             name="listeners"
-            type="com.anriku.cherryplayback.ui.mine.MineFragment.Listeners" />
+            type="com.anriku.cherryplayback.ui.mine.MusicRoomFragment.Listeners" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:orientation="vertical">
 
+
+        <ImageView
+            android:id="@+id/iv_daily_pic"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@color/divider_color"
+            app:layout_constraintTop_toBottomOf="@id/iv_daily_pic" />
 
         <ImageView
             android:id="@+id/iv_local_music"
@@ -22,10 +41,10 @@
             android:onClick="@{listeners.onLocalMusicClick}"
             android:padding="@dimen/fragment_mine_icon_padding"
             android:src="@drawable/ic_local_music"
-            app:layout_constraintBottom_toTopOf="@id/iv_i_like"
+            app:layout_constraintBottom_toTopOf="@id/iv_singer"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/iv_download_music"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_daily_pic"
             tools:ignore="ContentDescription" />
 
 
@@ -39,7 +58,7 @@
             app:layout_constraintBottom_toTopOf="@id/iv_i_like"
             app:layout_constraintLeft_toRightOf="@id/iv_local_music"
             app:layout_constraintRight_toLeftOf="@id/iv_recent_play"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_daily_pic"
             tools:ignore="ContentDescription" />
 
         <ImageView
@@ -52,8 +71,23 @@
             app:layout_constraintBottom_toTopOf="@id/iv_i_like"
             app:layout_constraintLeft_toRightOf="@id/iv_download_music"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_daily_pic"
             tools:ignore="ContentDescription" />
+
+
+        <ImageView
+            android:id="@+id/iv_singer"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:onClick="@{listeners.onSingerClick}"
+            android:padding="@dimen/fragment_mine_icon_padding"
+            android:src="@drawable/ic_singer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_i_like"
+            app:layout_constraintTop_toBottomOf="@id/iv_local_music"
+            tools:ignore="ContentDescription" />
+
 
         <ImageView
             android:id="@+id/iv_i_like"
@@ -63,9 +97,24 @@
             android:padding="@dimen/fragment_mine_icon_padding"
             android:src="@drawable/ic_i_like"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_local_music"
+            app:layout_constraintLeft_toRightOf="@id/iv_singer"
+            app:layout_constraintRight_toLeftOf="@id/iv_rank"
+            app:layout_constraintTop_toBottomOf="@id/iv_download_music"
             tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/iv_rank"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:onClick="@{listeners.onRankClick}"
+            android:padding="@dimen/fragment_mine_icon_padding"
+            android:src="@drawable/ic_rank"
+            app:layout_constraintBaseline_toBaselineOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/iv_i_like"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_recent_play"
+            tools:ignore="ContentDescription" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

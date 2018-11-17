@@ -20,9 +20,9 @@ import kotlinx.android.synthetic.main.fragment_local_music.*
 class LocalMusicFragment : BaseFragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_local_music, container, false)
     }
@@ -45,10 +45,12 @@ class LocalMusicFragment : BaseFragment() {
         }
 
         val musicAccessUtil = MusicAccessUtil(activity!!)
-        rv.adapter = LocalMusicAdapter(
-            activity!!,
-            musicAccessUtil.getMusics(this) ?: arrayListOf()
-        )
+        musicAccessUtil.getMusics(this) {
+            rv.adapter = LocalMusicAdapter(
+                    activity!!,
+                    it
+            )
+        }
 
         tb.findViewById<TextView>(R.id.title).text = "本地音乐"
     }
