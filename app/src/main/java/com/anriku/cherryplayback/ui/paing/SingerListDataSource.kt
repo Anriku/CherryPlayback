@@ -20,7 +20,7 @@ class SingerListDataSource : PageKeyedDataSource<Int, SingerList.DataBean.ListBe
        private const val TAG = "SingerListDataSource"
     }
     private val mMusicService: QQMusicService by lazy(LazyThreadSafetyMode.NONE) {
-        ApiGenerate.getApiService(QQMusicService::class.java)
+        ApiGenerate.getGsonApiService(QQMusicService::class.java)
     }
 
 

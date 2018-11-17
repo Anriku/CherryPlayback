@@ -16,7 +16,7 @@ class SingerDetailDataSource(private val mSingerMid: String) :
     PageKeyedDataSource<Int, SingerDetail.DataBean.ListBean>() {
 
     private val mMusicService: QQMusicService by lazy(LazyThreadSafetyMode.NONE) {
-        ApiGenerate.getApiService(QQMusicService::class.java)
+        ApiGenerate.getGsonApiService(QQMusicService::class.java)
     }
 
     override fun loadInitial(

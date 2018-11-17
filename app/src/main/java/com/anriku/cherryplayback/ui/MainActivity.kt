@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
@@ -37,8 +38,8 @@ class MainActivity : BaseActivity() {
 
     private val mPlayAndPauseIcons: List<Drawable?> by lazy(LazyThreadSafetyMode.NONE) {
         listOf(
-            ContextCompat.getDrawable(this, R.drawable.ic_pause),
-            ContextCompat.getDrawable(this, R.drawable.ic_play)
+                ContextCompat.getDrawable(this, R.drawable.ic_pause),
+                ContextCompat.getDrawable(this, R.drawable.ic_play)
         )
     }
 
@@ -59,18 +60,19 @@ class MainActivity : BaseActivity() {
         songsViewModel.bindService(this)
 
         mBinding.listeners = Listeners(
-            onStartControlActivity = {
-                val intent = Intent(this, ControlActivity::class.java)
-                startActivity(intent)
-            }, onPlayAndPause = {
-                if (songsViewModel.binder?.isPlaying() == true) {
-                    songsViewModel.binder?.pause()
-                } else {
-                    songsViewModel.binder?.play()
-                }
-            }, onList = {
-                mMusicListFragment.show(supportFragmentManager, "music_list_fragment")
+                onStartControlActivity = {
+                    startActivity(Intent(this, ControlActivity::class.java),
+                            ActivityOptionsCompat.makeSceneTransitionAnimation(this
+                                    , mBinding.civAlbum, ControlActivity.TRANSITION_NAME).toBundle())
+                }, onPlayAndPause = {
+            if (songsViewModel.binder?.isPlaying() == true) {
+                songsViewModel.binder?.pause()
+            } else {
+                songsViewModel.binder?.play()
             }
+        }, onList = {
+            mMusicListFragment.show(supportFragmentManager, "music_list_fragment")
+        }
         )
 
     }
@@ -137,9 +139,9 @@ class MainActivity : BaseActivity() {
     }
 
     class Listeners(
-        val onStartControlActivity: (View) -> Unit = {},
-        val onPlayAndPause: (ImageView) -> Unit = {},
-        val onList: (ImageView) -> Unit = {}
+            val onStartControlActivity: (View) -> Unit = {},
+            val onPlayAndPause: (ImageView) -> Unit = {},
+            val onList: (ImageView) -> Unit = {}
     ) {
 
         fun onStartControlActivityClick(view: View) {

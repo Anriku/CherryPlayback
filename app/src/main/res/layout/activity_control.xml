@@ -82,8 +82,8 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="70dp" />
 
-        <ImageView
-            android:id="@+id/iv_album"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_album"
             android:layout_width="300dp"
             android:layout_height="300dp"
             app:layout_constraintBottom_toTopOf="@id/sb"
@@ -92,7 +92,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_artist"
             tools:ignore="ContentDescription">
 
-        </ImageView>
+        </de.hdodenhof.circleimageview.CircleImageView>
 
 
         <androidx.constraintlayout.widget.Guideline

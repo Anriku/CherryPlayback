@@ -7,8 +7,8 @@ import androidx.databinding.DataBindingUtil
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.adapter.MainVPAdapter
 import com.anriku.cherryplayback.databinding.FragmentMainContainerBinding
-import com.anriku.cherryplayback.ui.mine.MusicRoomFragment
-import com.anriku.cherryplayback.ui.square.MusicSquareFragment
+import com.anriku.cherryplayback.ui.musicroom.MusicRoomFragment
+import com.anriku.cherryplayback.ui.musicsquare.MusicSquareFragment
 import kotlinx.android.synthetic.main.base_toolbar.*
 
 /**

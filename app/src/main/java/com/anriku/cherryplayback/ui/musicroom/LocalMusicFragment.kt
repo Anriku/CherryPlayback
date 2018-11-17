@@ -1,4 +1,4 @@
-package com.anriku.cherryplayback.ui.mine
+package com.anriku.cherryplayback.ui.musicroom
 
 import android.os.Bundle
 import android.view.LayoutInflater

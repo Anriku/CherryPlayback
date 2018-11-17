@@ -12,7 +12,7 @@ import com.anriku.cherryplayback.utils.extensions.setSchedulers
 class OnlineSongUrl {
 
     private val mMusicService: QQMusicService by lazy(LazyThreadSafetyMode.NONE) {
-        ApiGenerate.getApiService(QQMusicService::class.java)
+        ApiGenerate.getGsonApiService(QQMusicService::class.java)
     }
 
     /**

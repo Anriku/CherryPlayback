@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.transition.TransitionInflater
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.adapter.SingerListAdapter
 import com.anriku.cherryplayback.databinding.FragmentSingerListBinding
@@ -33,6 +34,7 @@ class SingerListFragment : BaseFragment() {
     ): View? {
         mBinding =
                 DataBindingUtil.inflate(inflater, R.layout.fragment_singer_list, container, false)
+
         return mBinding.root
     }
 

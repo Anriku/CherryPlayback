@@ -21,7 +21,7 @@ class SquareViewModel: ViewModel() {
         }
     }
     private val mMusicService: QQMusicService by lazy {
-        ApiGenerate.getApiService(QQMusicService::class.java)
+        ApiGenerate.getGsonApiService(QQMusicService::class.java)
     }
 
     fun getSlides() {

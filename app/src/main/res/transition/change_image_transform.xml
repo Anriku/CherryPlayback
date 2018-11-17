@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+    <changeClipBounds android:duration="@android:integer/config_mediumAnimTime"/>
+    <changeTransform android:duration="@android:integer/config_mediumAnimTime"/>
+    <changeBounds android:duration="@android:integer/config_mediumAnimTime"/>
+</transitionSet>

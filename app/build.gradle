@@ -79,7 +79,11 @@ dependencies {
     implementation deps.rxjava.rxandroid
     implementation deps.rxjava.rxkotlin
     implementation deps.gson.runtime
-    implementation "com.squareup.retrofit2:converter-jaxb:2.4.0"
+    implementation (deps.retrofit.xml) {
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
 
     //architecture
     implementation deps.lifecycle.extensions

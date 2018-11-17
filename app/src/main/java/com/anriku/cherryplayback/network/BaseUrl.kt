@@ -13,6 +13,8 @@ const val BASE_IMAGE = "http://imgcache.qq.com/"
 // 歌曲
 const val BASE_SONG = "http://dl.stream.qqmusic.qq.com/"
 
+const val BASE_LYRIC = "http://music.qq.com/"
+
 const val GUID = "3655047200"
 
 // 必应每日一图

@@ -25,16 +25,16 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         lifecycle.addObserver(EventBusObserver(this))
 
-//        if (Build.VERSION.SDK_INT >= 21) {
+        if (Build.VERSION.SDK_INT >= 21) {
         val decorView = window.decorView
         val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         decorView.systemUiVisibility = option
-//        } else if (Build.VERSION.SDK_INT >= 19) {
-//            window.setFlags(
-//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-//            )
-//        }
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+            )
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

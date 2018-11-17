@@ -19,21 +19,21 @@ interface QQMusicService {
     @FormUrlEncoded
     @POST("v8/fcg-bin/v8.fcg")
     fun getSingerList(
-        @Field("pagesize") pageSize: Int,
-        @Field("pagenum") pageNum: Int,
+            @Field("pagesize") pageSize: Int,
+            @Field("pagenum") pageNum: Int,
 
-        @Field("channel") channel: String = "singer",
-        @Field("page") page: String = "list",
-        @Field("key") key: String = "all_all_all",
-        @Field("g_tk") gTk: String = "5381",
-        @Field("loginUin") loginUin: String = "0",
-        @Field("hostUin") hostUin: String = "0",
-        @Field("format") format: String = "json",
-        @Field("inCharset") inCharset: String = "utf-8",
-        @Field("outCharset") outCharset: String = "utf-8",
-        @Field("notice") notice: String = "0",
-        @Field("platform") platform: String = "yqq",
-        @Field("needNewCode") needNewCode: String = "0"
+            @Field("channel") channel: String = "singer",
+            @Field("page") page: String = "list",
+            @Field("key") key: String = "all_all_all",
+            @Field("g_tk") gTk: String = "5381",
+            @Field("loginUin") loginUin: String = "0",
+            @Field("hostUin") hostUin: String = "0",
+            @Field("format") format: String = "json",
+            @Field("inCharset") inCharset: String = "utf-8",
+            @Field("outCharset") outCharset: String = "utf-8",
+            @Field("notice") notice: String = "0",
+            @Field("platform") platform: String = "yqq",
+            @Field("needNewCode") needNewCode: String = "0"
     ): Observable<SingerList>
 
 
@@ -47,21 +47,21 @@ interface QQMusicService {
     @FormUrlEncoded
     @POST("v8/fcg-bin/fcg_v8_singer_track_cp.fcg")
     fun getSingerDetail(
-        @Field("singermid") singerMid: String,
-        @Field("num") num: Int,
-        @Field("begin") begin: Int,
+            @Field("singermid") singerMid: String,
+            @Field("num") num: Int,
+            @Field("begin") begin: Int,
 
-        @Field("order") order: String = "order",
-        @Field("songstatus") songStatus: String = "1",
-        @Field("g_tk") gTk: String = "5381",
-        @Field("loginUin") loginUin: String = "0",
-        @Field("hostUin") hostUin: String = "0",
-        @Field("format") format: String = "json",
-        @Field("inCharset") inCharset: String = "utf-8",
-        @Field("outCharset") outCharset: String = "utf-8",
-        @Field("notice") notice: String = "0",
-        @Field("platform") platform: String = "yqq",
-        @Field("needNewCode") needNewCode: String = "0"
+            @Field("order") order: String = "order",
+            @Field("songstatus") songStatus: String = "1",
+            @Field("g_tk") gTk: String = "5381",
+            @Field("loginUin") loginUin: String = "0",
+            @Field("hostUin") hostUin: String = "0",
+            @Field("format") format: String = "json",
+            @Field("inCharset") inCharset: String = "utf-8",
+            @Field("outCharset") outCharset: String = "utf-8",
+            @Field("notice") notice: String = "0",
+            @Field("platform") platform: String = "yqq",
+            @Field("needNewCode") needNewCode: String = "0"
     ): Observable<SingerDetail>
 
 
@@ -73,21 +73,21 @@ interface QQMusicService {
      */
     @GET("base/fcgi-bin/fcg_music_express_mobile3.fcg")
     fun getSongVKey(
-        @Query("songmid") songMid: String,
-        @Query("filename") filename: String,
+            @Query("songmid") songMid: String,
+            @Query("filename") filename: String,
 
-        @Query("g_tk") gTk: String = "5381",
-        @Query("loginUin") loginUin: String = "0",
-        @Query("hostUin") hostUin: String = "0",
-        @Query("format") format: String = "json",
-        @Query("inCharset") inCharset: String = "utf-8",
-        @Query("outCharset") outCharset: String = "utf-8",
-        @Query("notice") notice: String = "0",
-        @Query("platform") platform: String = "yqq",
-        @Query("needNewCode") needNewCode: String = "0",
-        @Query("cid") cid: String = "205361747",
-        @Query("uin") uin: String = "0",
-        @Query("guid") guid: String = GUID
+            @Query("g_tk") gTk: String = "5381",
+            @Query("loginUin") loginUin: String = "0",
+            @Query("hostUin") hostUin: String = "0",
+            @Query("format") format: String = "json",
+            @Query("inCharset") inCharset: String = "utf-8",
+            @Query("outCharset") outCharset: String = "utf-8",
+            @Query("notice") notice: String = "0",
+            @Query("platform") platform: String = "yqq",
+            @Query("needNewCode") needNewCode: String = "0",
+            @Query("cid") cid: String = "205361747",
+            @Query("uin") uin: String = "0",
+            @Query("guid") guid: String = GUID
     ): Observable<SongVKey>
 
     /**
@@ -99,45 +99,69 @@ interface QQMusicService {
      */
     @GET("soso/fcgi-bin/client_search_cp")
     fun search(
-        @Query("w") content: String,
-        @Query("n") n: Int,
-        @Query("p") p: Int,
+            @Query("w") content: String,
+            @Query("n") n: Int,
+            @Query("p") p: Int,
 
-        @Query("ct") ct: String = "24",
-        @Query("qqmusic_ver") qqmusicVer: String = "1298",
-        @Query("new_json") newJson: String = "1",
-        @Query("remoteplace") remotePlace: String = "txt.yqq.center",
-        @Query("searchid") searchId: String = "37602803789127241",
-        @Query("t") t: String = "0",
-        @Query("aggr") aggr: String = "1",
-        @Query("cr") cr: String = "1",
-        @Query("catZhida") catZhida: String = "1",
-        @Query("lossless") lossLess: String = "0",
-        @Query("flag_qc") flagQc: String = "0",
+            @Query("ct") ct: String = "24",
+            @Query("qqmusic_ver") qqmusicVer: String = "1298",
+            @Query("new_json") newJson: String = "1",
+            @Query("remoteplace") remotePlace: String = "txt.yqq.center",
+            @Query("searchid") searchId: String = "37602803789127241",
+            @Query("t") t: String = "0",
+            @Query("aggr") aggr: String = "1",
+            @Query("cr") cr: String = "1",
+            @Query("catZhida") catZhida: String = "1",
+            @Query("lossless") lossLess: String = "0",
+            @Query("flag_qc") flagQc: String = "0",
 
-        @Query("g_tk") gTk: String = "5381",
-        @Query("loginUin") loginUin: String = "0",
-        @Query("hostUin") hostUin: String = "0",
-        @Query("format") format: String = "json",
-        @Query("inCharset") inCharset: String = "utf-8",
-        @Query("outCharset") outCharset: String = "utf-8",
-        @Query("notice") notice: String = "0",
-        @Query("platform") platform: String = "yqq",
-        @Query("needNewCode") needNewCode: String = "0"
+            @Query("g_tk") gTk: String = "5381",
+            @Query("loginUin") loginUin: String = "0",
+            @Query("hostUin") hostUin: String = "0",
+            @Query("format") format: String = "json",
+            @Query("inCharset") inCharset: String = "utf-8",
+            @Query("outCharset") outCharset: String = "utf-8",
+            @Query("notice") notice: String = "0",
+            @Query("platform") platform: String = "yqq",
+            @Query("needNewCode") needNewCode: String = "0"
     ): Observable<SearchResult>
 
 
     @GET("musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg")
     fun getSlides(
-        @Query("g_tk") gTk: String = "701075963",
-        @Query("uin") uin: String = "0",
-        @Query("format") format: String = "json",
-        @Query("inCharset") inCharset: String = "utf-8",
-        @Query("outCharset") outCharset: String = "utf-8",
-        @Query("notice") notice: String = "0",
-        @Query("platform") platform: String = "h5",
-        @Query("needNewCode") needNewCode: String = "1"
+            @Query("g_tk") gTk: String = "701075963",
+            @Query("uin") uin: String = "0",
+            @Query("format") format: String = "json",
+            @Query("inCharset") inCharset: String = "utf-8",
+            @Query("outCharset") outCharset: String = "utf-8",
+            @Query("notice") notice: String = "0",
+            @Query("platform") platform: String = "h5",
+            @Query("needNewCode") needNewCode: String = "1"
     ): Observable<Slide>
+
+
+//    /**
+//     * 获取歌词
+//     *
+//     * @param musicId 歌曲id。不是mid
+//     */
+//    @FormUrlEncoded
+//    @POST("lyric/fcgi-bin/fcg_query_lyric.fcg")
+//    fun getLyric(
+//            @Field("musicid") musicId: String,
+//
+//            @Field("g_tk") gTk: String = "701075963",
+//            @Field("uin") uin: String = "0",
+//            @Field("format") format: String = "json",
+//            @Field("inCharset") inCharset: String = "utf-8",
+//            @Field("outCharset") outCharset: String = "utf-8",
+//            @Field("notice") notice: String = "0",
+//            @Field("platform") platform: String = "h5",
+//            @Field("needNewCode") needNewCode: String = "1",
+//            @Field("nobase64") nobase64: String = "1",
+//            @Field("songtype") songType: String = "0"
+//    ): Observable<Lyric>
+
 }
 
 

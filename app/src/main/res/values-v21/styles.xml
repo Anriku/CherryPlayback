@@ -7,5 +7,18 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <!--这个属性用于启用Activity过渡动画-->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!--下面两个属性设定Activity进入、离开的过渡动画-->
+        <item name="android:windowEnterTransition">@android:transition/fade</item>
+        <item name="android:windowExitTransition">@android:transition/fade</item>
+
+        <!--下面两个属性定义Activity进入、离开时共享的控件的转移动画-->
+        <item name="android:windowSharedElementEnterTransition">@transition/change_image_transform
+        </item>
+        <item name="android:windowSharedElementExitTransition">@transition/change_image_transform
+        </item>
     </style>
 </resources>

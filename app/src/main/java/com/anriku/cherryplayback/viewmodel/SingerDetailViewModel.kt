@@ -53,7 +53,7 @@ class SingerDetailViewModel(private val mSingerMid: String) : ViewModel() {
 
             Glide.with(imageView.context)
                 .load(ImageUrl.getSingerImageUrl(singerInfo.fsinger_id.toLong()))
-                .apply(RequestOptions().placeholder(R.drawable.ic_singer).error(R.drawable.ic_error))
+                .apply(RequestOptions().error(R.drawable.ic_error))
                 .into(imageView)
         }
     }

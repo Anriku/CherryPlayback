@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.SeekBar
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.anriku.cherryplayback.R
@@ -28,6 +29,8 @@ class ControlActivity : BaseActivity() {
 
     companion object {
         private const val TAG = "ControlActivity"
+
+        const val TRANSITION_NAME = "civAlbum"
     }
 
     private lateinit var mBinding: ActivityControlBinding
@@ -63,6 +66,8 @@ class ControlActivity : BaseActivity() {
 
 
     private fun initControlActivity() {
+        ViewCompat.setTransitionName(mBinding.civAlbum, TRANSITION_NAME)
+
         mSongsViewModel = ViewModelProviders.of(this).get(SongsViewModel::class.java)
         val songsViewModel = mSongsViewModel
 
@@ -136,7 +141,7 @@ class ControlActivity : BaseActivity() {
     inner class PlaybackListener : PlaybackInfoListener() {
 
         override fun onLoadMedia(song: Song) {
-            mSongsViewModel.onLoadMedia(this@ControlActivity, song, mBinding.ivAlbum)
+            mSongsViewModel.onLoadMedia(this@ControlActivity, song, mBinding.civAlbum)
         }
 
         override fun onDurationChanged(duration: Int) {

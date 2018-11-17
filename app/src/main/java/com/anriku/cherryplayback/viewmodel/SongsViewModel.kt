@@ -4,9 +4,9 @@ import android.app.Activity
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
-import android.graphics.Bitmap
 import android.os.IBinder
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
@@ -16,9 +16,7 @@ import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
 import com.anriku.cherryplayback.database.SongsDatabase
 import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.model.Song
-import com.anriku.cherryplayback.network.ApiGenerate
-import com.anriku.cherryplayback.network.ImageUrl
-import com.anriku.cherryplayback.network.QQMusicService
+import com.anriku.cherryplayback.network.*
 import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
 import com.anriku.cherryplayback.service.MusicService
 import com.anriku.cherryplayback.utils.IMusicBinder
@@ -29,6 +27,8 @@ import com.anriku.cherryplayback.utils.extensions.getSPValue
 import com.anriku.cherryplayback.utils.extensions.setSchedulers
 import com.bumptech.glide.Glide
 import org.greenrobot.eventbus.EventBus
+import java.net.URLEncoder
+import java.nio.charset.Charset
 import java.util.ArrayList
 
 /**
@@ -57,7 +57,10 @@ open class SongsViewModel : ViewModel() {
         }
     }
     private val mQQMusicService: QQMusicService by lazy(LazyThreadSafetyMode.NONE) {
-        ApiGenerate.getApiService(QQMusicService::class.java)
+        ApiGenerate.getGsonApiService(QQMusicService::class.java)
+    }
+    private val mLyricService: LyricService by lazy(LazyThreadSafetyMode.NONE) {
+        ApiGenerate.getXMLApiService(LyricService::class.java, BASE_LYRIC)
     }
 
     /**
@@ -136,6 +139,12 @@ open class SongsViewModel : ViewModel() {
         currentPlaySongName.value = song.title
         currentPlayArtist.value = song.artist
 
+        mLyricService.getLyric(song.id % 100, song.id)
+            .errorHandler()
+            .setSchedulers()
+            .subscribe(ExecuteOnceObserver(onExecuteOnceNext = {
+                LogUtil.d(TAG, it.lyric)
+            }))
         if (song.musicType == Song.ONLINE) {
             Glide.with(imageView.context).load(ImageUrl.getAlbumImageUrl(song.albumId?.toLong() ?: -1))
                 .into(imageView)

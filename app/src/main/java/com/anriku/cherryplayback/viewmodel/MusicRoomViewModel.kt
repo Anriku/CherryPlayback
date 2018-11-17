@@ -20,7 +20,7 @@ class MusicRoomViewModel : ViewModel() {
     private lateinit var mDailyPicService: DailyPicService
 
     fun getDailyPic(imageView: ImageView) {
-        mDailyPicService = ApiGenerate.getApiService(DailyPicService::class.java, BASE_DAILY_PIC)
+        mDailyPicService = ApiGenerate.getGsonApiService(DailyPicService::class.java, BASE_DAILY_PIC)
 
         // 获取必应每日一图
         mDailyPicService.getDailyPic().simpleEnqueue(object : ErrorHandler {
