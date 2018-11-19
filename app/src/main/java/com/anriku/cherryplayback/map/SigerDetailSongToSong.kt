@@ -9,7 +9,7 @@ import java.lang.StringBuilder
  * Created by anriku on 2018/11/13.
  */
 
-class OnlineSongToSong : Function<List<SingerDetail.DataBean.ListBean>, ArrayList<Song>> {
+class SigerDetailSongToSong : Function<List<SingerDetail.DataBean.ListBean>, ArrayList<Song>> {
     override fun apply(onlineSongs: List<SingerDetail.DataBean.ListBean>): ArrayList<Song> {
         val songs = ArrayList<Song>()
 

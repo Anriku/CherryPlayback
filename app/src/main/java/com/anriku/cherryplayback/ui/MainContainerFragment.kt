@@ -46,12 +46,8 @@ class MainContainerFragment : BaseFragment() {
     private fun initFragment() {
         fragmentManager ?: return
         activity ?: return
-        val appComActivity = activity as AppCompatActivity
 
-        appComActivity.setSupportActionBar(tb)
-        appComActivity.supportActionBar?.apply {
-            setDisplayShowTitleEnabled(false)
-        }
+        setToolbar(tb, false, false)
 
         // 注意这里用childFragmentManager
         mBinding.vp.adapter = MainVPAdapter(

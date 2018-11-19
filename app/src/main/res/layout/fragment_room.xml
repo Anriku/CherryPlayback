@@ -95,7 +95,7 @@
             android:layout_height="80dp"
             android:onClick="@{listeners.onILikeClick}"
             android:padding="@dimen/fragment_mine_icon_padding"
-            android:src="@drawable/ic_i_like"
+            android:src="@drawable/ic_new_song"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/iv_singer"
             app:layout_constraintRight_toLeftOf="@id/iv_rank"

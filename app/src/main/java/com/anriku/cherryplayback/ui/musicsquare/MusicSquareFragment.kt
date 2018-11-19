@@ -9,8 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.adapter.SlideViewAdapter
+import com.anriku.cherryplayback.adapter.PlayListRecAdapter
 import com.anriku.cherryplayback.databinding.FragmentMusicSquareBinding
 import com.anriku.cherryplayback.ui.BaseFragment
+import com.anriku.cherryplayback.utils.extensions.setDivider
 import com.anriku.cherryplayback.viewmodel.SquareViewModel
 
 /**
@@ -23,12 +25,12 @@ class MusicSquareFragment : BaseFragment() {
     private lateinit var mSquareViewModel: SquareViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         mBinding = DataBindingUtil
-            .inflate(inflater, R.layout.fragment_music_square, container, false)
+                .inflate(inflater, R.layout.fragment_music_square, container, false)
         return mBinding.root
     }
 
@@ -44,11 +46,15 @@ class MusicSquareFragment : BaseFragment() {
 
         mSquareViewModel = ViewModelProviders.of(activity!!).get(SquareViewModel::class.java)
         mSquareViewModel.getSlides()
+
+
+        mSquareViewModel.getRecommendPlayList {
+            mBinding.rv.adapter = PlayListRecAdapter(activity!!, it.recomPlaylist.data.v_hot)
+            mBinding.rv.setDivider()
+        }
         mSquareViewModel.slides.observe(this, Observer {
             mBinding.ssv.slideShowViewAdapter = SlideViewAdapter(it)
         })
-
-
 
     }
 

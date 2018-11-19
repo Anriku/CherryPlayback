@@ -32,7 +32,6 @@ class MusicBinder(private val mContext: Context) : IMusicBinder() {
     private val mSongsDatabase: SongsDatabase? by lazy(LazyThreadSafetyMode.NONE) {
         SongsDatabase.getDatabase(mContext)
     }
-    private var mIsInit = false
 
     /**
      * 用于对播放相关的内容设置

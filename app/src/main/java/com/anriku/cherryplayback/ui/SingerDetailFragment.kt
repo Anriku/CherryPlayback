@@ -56,11 +56,8 @@ class SingerDetailFragment : BaseFragment() {
 
         mSingerDetailViewModel.setSingerImage(mBinding.ivSinger, mSingerInfo)
 
-
-        appCompatActivity.setSupportActionBar(mBinding.tb)
-        appCompatActivity.supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            title = mSingerInfo.fsinger_name
+        setToolbar(mBinding.tb) {
+            it.title = mSingerInfo.fsinger_name
         }
 
         mBinding.rv.setDivider()

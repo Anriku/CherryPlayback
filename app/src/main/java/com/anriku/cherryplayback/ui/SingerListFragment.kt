@@ -28,9 +28,9 @@ class SingerListFragment : BaseFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         mBinding =
                 DataBindingUtil.inflate(inflater, R.layout.fragment_singer_list, container, false)
@@ -46,15 +46,11 @@ class SingerListFragment : BaseFragment() {
     }
 
     private fun initFragment() {
-        val appComActivity: AppCompatActivity = activity as? AppCompatActivity ?: return
+        activity ?: return
 
         mSingerListViewModel = ViewModelProviders.of(this).get(SingerListViewModel::class.java)
 
-        appComActivity.setSupportActionBar(tb)
-        appComActivity.supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowTitleEnabled(false)
-        }
+        setToolbar(tb)
 
         mBinding.rv.setDivider()
         tb.findViewById<TextView>(R.id.title).apply {

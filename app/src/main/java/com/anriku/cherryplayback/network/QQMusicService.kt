@@ -127,6 +127,9 @@ interface QQMusicService {
     ): Observable<SearchResult>
 
 
+    /**
+     * 轮播图的获取
+     */
     @GET("musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg")
     fun getSlides(
             @Query("g_tk") gTk: String = "701075963",
@@ -138,6 +141,32 @@ interface QQMusicService {
             @Query("platform") platform: String = "h5",
             @Query("needNewCode") needNewCode: String = "1"
     ): Observable<Slide>
+
+
+    /**
+     * 歌单详情
+     *
+     * @param disstId 歌单id
+     */
+    @Headers("referer:https://y.qq.com/n/yqq/playlist/3602407677.html")
+    @GET("qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg")
+    fun getPlayListDetail(
+            @Query("disstid") disstId: String,
+
+            @Query("type") type: String = "1",
+            @Query("json") json: String = "1",
+            @Query("utf8") utf8: String = "1",
+            @Query("onlysong") onlySong: String = "0",
+            @Query("format") format: String = "json",
+            @Query("g_tk") gTk: String = "701075963",
+            @Query("loginUin") loginUin: String = "0",
+            @Query("hostUin") hostUin: String = "0",
+            @Query("inCharset") inCharset: String = "utf-8",
+            @Query("outCharset") outCharset: String = "utf-8",
+            @Query("notice") notice: String = "0",
+            @Query("platform") platform: String = "yqq",
+            @Query("needNewCode") needNewCode: String = "0"
+    ): Observable<PlaylistDetail>
 
 
 //    /**

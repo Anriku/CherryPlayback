@@ -36,13 +36,8 @@ class LocalMusicFragment : BaseFragment() {
 
     private fun initFragment() {
         activity ?: return
-        val appComActivity = activity as AppCompatActivity
 
-        appComActivity.setSupportActionBar(tb)
-        appComActivity.supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowTitleEnabled(false)
-        }
+        setToolbar(tb)
 
         val musicAccessUtil = MusicAccessUtil(activity!!)
         musicAccessUtil.getMusics(this) {

@@ -7,6 +7,9 @@ package com.anriku.cherryplayback.network
 // 歌手列表、歌手详情、查询歌曲vKey、搜索
 const val BASE_MUSIC = "https://c.y.qq.com/"
 
+// 推荐歌单
+const val BASE_RECOMMEND_PLAYLIST = "https://u.y.qq.com/"
+
 // 图片
 const val BASE_IMAGE = "http://imgcache.qq.com/"
 

@@ -24,6 +24,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_main_container_fragment_to_playListDetailFragment"
+            app:destination="@id/playListDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
     </fragment>
 
@@ -54,6 +61,14 @@
         <argument
             android:name="singerInfo"
             app:argType="reference" />
+    </fragment>
+    <fragment
+        android:id="@+id/playListDetailFragment"
+        android:name="com.anriku.cherryplayback.ui.musicsquare.PlayListDetailFragment"
+        android:label="PlayListDetailFragment" >
+        <argument
+            android:name="playlist_id"
+            app:argType="string" />
     </fragment>
 
 </navigation>

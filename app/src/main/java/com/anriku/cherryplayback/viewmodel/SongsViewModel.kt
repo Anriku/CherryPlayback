@@ -145,6 +145,7 @@ open class SongsViewModel : ViewModel() {
             .subscribe(ExecuteOnceObserver(onExecuteOnceNext = {
                 LogUtil.d(TAG, it.lyric)
             }))
+
         if (song.musicType == Song.ONLINE) {
             Glide.with(imageView.context).load(ImageUrl.getAlbumImageUrl(song.albumId?.toLong() ?: -1))
                 .into(imageView)

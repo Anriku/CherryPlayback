@@ -29,9 +29,10 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
+                            <entry key="autoMirrored" value="true" />
                             <entry key="color" value="bbbbbb" />
-                            <entry key="outputName" value="ic_exit" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/exit.svg" />
+                            <entry key="outputName" value="ic_new_song" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/消息_新歌发布提醒_32 (1).svg" />
                           </map>
                         </option>
                       </PersistentState>
