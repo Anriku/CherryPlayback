@@ -33,11 +33,11 @@ class BaseApp: Application() {
      */
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationChannel = NotificationChannel(
-                    MUSIC_SERVICE_CHANNEL_ID,
-                    "CherryPlaybackChannel",
-                    NotificationManager.IMPORTANCE_HIGH)
             val manager = getSystemService(NotificationManager::class.java)
+            // 这里IMPORTANCE_LOW的通知不会有默认的震动。然后这里需要特别注意的就是createNotificationChannel后，在App安装后即使
+            // 修改了notificationChannel的配置，也不会发生改变。
+            val notificationChannel = NotificationChannel(MUSIC_SERVICE_CHANNEL_ID, "CherryPlaybackChannel",
+                NotificationManager.IMPORTANCE_LOW)
             manager.createNotificationChannel(notificationChannel)
         }
     }

@@ -7,6 +7,7 @@ import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.utils.IMusicBinder
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.adapter.PlayerAdapter
+import com.anriku.cherryplayback.broadcast.CherryBroadcastReceiver
 import com.anriku.cherryplayback.config.IS_HAVE_RECORD
 import com.anriku.cherryplayback.config.IS_ONLINE
 import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
@@ -26,12 +27,8 @@ class MusicBinder(private val mContext: Context) : IMusicBinder() {
         private const val TAG = "MusicBinder"
     }
 
-    private val mPlayerAdapter: PlayerAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        CherryMusicPlayer(mContext)
-    }
-    private val mSongsDatabase: SongsDatabase? by lazy(LazyThreadSafetyMode.NONE) {
-        SongsDatabase.getDatabase(mContext)
-    }
+    private val mPlayerAdapter: PlayerAdapter by lazy(LazyThreadSafetyMode.NONE) { CherryMusicPlayer(mContext) }
+    private val mSongsDatabase: SongsDatabase? by lazy(LazyThreadSafetyMode.NONE) { SongsDatabase.getDatabase(mContext) }
 
     /**
      * 用于对播放相关的内容设置
@@ -43,6 +40,25 @@ class MusicBinder(private val mContext: Context) : IMusicBinder() {
             val playIndex = intent.getIntExtra(MusicService.PLAY_INDEX, MusicService.NOT_HAVE_INDEX)
             val songs = intent.getParcelableArrayListExtra<Song>(MusicService.SONGS)
             val isOnlyLoad = intent.getBooleanExtra(MusicService.IS_ONLY_LOAD, false)
+            // 用于Notification的RemoteViews的点击事件响应
+            val broadcastAction = intent.getStringExtra(MusicService.BROADCAST_ACTION)
+            broadcastAction?.let {
+                when (it) {
+                    CherryBroadcastReceiver.ACTION_PLAY_OR_PAUSE -> {
+                        if (isPlaying()) {
+                            pause()
+                        } else {
+                            play()
+                        }
+                    }
+                    CherryBroadcastReceiver.ACTION_PREVIOUS -> {
+                        loadAnotherMusic(false)
+                    }
+                    CherryBroadcastReceiver.ACTION_NEXT -> {
+                        loadAnotherMusic()
+                    }
+                }
+            }
 
             // 设置播放源
             songs?.let {

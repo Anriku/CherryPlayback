@@ -7,47 +7,55 @@ import android.content.Intent
 import android.widget.RemoteViews
 import androidx.annotation.LayoutRes
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.anriku.cherryplayback.R
+
 
 /**
  * Created by anriku on 2018/11/19.
  */
 
-class NotificationUtil {
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+class NotificationUtil(private val mContext: Context) {
 
-    private lateinit var mSmallRemoteViews: RemoteViews
     private lateinit var mLargeRemoteViews: RemoteViews
+    private lateinit var mSmallRemoteViews: RemoteViews
+    lateinit var notification: Notification
+    val notificationManagerCompat: NotificationManagerCompat by lazy { NotificationManagerCompat.from(mContext) }
 
     /**
      * 用于创建通知
      */
-    fun createNotification(
-        context: Context, clazz: Class<*>,
-        @LayoutRes smallLayout: Int, @LayoutRes largeLayout: Int
-        , channelId: String
-    ): Notification {
-        mSmallRemoteViews = RemoteViews(context.packageName, smallLayout)
-        mLargeRemoteViews = RemoteViews(context.packageName, largeLayout)
+    fun createNotification(clazz: Class<*>, @LayoutRes smallLayout: Int, @LayoutRes largeLayout: Int, channelId: String)
+            : Notification {
 
-        val notificationIntent = Intent(context, clazz)
-        val pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT)
+        mSmallRemoteViews = RemoteViews(mContext.packageName, smallLayout)
+        mLargeRemoteViews = RemoteViews(mContext.packageName, largeLayout)
 
-        return NotificationCompat.Builder(context, channelId)
+        val notificationIntent = Intent(mContext, clazz)
+        val pendingIntent = PendingIntent.getActivity(
+            mContext, 0, notificationIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        notification = NotificationCompat.Builder(mContext, channelId)
             .setWhen(System.currentTimeMillis())
             .setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_music_placeholder)
-            .setStyle(NotificationCompat.DecoratedCustomViewStyle())
             .setCustomContentView(mSmallRemoteViews)
             .setCustomBigContentView(mLargeRemoteViews)
             .build()
+
+        return notification
     }
 
-    fun setActionOnSmallRemoteViews(onActions: (RemoteViews) -> Unit) {
-        onActions(mSmallRemoteViews)
+    fun setActionOnRemoteViews(notificationId: Int,onSmallActions: (RemoteViews) -> Unit,
+                               onLargeActions: (RemoteViews) -> Unit) {
+        onSmallActions(mSmallRemoteViews)
+        onLargeActions(mLargeRemoteViews)
+        notifyNotification(notificationId)
     }
 
-    fun setActionOnLargeRemoteViews(onActions: (RemoteViews) -> Unit) {
-        onActions(mLargeRemoteViews)
+    fun notifyNotification(notificationId: Int) {
+        notificationManagerCompat.notify(notificationId, notification)
     }
 }
