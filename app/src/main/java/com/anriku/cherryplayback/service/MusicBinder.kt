@@ -7,11 +7,10 @@ import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.utils.IMusicBinder
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.adapter.PlayerAdapter
-import com.anriku.cherryplayback.broadcast.CherryBroadcastReceiver
 import com.anriku.cherryplayback.config.IS_HAVE_RECORD
-import com.anriku.cherryplayback.config.IS_ONLINE
 import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
 import com.anriku.cherryplayback.database.SongsDatabase
+import com.anriku.cherryplayback.utils.LogUtil
 import com.anriku.cherryplayback.utils.extensions.setSPValue
 
 /**
@@ -36,39 +35,38 @@ class MusicBinder(private val mContext: Context) : IMusicBinder() {
      * @param intent startService所传入的intent
      */
     override fun playSet(intent: Intent) {
-        Thread {
-            val playIndex = intent.getIntExtra(MusicService.PLAY_INDEX, MusicService.NOT_HAVE_INDEX)
-            val songs = intent.getParcelableArrayListExtra<Song>(MusicService.SONGS)
-            val isOnlyLoad = intent.getBooleanExtra(MusicService.IS_ONLY_LOAD, false)
-            // 用于Notification的RemoteViews的点击事件响应
-            val broadcastAction = intent.getStringExtra(MusicService.BROADCAST_ACTION)
-            broadcastAction?.let {
-                when (it) {
-                    CherryBroadcastReceiver.ACTION_PLAY_OR_PAUSE -> {
-                        if (isPlaying()) {
-                            pause()
-                        } else {
-                            play()
-                        }
-                    }
-                    CherryBroadcastReceiver.ACTION_PREVIOUS -> {
-                        loadAnotherMusic(false)
-                    }
-                    CherryBroadcastReceiver.ACTION_NEXT -> {
-                        loadAnotherMusic()
+        val playIndex = intent.getIntExtra(MusicService.PLAY_INDEX, MusicService.NOT_HAVE_INDEX)
+        val songs = intent.getParcelableArrayListExtra<Song>(MusicService.SONGS)
+        val isOnlyLoad = intent.getBooleanExtra(MusicService.IS_ONLY_LOAD, false)
+        // 用于Notification的RemoteViews的点击事件响应
+        val action = intent.action
+
+        action?.let {
+            when (it) {
+                MusicService.ACTION_PLAY_OR_PAUSE -> {
+                    if (isPlaying()) {
+                        pause()
+                    } else {
+                        play()
                     }
                 }
+                MusicService.ACTION_PREVIOUS -> {
+                    loadAnotherMusic(false)
+                }
+                MusicService.ACTION_NEXT -> {
+                    loadAnotherMusic()
+                }
             }
+        }
 
-            // 设置播放源
-            songs?.let {
-                setSongs(it)
-            }
+        // 设置播放源
+        songs?.let {
+            setSongs(it)
+        }
 
-            if (playIndex >= 0) {
-                loadMediaByPosition(playIndex, isOnlyLoad)
-            }
-        }.start()
+        if (playIndex >= 0) {
+            loadMediaByPosition(playIndex, isOnlyLoad)
+        }
     }
 
 

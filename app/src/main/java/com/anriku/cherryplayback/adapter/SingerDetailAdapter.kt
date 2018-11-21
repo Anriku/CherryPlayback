@@ -12,6 +12,7 @@ import com.anriku.cherryplayback.map.SigerDetailSongToSong
 import com.anriku.cherryplayback.model.SingerDetail
 import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
 import com.anriku.cherryplayback.service.MusicService
+import com.anriku.cherryplayback.utils.SafeOnclickListener
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,22 +23,22 @@ import java.lang.StringBuilder
  */
 
 class SingerDetailAdapter(private val mContext: Context) :
-        BasePagedListAdapter<SingerDetail.DataBean.ListBean>(mContext, diffCallback) {
+    BasePagedListAdapter<SingerDetail.DataBean.ListBean>(mContext, diffCallback) {
 
     companion object {
         private const val TAG = "SingerDetailAdapter"
 
         val diffCallback = object : DiffUtil.ItemCallback<SingerDetail.DataBean.ListBean>() {
             override fun areItemsTheSame(
-                    oldItem: SingerDetail.DataBean.ListBean,
-                    newItem: SingerDetail.DataBean.ListBean
+                oldItem: SingerDetail.DataBean.ListBean,
+                newItem: SingerDetail.DataBean.ListBean
             ): Boolean {
                 return oldItem.vid == newItem.vid
             }
 
             override fun areContentsTheSame(
-                    oldItem: SingerDetail.DataBean.ListBean,
-                    newItem: SingerDetail.DataBean.ListBean
+                oldItem: SingerDetail.DataBean.ListBean,
+                newItem: SingerDetail.DataBean.ListBean
             ): Boolean {
                 return oldItem == newItem
             }
@@ -45,7 +46,7 @@ class SingerDetailAdapter(private val mContext: Context) :
     }
 
     override fun getThePositionLayoutId(position: Int): Int =
-            R.layout.singer_detail_rec_item
+        R.layout.singer_detail_rec_item
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val itemView = holder.itemView
@@ -69,23 +70,22 @@ class SingerDetailAdapter(private val mContext: Context) :
             text = artistBuilder.toString()
         }
 
-        itemView.setOnClickListener { _ ->
-
+        itemView.setOnClickListener(SafeOnclickListener { _ ->
             Observable.create(ObservableOnSubscribe<List<SingerDetail.DataBean.ListBean>> {
                 it.onNext(currentList?.snapshot() ?: mutableListOf())
             }).setSchedulers()
-                    .errorHandler()
-                    .map(SigerDetailSongToSong())
-                    .subscribe(ExecuteOnceObserver(
-                            onExecuteOnceNext = {
-                                val intent = Intent(mContext, MusicService::class.java)
-                                intent.putExtra(MusicService.SONGS, it)
+                .errorHandler()
+                .map(SigerDetailSongToSong())
+                .subscribe(ExecuteOnceObserver(
+                    onExecuteOnceNext = {
+                        val intent = Intent(mContext, MusicService::class.java)
+                        intent.putExtra(MusicService.SONGS, it)
 
-                                intent.putExtra(MusicService.IS_ONLY_LOAD, false)
-                                intent.putExtra(MusicService.PLAY_INDEX, position)
-                                ContextCompat.startForegroundService(mContext, intent)
-                            }
-                    ))
-        }
+                        intent.putExtra(MusicService.IS_ONLY_LOAD, false)
+                        intent.putExtra(MusicService.PLAY_INDEX, position)
+                        ContextCompat.startForegroundService(mContext, intent)
+                    }
+                ))
+        })
     }
 }

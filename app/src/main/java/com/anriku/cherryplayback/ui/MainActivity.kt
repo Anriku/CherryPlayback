@@ -18,7 +18,9 @@ import com.anriku.cherryplayback.databinding.ActivityMainBinding
 import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.network.ImageUrl
+import com.anriku.cherryplayback.service.MusicService
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
+import com.anriku.cherryplayback.utils.SafeOnclickListener
 import com.anriku.cherryplayback.viewmodel.SongsViewModel
 import com.bumptech.glide.Glide
 import org.greenrobot.eventbus.Subscribe
@@ -39,8 +41,8 @@ class MainActivity : BaseActivity() {
 
     private val mPlayAndPauseIcons: List<Drawable?> by lazy(LazyThreadSafetyMode.NONE) {
         listOf(
-                ContextCompat.getDrawable(this, R.drawable.ic_pause),
-                ContextCompat.getDrawable(this, R.drawable.ic_play)
+            ContextCompat.getDrawable(this, R.drawable.ic_pause),
+            ContextCompat.getDrawable(this, R.drawable.ic_play)
         )
     }
 
@@ -61,19 +63,22 @@ class MainActivity : BaseActivity() {
         songsViewModel.bindService(this)
 
         mBinding.listeners = Listeners(
-                onStartControlActivity = {
-                    startActivity(Intent(this, ControlActivity::class.java),
-                            ActivityOptionsCompat.makeSceneTransitionAnimation(this
-                                    , mBinding.civAlbum, ControlActivity.TRANSITION_NAME).toBundle())
-                }, onPlayAndPause = {
-            if (songsViewModel.binder?.isPlaying() == true) {
-                songsViewModel.binder?.pause()
-            } else {
-                songsViewModel.binder?.play()
+            onStartControlActivity = {
+                startActivity(
+                    Intent(this, ControlActivity::class.java),
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this
+                        , mBinding.civAlbum, ControlActivity.TRANSITION_NAME
+                    ).toBundle()
+                )
+            }, onPlayAndPause = SafeOnclickListener {
+                val intent = Intent(this, MusicService::class.java).apply {
+                    action = MusicService.ACTION_PLAY_OR_PAUSE
+                }
+                startService(intent)
+            }, onList = {
+                mMusicListFragment.show(supportFragmentManager, "music_list_fragment")
             }
-        }, onList = {
-            mMusicListFragment.show(supportFragmentManager, "music_list_fragment")
-        }
         )
 
     }
@@ -140,9 +145,9 @@ class MainActivity : BaseActivity() {
     }
 
     class Listeners(
-            val onStartControlActivity: (View) -> Unit = {},
-            val onPlayAndPause: (ImageView) -> Unit = {},
-            val onList: (ImageView) -> Unit = {}
+        val onStartControlActivity: (View) -> Unit = {},
+        val onPlayAndPause: (ImageView) -> Unit = {},
+        val onList: (ImageView) -> Unit = {}
     ) {
 
         fun onStartControlActivityClick(view: View) {

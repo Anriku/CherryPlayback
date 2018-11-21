@@ -36,15 +36,6 @@
                 android:name=".service.MusicService"
                 android:exported="false"/>
 
-        <receiver android:name=".broadcast.CherryBroadcastReceiver"
-                  android:enabled="true"
-                  android:exported="false">
-            <intent-filter>
-                <action android:name="com.anriku.cherryplayback.PLAY_OR_PAUSE"/>
-                <action android:name="com.anriku.cherryplayback.PLAY_PREVIOUS"/>
-                <action android:name="com.anriku.cherryplayback.PLAY_NEXT"/>
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

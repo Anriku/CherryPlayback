@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.service.MusicService
 import com.anriku.cherryplayback.utils.LogUtil
+import com.anriku.cherryplayback.utils.SafeOnclickListener
 import com.anriku.cherryplayback.viewmodel.SongsViewModel
 
 /**
@@ -40,8 +41,8 @@ class SongListRecAdapter(private val mActivity: FragmentActivity) : BaseRecAdapt
             text = songs[position].artist.toString()
         }
 
-        holder.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener(SafeOnclickListener {
             mSongsViewModel.binder?.loadMediaByPosition(position)
-        }
+        })
     }
 }

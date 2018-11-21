@@ -1,5 +1,6 @@
 package com.anriku.cherryplayback.ui
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -16,8 +17,10 @@ import com.anriku.cherryplayback.databinding.ActivityControlBinding
 import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.network.ImageUrl
+import com.anriku.cherryplayback.service.MusicService
 import com.anriku.cherryplayback.utils.IMusicBinder
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
+import com.anriku.cherryplayback.utils.SafeOnclickListener
 import com.anriku.cherryplayback.utils.extensions.getSPValue
 import com.anriku.cherryplayback.utils.extensions.setSPValue
 import com.anriku.cherryplayback.viewmodel.SongsViewModel
@@ -87,16 +90,21 @@ class ControlActivity : BaseActivity() {
             it.setImageDrawable(mPatternIcons[mPlayPattern])
         }, onList = {
             mMusicListFragment.show(supportFragmentManager, "music_list_fragment")
-        }, onPrevious = {
-            songsViewModel.binder?.loadAnotherMusic(false)
-        }, onNext = {
-            songsViewModel.binder?.loadAnotherMusic()
-        }, onPlayAndPause = {
-            if (songsViewModel.binder?.isPlaying() == true) {
-                songsViewModel.binder?.pause()
-            } else {
-                songsViewModel.binder?.play()
+        }, onPrevious = SafeOnclickListener {
+            val intent = Intent(this, MusicService::class.java).apply {
+                action = MusicService.ACTION_PREVIOUS
             }
+            startService(intent)
+        }, onNext = SafeOnclickListener {
+            val intent = Intent(this, MusicService::class.java).apply {
+                action = MusicService.ACTION_NEXT
+            }
+            startService(intent)
+        }, onPlayAndPause = SafeOnclickListener {
+            val intent = Intent(this, MusicService::class.java).apply {
+                action = MusicService.ACTION_PLAY_OR_PAUSE
+            }
+            startService(intent)
         })
 
         // 给SeekBar设置拖动的事件

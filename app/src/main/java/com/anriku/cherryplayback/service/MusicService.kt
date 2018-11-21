@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.IBinder
 import com.anriku.cherryplayback.BaseApp
 import com.anriku.cherryplayback.R
-import com.anriku.cherryplayback.broadcast.CherryBroadcastReceiver
 import com.anriku.cherryplayback.config.MUSIC_NOTIFICATION_ID
+import com.anriku.cherryplayback.config.MUSIC_SWITCH_INTERVAL
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.network.ApiGenerate
 import com.anriku.cherryplayback.network.ImageUrl
@@ -34,33 +34,37 @@ class MusicService : Service() {
         const val PLAY_INDEX = "play_index"
         const val SONGS = "songs"
         const val IS_ONLY_LOAD = "is_only_load"
-        const val BROADCAST_ACTION = "broadcast_action"
+
+        const val ACTION_PLAY_OR_PAUSE = "com.anriku.cherryplayback.PLAY_OR_PAUSE"
+        const val ACTION_PREVIOUS = "com.anriku.cherryplayback.PLAY_PREVIOUS"
+        const val ACTION_NEXT = "com.anriku.cherryplayback.PLAY_NEXT"
 
         const val TAG = "MusicService"
     }
 
-    private val mPlayAndPauseIcons: List<Int> by lazy(LazyThreadSafetyMode.NONE) {
-        listOf(R.drawable.ic_pause, R.drawable.ic_play)
-    }
     private lateinit var mNotificationUtil: NotificationUtil
     private val mQQMusicService: QQMusicService by lazy(LazyThreadSafetyMode.NONE) {
         ApiGenerate.getGsonApiService(QQMusicService::class.java)
     }
+    private var mLastTime = 0L
 
 
     private var mIsServiceFirstCreate: Boolean = true
     private val mMusicBinder: MusicBinder by lazy(LazyThreadSafetyMode.NONE) { MusicBinder(this) }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-
         if (mIsServiceFirstCreate) {
 
             addNotification()
             mIsServiceFirstCreate = false
         }
 
-        mMusicBinder.playSet(intent)
-
+        // 防止连续切换
+        val time = System.currentTimeMillis()
+        if (time - mLastTime > MUSIC_SWITCH_INTERVAL) {
+            mMusicBinder.playSet(intent)
+            mLastTime = time
+        }
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -78,13 +82,13 @@ class MusicService : Service() {
         )
 
         mNotificationUtil.setActionOnRemoteViews(MUSIC_NOTIFICATION_ID, onSmallActions = {
-            it.setOnclickListener(this, R.id.iv_play_or_pause, CherryBroadcastReceiver.ACTION_PLAY_OR_PAUSE)
-            it.setOnclickListener(this, R.id.iv_previous, CherryBroadcastReceiver.ACTION_PREVIOUS)
-            it.setOnclickListener(this, R.id.iv_next, CherryBroadcastReceiver.ACTION_NEXT)
+            it.setOnclickListener(this, R.id.iv_play_or_pause, MusicService.ACTION_PLAY_OR_PAUSE)
+            it.setOnclickListener(this, R.id.iv_previous, MusicService.ACTION_PREVIOUS)
+            it.setOnclickListener(this, R.id.iv_next, MusicService.ACTION_NEXT)
         }, onLargeActions = {
-            it.setOnclickListener(this, R.id.iv_play_or_pause, CherryBroadcastReceiver.ACTION_PLAY_OR_PAUSE)
-            it.setOnclickListener(this, R.id.iv_previous, CherryBroadcastReceiver.ACTION_PREVIOUS)
-            it.setOnclickListener(this, R.id.iv_next, CherryBroadcastReceiver.ACTION_NEXT)
+            it.setOnclickListener(this, R.id.iv_play_or_pause, MusicService.ACTION_PLAY_OR_PAUSE)
+            it.setOnclickListener(this, R.id.iv_previous, MusicService.ACTION_PREVIOUS)
+            it.setOnclickListener(this, R.id.iv_next, MusicService.ACTION_NEXT)
         })
 
         // 将服务置于前台
@@ -93,8 +97,6 @@ class MusicService : Service() {
 
     inner class NotificationPlayInfoCallback : PlaybackInfoListener() {
         override fun onLoadMedia(song: Song) {
-
-            LogUtil.d(TAG, song.title.toString())
 
             if (song.musicType == Song.ONLINE) {
                 GlideUtil.getBitmap(this@MusicService, ImageUrl.getAlbumImageUrl(
@@ -147,16 +149,16 @@ class MusicService : Service() {
                 PlaybackInfoListener.PAUSE, PlaybackInfoListener.COMPLETE,
                 PlaybackInfoListener.INVALID, PlaybackInfoListener.RESET -> {
                     mNotificationUtil.setActionOnRemoteViews(MUSIC_NOTIFICATION_ID, onSmallActions = {
-                        it.setImageViewResource(R.id.iv_play_or_pause, mPlayAndPauseIcons[1])
+                        it.setImageViewResource(R.id.iv_play_or_pause, R.drawable.ic_play)
                     }, onLargeActions = {
-                        it.setImageViewResource(R.id.iv_play_or_pause, mPlayAndPauseIcons[1])
+                        it.setImageViewResource(R.id.iv_play_or_pause, R.drawable.ic_play)
                     })
                 }
                 else -> {
                     mNotificationUtil.setActionOnRemoteViews(MUSIC_NOTIFICATION_ID, onSmallActions = {
-                        it.setImageViewResource(R.id.iv_play_or_pause, mPlayAndPauseIcons[0])
+                        it.setImageViewResource(R.id.iv_play_or_pause, R.drawable.ic_pause)
                     }, onLargeActions = {
-                        it.setImageViewResource(R.id.iv_play_or_pause, mPlayAndPauseIcons[0])
+                        it.setImageViewResource(R.id.iv_play_or_pause, R.drawable.ic_pause)
                     })
                 }
             }

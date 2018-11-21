@@ -12,6 +12,7 @@ import com.anriku.cherryplayback.model.PlaylistDetail
 import com.anriku.cherryplayback.model.SingerDetail
 import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
 import com.anriku.cherryplayback.service.MusicService
+import com.anriku.cherryplayback.utils.SafeOnclickListener
 import com.anriku.cherryplayback.utils.extensions.errorHandler
 import com.anriku.cherryplayback.utils.extensions.setSchedulers
 import io.reactivex.Observable
@@ -22,8 +23,10 @@ import java.lang.StringBuilder
  * Created by anriku on 2018/11/18.
  */
 
-class PlaylistDetailRecAdapter(context: Context, private val mPlaylistDetailSongs: List<PlaylistDetail.CdlistBean.SonglistBean>)
-    : BaseRecAdapter(context) {
+class PlaylistDetailRecAdapter(
+    context: Context,
+    private val mPlaylistDetailSongs: List<PlaylistDetail.CdlistBean.SonglistBean>
+) : BaseRecAdapter(context) {
     override fun getThePositionLayoutId(position: Int): Int = R.layout.playlist_detail_rec_item
 
 
@@ -54,23 +57,22 @@ class PlaylistDetailRecAdapter(context: Context, private val mPlaylistDetailSong
             text = artistBuilder.toString()
         }
 
-        itemView.setOnClickListener { _ ->
-
+        itemView.setOnClickListener(SafeOnclickListener { _ ->
             Observable.create(ObservableOnSubscribe<List<PlaylistDetail.CdlistBean.SonglistBean>> {
                 it.onNext(mPlaylistDetailSongs)
             }).setSchedulers()
-                    .errorHandler()
-                    .map(PlaylistDetailSongToSong())
-                    .subscribe(ExecuteOnceObserver(
-                            onExecuteOnceNext = {
-                                val intent = Intent(context, MusicService::class.java)
-                                intent.putExtra(MusicService.SONGS, it)
+                .errorHandler()
+                .map(PlaylistDetailSongToSong())
+                .subscribe(ExecuteOnceObserver(
+                    onExecuteOnceNext = {
+                        val intent = Intent(context, MusicService::class.java)
+                        intent.putExtra(MusicService.SONGS, it)
 
-                                intent.putExtra(MusicService.IS_ONLY_LOAD, false)
-                                intent.putExtra(MusicService.PLAY_INDEX, position)
-                                ContextCompat.startForegroundService(context, intent)
-                            }
-                    ))
-        }
+                        intent.putExtra(MusicService.IS_ONLY_LOAD, false)
+                        intent.putExtra(MusicService.PLAY_INDEX, position)
+                        ContextCompat.startForegroundService(context, intent)
+                    }
+                ))
+        })
     }
 }
