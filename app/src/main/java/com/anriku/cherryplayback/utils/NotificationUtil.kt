@@ -15,13 +15,13 @@ import com.anriku.cherryplayback.R
  * Created by anriku on 2018/11/19.
  */
 
-@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class NotificationUtil(private val mContext: Context) {
 
     private lateinit var mLargeRemoteViews: RemoteViews
     private lateinit var mSmallRemoteViews: RemoteViews
     lateinit var notification: Notification
-    val notificationManagerCompat: NotificationManagerCompat by lazy { NotificationManagerCompat.from(mContext) }
+    val notificationManagerCompat: NotificationManagerCompat by lazy(LazyThreadSafetyMode.NONE)
+    { NotificationManagerCompat.from(mContext) }
 
     /**
      * 用于创建通知
@@ -41,6 +41,7 @@ class NotificationUtil(private val mContext: Context) {
             .setWhen(System.currentTimeMillis())
             .setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_music_placeholder)
+            .setOngoing(true)
             .setCustomContentView(mSmallRemoteViews)
             .setCustomBigContentView(mLargeRemoteViews)
             .build()
@@ -48,8 +49,10 @@ class NotificationUtil(private val mContext: Context) {
         return notification
     }
 
-    fun setActionOnRemoteViews(notificationId: Int,onSmallActions: (RemoteViews) -> Unit,
-                               onLargeActions: (RemoteViews) -> Unit) {
+    fun setActionOnRemoteViews(
+        notificationId: Int, onSmallActions: (RemoteViews) -> Unit,
+        onLargeActions: (RemoteViews) -> Unit
+    ) {
         onSmallActions(mSmallRemoteViews)
         onLargeActions(mLargeRemoteViews)
         notifyNotification(notificationId)

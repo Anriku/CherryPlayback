@@ -79,7 +79,7 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_main_container_fragment_to_playListDetailFragment2">
+                            <entry key="action_main_container_fragment_to_playListDetailFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -94,13 +94,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="playListDetailFragment2">
+                  <entry key="playListDetailFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="44" />
-                            <option name="y" value="686" />
+                            <option name="x" value="-186" />
+                            <option name="y" value="492" />
                           </Point>
                         </option>
                       </LayoutPositions>

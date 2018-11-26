@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
+import android.graphics.Bitmap
 import android.os.IBinder
 import android.widget.ImageView
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.config.IS_HAVE_RECORD
 import com.anriku.cherryplayback.config.LAST_PLAY_INDEX
 import com.anriku.cherryplayback.database.SongsDatabase
@@ -19,6 +21,7 @@ import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.network.*
 import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
 import com.anriku.cherryplayback.service.MusicService
+import com.anriku.cherryplayback.utils.GlideUtil
 import com.anriku.cherryplayback.utils.IMusicBinder
 import com.anriku.cherryplayback.utils.LogUtil
 import com.anriku.cherryplayback.utils.MusicAccessUtil
@@ -26,6 +29,8 @@ import com.anriku.cherryplayback.utils.extensions.errorHandler
 import com.anriku.cherryplayback.utils.extensions.getSPValue
 import com.anriku.cherryplayback.utils.extensions.setSchedulers
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import org.greenrobot.eventbus.EventBus
 import java.net.URLEncoder
 import java.nio.charset.Charset
@@ -39,6 +44,9 @@ open class SongsViewModel : ViewModel() {
 
     val currentPlaySongName: MutableLiveData<String> = MutableLiveData()
     val currentPlayArtist: MutableLiveData<String> = MutableLiveData()
+    private lateinit var mPlaySongPic: Bitmap
+
+    private
 
     companion object {
         private const val TAG = "SongsViewModel"
@@ -139,15 +147,17 @@ open class SongsViewModel : ViewModel() {
         currentPlaySongName.value = song.title
         currentPlayArtist.value = song.artist
 
-        mLyricService.getLyric(song.id % 100, song.id)
-            .errorHandler()
-            .setSchedulers()
-            .subscribe(ExecuteOnceObserver(onExecuteOnceNext = {
-                LogUtil.d(TAG, it.lyric)
-            }))
+//        mLyricService.getLyric(song.id % 100, song.id)
+//            .errorHandler()
+//            .setSchedulers()
+//            .subscribe(ExecuteOnceObserver(onExecuteOnceNext = {
+//                LogUtil.d(TAG, it.lyric)
+//            }))
 
         if (song.musicType == Song.ONLINE) {
-            Glide.with(imageView.context).load(ImageUrl.getAlbumImageUrl(song.albumId?.toLong() ?: -1))
+            Glide.with(imageView.context)
+                .load(ImageUrl.getAlbumImageUrl(song.albumId?.toLong() ?: -1))
+                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(imageView)
         } else {
             val searchKey = "${song.title}-${song.artist}"
@@ -157,8 +167,9 @@ open class SongsViewModel : ViewModel() {
                 .setSchedulers()
                 .errorHandler()
                 .subscribe(ExecuteOnceObserver(onExecuteOnceNext = { searchResult ->
-                    Glide.with(imageView.context)
+                    Glide.with(activity)
                         .load(ImageUrl.getAlbumImageUrl(searchResult.data.song.list[0].album.id.toLong(), width))
+                        .apply(RequestOptions().placeholder(R.drawable.ic_singer).error(R.drawable.ic_error))
                         .into(imageView)
                 }))
         }

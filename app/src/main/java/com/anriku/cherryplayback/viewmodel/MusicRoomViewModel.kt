@@ -7,8 +7,10 @@ import com.anriku.cherryplayback.network.ApiGenerate
 import com.anriku.cherryplayback.network.BASE_DAILY_PIC
 import com.anriku.cherryplayback.network.DailyPicService
 import com.anriku.cherryplayback.network.ErrorHandler
+import com.anriku.cherryplayback.utils.GlideUtil
 import com.anriku.cherryplayback.utils.extensions.simpleEnqueue
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 
 /**
@@ -31,11 +33,12 @@ class MusicRoomViewModel : ViewModel() {
 
         }, onSimpleResponse = { _, response ->
             Glide.with(imageView)
-                    .setDefaultRequestOptions(
-                            RequestOptions().error(R.drawable.default_daily_pic)
-                    )
-                    .load(response.body()?.string())
-                    .into(imageView)
+                .setDefaultRequestOptions(
+                    RequestOptions().error(R.drawable.default_daily_pic)
+                )
+                .load(response.body()?.string())
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(imageView)
         })
     }
 

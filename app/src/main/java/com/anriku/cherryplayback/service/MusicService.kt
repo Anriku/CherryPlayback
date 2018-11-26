@@ -14,7 +14,6 @@ import com.anriku.cherryplayback.network.QQMusicService
 import com.anriku.cherryplayback.rxjava.ExecuteOnceObserver
 import com.anriku.cherryplayback.ui.MainActivity
 import com.anriku.cherryplayback.utils.GlideUtil
-import com.anriku.cherryplayback.utils.LogUtil
 import com.anriku.cherryplayback.utils.NotificationUtil
 import com.anriku.cherryplayback.utils.PlaybackInfoListener
 import com.anriku.cherryplayback.utils.extensions.errorHandler
@@ -98,6 +97,14 @@ class MusicService : Service() {
     inner class NotificationPlayInfoCallback : PlaybackInfoListener() {
         override fun onLoadMedia(song: Song) {
 
+            mNotificationUtil.setActionOnRemoteViews(MUSIC_NOTIFICATION_ID, onLargeActions = {
+                it.setTextViewText(R.id.tv_artist, song.artist)
+                it.setTextViewText(R.id.tv_song_name, song.title)
+            }, onSmallActions = {
+                it.setTextViewText(R.id.tv_artist, song.artist)
+                it.setTextViewText(R.id.tv_song_name, song.title)
+            })
+
             if (song.musicType == Song.ONLINE) {
                 GlideUtil.getBitmap(this@MusicService, ImageUrl.getAlbumImageUrl(
                     song.albumId?.toLong()
@@ -105,12 +112,8 @@ class MusicService : Service() {
                 ), onGet = { bitmap ->
                     mNotificationUtil.setActionOnRemoteViews(MUSIC_NOTIFICATION_ID, onLargeActions = {
                         it.setImageViewBitmap(R.id.iv_song, bitmap)
-                        it.setTextViewText(R.id.tv_artist, song.artist)
-                        it.setTextViewText(R.id.tv_song_name, song.title)
                     }, onSmallActions = {
                         it.setImageViewBitmap(R.id.iv_song, bitmap)
-                        it.setTextViewText(R.id.tv_artist, song.artist)
-                        it.setTextViewText(R.id.tv_song_name, song.title)
                     })
                 })
             } else {
@@ -127,14 +130,9 @@ class MusicService : Service() {
                             , onGet = { bitmap ->
                                 mNotificationUtil.setActionOnRemoteViews(MUSIC_NOTIFICATION_ID, onLargeActions = {
                                     it.setImageViewBitmap(R.id.iv_song, bitmap)
-                                    it.setTextViewText(R.id.tv_artist, song.artist)
-                                    it.setTextViewText(R.id.tv_song_name, song.title)
                                 }, onSmallActions = {
                                     it.setImageViewBitmap(R.id.iv_song, bitmap)
-                                    it.setTextViewText(R.id.tv_artist, song.artist)
-                                    it.setTextViewText(R.id.tv_song_name, song.title)
                                 })
-
                             })
                     }))
             }

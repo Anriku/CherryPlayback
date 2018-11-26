@@ -2,9 +2,13 @@ package com.anriku.cherryplayback.utils
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.widget.ImageView
+import com.anriku.cherryplayback.network.ImageUrl
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 

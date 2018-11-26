@@ -5,4 +5,4 @@ package com.anriku.cherryplayback.config
  */
 
 // 音乐切换的间隔
-const val MUSIC_SWITCH_INTERVAL = 1000
+const val MUSIC_SWITCH_INTERVAL = 600

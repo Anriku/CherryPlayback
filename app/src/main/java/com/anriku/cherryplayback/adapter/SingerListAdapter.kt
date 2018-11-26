@@ -13,6 +13,7 @@ import com.anriku.cherryplayback.model.SingerList
 import com.anriku.cherryplayback.network.ImageUrl
 import com.anriku.cherryplayback.ui.SingerDetailFragment
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -21,22 +22,22 @@ import de.hdodenhof.circleimageview.CircleImageView
  */
 
 class SingerListAdapter(private val mContext: Context) :
-        BasePagedListAdapter<SingerList.DataBean.ListBean>(mContext, diffCallback) {
+    BasePagedListAdapter<SingerList.DataBean.ListBean>(mContext, diffCallback) {
 
     companion object {
         private const val TAG = "SingerListAdapter"
 
         val diffCallback = object : DiffUtil.ItemCallback<SingerList.DataBean.ListBean>() {
             override fun areItemsTheSame(
-                    oldItem: SingerList.DataBean.ListBean,
-                    newItem: SingerList.DataBean.ListBean
+                oldItem: SingerList.DataBean.ListBean,
+                newItem: SingerList.DataBean.ListBean
             ): Boolean {
                 return oldItem.fsinger_id == newItem.fsinger_id
             }
 
             override fun areContentsTheSame(
-                    oldItem: SingerList.DataBean.ListBean,
-                    newItem: SingerList.DataBean.ListBean
+                oldItem: SingerList.DataBean.ListBean,
+                newItem: SingerList.DataBean.ListBean
             ): Boolean {
                 return oldItem == newItem
             }
@@ -61,10 +62,9 @@ class SingerListAdapter(private val mContext: Context) :
         val civSinger = itemView.findViewById<CircleImageView>(R.id.civ_singer).apply {
             item?.fsinger_id?.let {
                 Glide.with(this.context)
-                        .load(ImageUrl.getSingerImageUrl(it.toLong(), 300))
-                        .apply(RequestOptions().placeholder(R.drawable.ic_singer)
-                                .error(R.drawable.ic_error))
-                        .into(this)
+                    .load(ImageUrl.getSingerImageUrl(it.toLong()))
+                    .apply(RequestOptions().placeholder(R.drawable.ic_singer).error(R.drawable.ic_error))
+                    .into(this)
             }
         }
 
@@ -79,11 +79,13 @@ class SingerListAdapter(private val mContext: Context) :
                 val transitionName = "iv_singer$position"
                 ViewCompat.setTransitionName(civSinger, transitionName)
                 val extras = FragmentNavigatorExtras(civSinger to transitionName)
-                val bundle = bundleOf(SingerDetailFragment.SINGER_INFO to singerInfo,
-                        SingerDetailFragment.TRANSITION_NAME to transitionName)
+                val bundle = bundleOf(
+                    SingerDetailFragment.SINGER_INFO to singerInfo,
+                    SingerDetailFragment.TRANSITION_NAME to transitionName
+                )
                 it.findNavController().navigate(
-                        R.id.action_singer_list_fragment_to_singer_detail_fragment,
-                        bundle, null, extras
+                    R.id.action_singer_list_fragment_to_singer_detail_fragment,
+                    bundle, null, extras
                 )
             }
 

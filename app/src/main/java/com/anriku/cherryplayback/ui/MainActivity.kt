@@ -33,7 +33,7 @@ class MainActivity : BaseActivity() {
     private lateinit var mSongsViewModel: SongsViewModel
     private lateinit var mPlaybackListener: PlaybackInfoListener
     private val mMusicListFragment: MusicListFragment by lazy(LazyThreadSafetyMode.NONE) { MusicListFragment() }
-    protected lateinit var mNavController: NavController
+    private lateinit var mNavController: NavController
 
     companion object {
         private const val TAG = "MainActivity"
@@ -64,13 +64,7 @@ class MainActivity : BaseActivity() {
 
         mBinding.listeners = Listeners(
             onStartControlActivity = {
-                startActivity(
-                    Intent(this, ControlActivity::class.java),
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        this
-                        , mBinding.civAlbum, ControlActivity.TRANSITION_NAME
-                    ).toBundle()
-                )
+                startActivity(Intent(this, ControlActivity::class.java))
             }, onPlayAndPause = SafeOnclickListener {
                 val intent = Intent(this, MusicService::class.java).apply {
                     action = MusicService.ACTION_PLAY_OR_PAUSE
@@ -80,7 +74,6 @@ class MainActivity : BaseActivity() {
                 mMusicListFragment.show(supportFragmentManager, "music_list_fragment")
             }
         )
-
     }
 
     /**
@@ -122,7 +115,8 @@ class MainActivity : BaseActivity() {
     inner class PlaybackListener : PlaybackInfoListener() {
 
         override fun onLoadMedia(song: Song) {
-            mSongsViewModel.onLoadMedia(this@MainActivity, song, mBinding.civAlbum as ImageView, 300)
+            mBinding.tvLyric.text = song.title
+            mSongsViewModel.onLoadMedia(this@MainActivity, song, mBinding.civAlbum as ImageView)
         }
 
         override fun onDurationChanged(duration: Int) {}

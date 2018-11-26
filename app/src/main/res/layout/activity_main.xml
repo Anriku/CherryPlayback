@@ -56,6 +56,9 @@
         <TextView
                 android:id="@+id/tv_lyric"
                 android:layout_width="0dp"
+                android:maxLines="2"
+                android:gravity="center"
+                android:ellipsize="end"
                 android:layout_height="0dp"
                 android:onClick="@{listeners.onStartControlActivityClick}"
                 app:layout_constraintBottom_toBottomOf="parent"

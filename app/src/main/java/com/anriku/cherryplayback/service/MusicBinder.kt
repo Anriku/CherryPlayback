@@ -61,6 +61,7 @@ class MusicBinder(private val mContext: Context) : IMusicBinder() {
 
         // 设置播放源
         songs?.let {
+            mPlayerAdapter.reset()
             setSongs(it)
         }
 
