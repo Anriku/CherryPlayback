@@ -3,10 +3,13 @@ package com.anriku.cherryplayback.adapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.component.SimpleDotsView
 import com.anriku.cherryplayback.component.SlideShowView
 import com.anriku.cherryplayback.model.Slide
+import com.anriku.cherryplayback.ui.musicroom.SlideFragment
 import com.bumptech.glide.Glide
 
 /**
@@ -31,5 +34,10 @@ class SlideViewAdapter(private val mSlides: List<Slide.DataBean.SliderBean>) : S
 
     override fun setSlideShowContent(view: View, itemViewInfo: Slide.DataBean.SliderBean) {
         Glide.with(view).load(itemViewInfo.picUrl).into(view as ImageView)
+
+        view.setOnClickListener {
+            val bundle = bundleOf(SlideFragment.URL to itemViewInfo.linkUrl)
+            it.findNavController().navigate(R.id.action_main_container_fragment_to_slideFragment, bundle)
+        }
     }
 }

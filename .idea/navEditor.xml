@@ -89,6 +89,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_main_container_fragment_to_slideFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -99,8 +104,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-186" />
-                            <option name="y" value="492" />
+                            <option name="x" value="14" />
+                            <option name="y" value="622" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -135,6 +140,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="slideFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="19" />
+                            <option name="y" value="917" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

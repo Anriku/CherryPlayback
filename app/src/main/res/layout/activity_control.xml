@@ -25,9 +25,10 @@
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="@dimen/activity_control_iv_width"
-            android:layout_height="@dimen/activity_control_iv_width"
-            android:padding="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="@{listeners.onExitClick}"
+            android:padding="15dp"
             android:src="@drawable/ic_back"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/tv_song_name"
@@ -36,9 +37,9 @@
 
         <ImageView
             android:id="@+id/iv_menu"
-            android:layout_width="@dimen/activity_control_iv_width"
-            android:layout_height="@dimen/activity_control_iv_width"
-            android:padding="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="15dp"
             android:src="@drawable/ic_menu"
             app:layout_constraintLeft_toRightOf="@id/tv_song_name"
             app:layout_constraintRight_toRightOf="parent"
@@ -102,11 +103,33 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="500dp" />
 
+        <TextView
+            android:id="@+id/tv_played_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/sb"
+            app:layout_constraintTop_toBottomOf="@id/gl_album_sb" />
+
         <SeekBar
             android:id="@+id/sb"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHorizontal_weight="6"
+            app:layout_constraintLeft_toRightOf="@id/tv_played_time"
+            app:layout_constraintRight_toLeftOf="@id/tv_all_time"
+            app:layout_constraintTop_toBottomOf="@id/gl_album_sb" />
+
+
+        <TextView
+            android:id="@+id/tv_all_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@id/sb"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/gl_album_sb" />
 

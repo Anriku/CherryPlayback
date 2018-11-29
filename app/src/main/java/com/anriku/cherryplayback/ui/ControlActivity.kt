@@ -18,9 +18,7 @@ import com.anriku.cherryplayback.event.ServiceConnectEvent
 import com.anriku.cherryplayback.model.Song
 import com.anriku.cherryplayback.network.ImageUrl
 import com.anriku.cherryplayback.service.MusicService
-import com.anriku.cherryplayback.utils.IMusicBinder
-import com.anriku.cherryplayback.utils.PlaybackInfoListener
-import com.anriku.cherryplayback.utils.SafeOnclickListener
+import com.anriku.cherryplayback.utils.*
 import com.anriku.cherryplayback.utils.extensions.getSPValue
 import com.anriku.cherryplayback.utils.extensions.setSPValue
 import com.anriku.cherryplayback.viewmodel.SongsViewModel
@@ -47,15 +45,15 @@ class ControlActivity : BaseActivity() {
 
     private val mPlayAndPauseIcons: List<Drawable?> by lazy(LazyThreadSafetyMode.NONE) {
         listOf(
-            ContextCompat.getDrawable(this, R.drawable.ic_pause),
-            ContextCompat.getDrawable(this, R.drawable.ic_play)
+                ContextCompat.getDrawable(this, R.drawable.ic_pause),
+                ContextCompat.getDrawable(this, R.drawable.ic_play)
         )
     }
     private val mPatternIcons: List<Drawable?> by lazy(LazyThreadSafetyMode.NONE) {
         listOf(
-            ContextCompat.getDrawable(this, R.drawable.ic_sequence_play),
-            ContextCompat.getDrawable(this, R.drawable.ic_random_play),
-            ContextCompat.getDrawable(this, R.drawable.ic_single_play)
+                ContextCompat.getDrawable(this, R.drawable.ic_sequence_play),
+                ContextCompat.getDrawable(this, R.drawable.ic_random_play),
+                ContextCompat.getDrawable(this, R.drawable.ic_single_play)
         )
     }
 
@@ -105,7 +103,10 @@ class ControlActivity : BaseActivity() {
                 action = MusicService.ACTION_PLAY_OR_PAUSE
             }
             startService(intent)
+        },onExit = {
+            finish()
         })
+
 
         // 给SeekBar设置拖动的事件
         mBinding.sb.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -115,6 +116,7 @@ class ControlActivity : BaseActivity() {
                 // 如果来自于用户的改变就进拖动位置的记录
                 if (fromUser) {
                     mSeekProgress = progress
+                    mBinding.tvPlayedTime.text = TimeUtil.formatTheTime(progress)
                 }
             }
 
@@ -154,9 +156,13 @@ class ControlActivity : BaseActivity() {
 
         override fun onDurationChanged(duration: Int) {
             mBinding.sb.max = duration
+            mBinding.tvPlayedTime.text = TimeUtil.formatTheTime(0)
+            mBinding.tvAllTime.text = TimeUtil.formatTheTime(duration)
         }
 
         override fun onPositionChanged(position: Int) {
+            LogUtil.d(TAG, position.toString())
+
             if (!mIsUserSeeking) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     mBinding.sb.setProgress(position, true)
@@ -164,6 +170,7 @@ class ControlActivity : BaseActivity() {
                     mBinding.sb.progress = position
                 }
             }
+            mBinding.tvPlayedTime.text = TimeUtil.formatTheTime(position)
         }
 
         override fun onStateChange(state: Int) {
@@ -183,11 +190,12 @@ class ControlActivity : BaseActivity() {
 
 
     class Listeners(
-        val onPattern: (ImageView) -> Unit = {},
-        val onPrevious: (ImageView) -> Unit = {},
-        val onPlayAndPause: (ImageView) -> Unit = {},
-        val onNext: (ImageView) -> Unit = {},
-        val onList: (ImageView) -> Unit = {}
+            val onPattern: (ImageView) -> Unit = {},
+            val onPrevious: (ImageView) -> Unit = {},
+            val onPlayAndPause: (ImageView) -> Unit = {},
+            val onNext: (ImageView) -> Unit = {},
+            val onList: (ImageView) -> Unit = {},
+            val onExit: (ImageView) -> Unit = {}
     ) {
 
         fun onPatternClick(view: View) {
@@ -208,6 +216,10 @@ class ControlActivity : BaseActivity() {
 
         fun onListClick(view: View) {
             onList(view as ImageView)
+        }
+
+        fun onExitClick(view: View) {
+            onExit(view as ImageView)
         }
     }
 }

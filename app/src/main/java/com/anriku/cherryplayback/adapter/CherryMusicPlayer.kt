@@ -26,7 +26,7 @@ open class CherryMusicPlayer(protected val mContext: Context) :
     companion object {
         private const val TAG = "CherryMusicPlayer"
         // 刷新操作的时间间隔
-        const val UPDATE_INTERVAL = 1000L
+        const val UPDATE_INTERVAL = 1500L
     }
 
     // 当前本地音乐播放到的位置

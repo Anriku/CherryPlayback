@@ -44,9 +44,9 @@ open class SongsViewModel : ViewModel() {
 
     val currentPlaySongName: MutableLiveData<String> = MutableLiveData()
     val currentPlayArtist: MutableLiveData<String> = MutableLiveData()
+    val playedTime: MutableLiveData<Int> = MutableLiveData()
+    val allTime: MutableLiveData<Int> = MutableLiveData()
     private lateinit var mPlaySongPic: Bitmap
-
-    private
 
     companion object {
         private const val TAG = "SongsViewModel"
