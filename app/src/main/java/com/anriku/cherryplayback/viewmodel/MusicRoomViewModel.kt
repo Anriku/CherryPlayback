@@ -2,12 +2,17 @@ package com.anriku.cherryplayback.viewmodel
 
 import android.widget.ImageView
 import androidx.lifecycle.ViewModel
+import androidx.paging.DataSource
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.anriku.cherryplayback.R
-import com.anriku.cherryplayback.network.ApiGenerate
-import com.anriku.cherryplayback.network.BASE_DAILY_PIC
-import com.anriku.cherryplayback.network.DailyPicService
-import com.anriku.cherryplayback.network.ErrorHandler
-import com.anriku.cherryplayback.utils.GlideUtil
+import com.anriku.cherryplayback.config.HOT_SONG
+import com.anriku.cherryplayback.config.NEW_SONG
+import com.anriku.cherryplayback.model.RankSong
+import com.anriku.cherryplayback.model.SingerDetail
+import com.anriku.cherryplayback.network.*
+import com.anriku.cherryplayback.ui.paing.RankSongDataSource
+import com.anriku.cherryplayback.ui.paing.SingerDetailDataSource
 import com.anriku.cherryplayback.utils.extensions.simpleEnqueue
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -19,10 +24,11 @@ import com.bumptech.glide.request.RequestOptions
 
 class MusicRoomViewModel : ViewModel() {
 
-    private lateinit var mDailyPicService: DailyPicService
+    private val mDailyPicService: DailyPicService by lazy(LazyThreadSafetyMode.NONE) {
+        ApiGenerate.getGsonApiService(DailyPicService::class.java, BASE_DAILY_PIC)
+    }
 
     fun getDailyPic(imageView: ImageView) {
-        mDailyPicService = ApiGenerate.getGsonApiService(DailyPicService::class.java, BASE_DAILY_PIC)
 
         // 获取必应每日一图
         mDailyPicService.getDailyPic().simpleEnqueue(object : ErrorHandler {

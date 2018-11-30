@@ -1,89 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/main_container_fragment">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@id/main_container_fragment">
 
     <fragment
-        android:id="@+id/main_container_fragment"
-        android:name="com.anriku.cherryplayback.ui.MainContainerFragment"
-        android:label="MainContainerFragment"
-        tools:layout="@layout/fragment_main_container">
+            android:id="@+id/main_container_fragment"
+            android:name="com.anriku.cherryplayback.ui.MainContainerFragment"
+            android:label="MainContainerFragment"
+            tools:layout="@layout/fragment_main_container">
         <action
-            android:id="@+id/action_main_container_fragment_to_local_music_fragment"
-            app:destination="@id/local_music_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+                android:id="@+id/action_main_container_fragment_to_local_music_fragment"
+                app:destination="@id/local_music_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
 
         <action
-            android:id="@+id/action_main_container_fragment_to_singer_list_fragment"
-            app:destination="@id/singer_list_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+                android:id="@+id/action_main_container_fragment_to_singer_list_fragment"
+                app:destination="@id/singer_list_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
         <action
-            android:id="@+id/action_main_container_fragment_to_playListDetailFragment"
-            app:destination="@id/playListDetailFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+                android:id="@+id/action_main_container_fragment_to_playListDetailFragment"
+                app:destination="@id/playListDetailFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
         <action
-            android:id="@+id/action_main_container_fragment_to_slideFragment"
-            app:destination="@id/slideFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+                android:id="@+id/action_main_container_fragment_to_slideFragment"
+                app:destination="@id/slideFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+        <action
+                android:id="@+id/action_main_container_fragment_to_newSongFragment"
+                app:destination="@id/newSongFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
 
     </fragment>
 
     <fragment
-        android:id="@+id/local_music_fragment"
-        android:name="com.anriku.cherryplayback.ui.musicroom.LocalMusicFragment"
-        android:label="LocalMusicFragment"
-        tools:layout="@layout/fragment_local_music" />
+            android:id="@+id/local_music_fragment"
+            android:name="com.anriku.cherryplayback.ui.musicroom.LocalMusicFragment"
+            android:label="LocalMusicFragment"
+            tools:layout="@layout/fragment_local_music"/>
 
     <fragment
-        android:id="@+id/singer_list_fragment"
-        android:name="com.anriku.cherryplayback.ui.SingerListFragment"
-        android:label="SingerListFragment"
-        tools:layout="@layout/fragment_singer_list">
+            android:id="@+id/singer_list_fragment"
+            android:name="com.anriku.cherryplayback.ui.SingerListFragment"
+            android:label="SingerListFragment"
+            tools:layout="@layout/fragment_singer_list">
         <action
-            android:id="@+id/action_singer_list_fragment_to_singer_detail_fragment"
-            app:destination="@id/singer_detail_fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+                android:id="@+id/action_singer_list_fragment_to_singer_detail_fragment"
+                app:destination="@id/singer_detail_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+
     <fragment
-        android:id="@+id/singer_detail_fragment"
-        android:name="com.anriku.cherryplayback.ui.SingerDetailFragment"
-        android:label="SingerDetailFragment"
-        tools:layout="@layout/fragment_singer_detail">
+            android:id="@+id/singer_detail_fragment"
+            android:name="com.anriku.cherryplayback.ui.SingerDetailFragment"
+            android:label="SingerDetailFragment"
+            tools:layout="@layout/fragment_singer_detail">
         <argument
-            android:name="singerInfo"
-            app:argType="reference" />
+                android:name="singerInfo"
+                app:argType="reference"/>
     </fragment>
+
     <fragment
-        android:id="@+id/playListDetailFragment"
-        android:name="com.anriku.cherryplayback.ui.musicsquare.PlayListDetailFragment"
-        android:label="PlayListDetailFragment">
+            android:id="@+id/playListDetailFragment"
+            android:name="com.anriku.cherryplayback.ui.musicsquare.PlayListDetailFragment"
+            android:label="PlayListDetailFragment"
+            tools:layout="@layout/fragment_playlist_detail">
         <argument
-            android:name="playlist_id"
-            app:argType="string" />
+                android:name="playlist_id"
+                app:argType="string"/>
     </fragment>
+
     <fragment
-        android:id="@+id/slideFragment"
-        android:name="com.anriku.cherryplayback.ui.musicroom.SlideFragment"
-        android:label="SlideFragment">
+            android:id="@+id/slideFragment"
+            android:name="com.anriku.cherryplayback.ui.musicroom.SlideDetailFragment"
+            android:label="SlideFragment"
+            tools:layout="@layout/fragment_slide_detail">
         <argument
-            android:name="url"
-            app:argType="string" />
+                android:name="url"
+                app:argType="string"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/newSongFragment"
+            android:name="com.anriku.cherryplayback.ui.musicroom.RankSongFragment"
+            android:label="NewSongFragment"
+            tools:layout="@layout/fragment_rank_song">
+        <argument android:name="topId"
+                  app:argType="string"/>
     </fragment>
 
 </navigation>

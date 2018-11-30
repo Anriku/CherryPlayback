@@ -9,7 +9,7 @@ import com.anriku.cherryplayback.R
 import com.anriku.cherryplayback.component.SimpleDotsView
 import com.anriku.cherryplayback.component.SlideShowView
 import com.anriku.cherryplayback.model.Slide
-import com.anriku.cherryplayback.ui.musicroom.SlideFragment
+import com.anriku.cherryplayback.ui.musicroom.SlideDetailFragment
 import com.bumptech.glide.Glide
 
 /**
@@ -36,7 +36,7 @@ class SlideViewAdapter(private val mSlides: List<Slide.DataBean.SliderBean>) : S
         Glide.with(view).load(itemViewInfo.picUrl).into(view as ImageView)
 
         view.setOnClickListener {
-            val bundle = bundleOf(SlideFragment.URL to itemViewInfo.linkUrl)
+            val bundle = bundleOf(SlideDetailFragment.URL to itemViewInfo.linkUrl)
             it.findNavController().navigate(R.id.action_main_container_fragment_to_slideFragment, bundle)
         }
     }

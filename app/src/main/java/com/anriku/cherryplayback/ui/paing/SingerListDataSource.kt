@@ -34,8 +34,6 @@ class SingerListDataSource : PageKeyedDataSource<Int, SingerList.DataBean.ListBe
             .subscribe(ExecuteOnceObserver(
                 onExecuteOnceNext = {
                     it.data?.list ?: return@ExecuteOnceObserver
-
-                    LogUtil.d(TAG, it.data!!.list!!.toString())
                     callback.onResult(it.data!!.list!!, 0, 2)
                 }
             ))

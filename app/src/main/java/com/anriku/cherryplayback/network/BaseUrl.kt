@@ -4,7 +4,7 @@ package com.anriku.cherryplayback.network
  * Created by anriku on 2018/11/8.
  */
 
-// 歌手列表、歌手详情、查询歌曲vKey、搜索
+// 歌手列表、歌手详情、查询歌曲vKey、搜索、新歌
 const val BASE_MUSIC = "https://c.y.qq.com/"
 
 // 推荐歌单

@@ -9,9 +9,8 @@ import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.transition.TransitionInflater
 import com.anriku.cherryplayback.R
-import com.anriku.cherryplayback.adapter.SingerDetailAdapter
+import com.anriku.cherryplayback.adapter.SingerDetailRecAdapter
 import com.anriku.cherryplayback.databinding.FragmentSingerDetailBinding
 import com.anriku.cherryplayback.utils.extensions.setDivider
 import com.anriku.cherryplayback.model.SingerList
@@ -61,7 +60,7 @@ class SingerDetailFragment : BaseFragment() {
         }
 
         mBinding.rv.setDivider()
-        val adapter = SingerDetailAdapter(appCompatActivity)
+        val adapter = SingerDetailRecAdapter(appCompatActivity)
         mBinding.rv.adapter = adapter
         mSingerDetailViewModel.singerDetail.observe(this, Observer(adapter::submitList))
     }

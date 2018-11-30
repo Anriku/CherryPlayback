@@ -11,4 +11,6 @@
 
     <string name="exit">退出</string>
     <string name="recommend_playlist">推荐歌单</string>
+
+    <string name="new_song">New</string>
 </resources>

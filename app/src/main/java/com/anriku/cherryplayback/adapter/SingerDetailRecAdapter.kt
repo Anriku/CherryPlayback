@@ -22,11 +22,11 @@ import java.lang.StringBuilder
  * Created by anriku on 2018/11/9.
  */
 
-class SingerDetailAdapter(private val mContext: Context) :
+class SingerDetailRecAdapter(private val mContext: Context) :
     BasePagedListAdapter<SingerDetail.DataBean.ListBean>(mContext, diffCallback) {
 
     companion object {
-        private const val TAG = "SingerDetailAdapter"
+        private const val TAG = "SingerDetailRecAdapter"
 
         val diffCallback = object : DiffUtil.ItemCallback<SingerDetail.DataBean.ListBean>() {
             override fun areItemsTheSame(

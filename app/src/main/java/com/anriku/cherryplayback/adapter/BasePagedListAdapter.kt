@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
  */
 
 abstract class BasePagedListAdapter<T>(
-    private val mContext: Context, diffCallback: DiffUtil.ItemCallback<T>
+    val context: Context, diffCallback: DiffUtil.ItemCallback<T>
 ) : PagedListAdapter<T, BasePagedListAdapter.BaseViewHolder>(diffCallback) {
 
-    protected val inflater: LayoutInflater = LayoutInflater.from(mContext)
+    protected val inflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

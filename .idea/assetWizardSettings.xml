@@ -31,8 +31,8 @@
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="autoMirrored" value="true" />
                             <entry key="color" value="bbbbbb" />
-                            <entry key="outputName" value="ic_new_song" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/消息_新歌发布提醒_32 (1).svg" />
+                            <entry key="outputName" value="ic_local_music" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/手机.svg" />
                           </map>
                         </option>
                       </PersistentState>
